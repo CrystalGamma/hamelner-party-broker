@@ -1,0 +1,15 @@
+Testfälle
+Auflistung des Gesamtbestandes zum kaufen bzw.zum verleihen 
+Auflistung des aktuell verfügbaren bestandes zum Ausleihen und zum kaufen
+Kaufen und Verleihen von Mengen die größer sind als die verfügbaren mengen(sollte nicht möglich sein)
+Rückgabe von Mengen die die Ausleihe übersteigen(sollte nicht möglich sein)
+Rückgabe testen
+Abrechnung testen
+Umsatzliste testen
+Transaktionen auflisten
+Kundendaten ändern 
+neuen kunden aufnehmen
+Computer-Mensch Dialog( und nicht Aktionen auswählen können, die nicht existent sind) überprüfen
+Kauf von nicht verkäuflichen objekten(sollte nicht möglich sein)
+Leih von von nicht verleihbaren Objekten(sollte nicht möglich sein)
+zeitpunkt in die Vergangenheit ändern bzw. Negative zeitdauer(sollte nicht möglich sein)
