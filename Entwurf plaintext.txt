@@ -4,7 +4,7 @@ Kunde
 	verlustMelden(posten, zeit, menge)
 	ausleihe(ausleihe)
 	abrechnung(zeit) -> RechnungPosten[]
-	berechneUmsatz() -> int
+	berechneUmsatz() -> geld
 	transaktionenSammeln() -> String[]
 	kaufen(posten, menge)
 
@@ -26,10 +26,10 @@ LagerPosten
 	bestandAendern(menge)
 		ändert den Bestand um die angegebene Menge (positiv oder negativ)
 		Exception wenn Bestand negativ werden würde
-	getBestand() -> int
-	ausleihePreis(zeit, menge) -> int
-	kaufPreis(menge) -> int
-	verlustGebuer(zeit, menge) -> int
+	getBestand() -> geld
+	ausleihePreis(zeit, menge) -> geld
+	kaufPreis(menge) -> geld
+	verlustGebuer(zeit, menge) -> geld
 
 
 Betrieb:
