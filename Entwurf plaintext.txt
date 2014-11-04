@@ -1,0 +1,57 @@
+Kunde
+	{set, get}{Name, VorName, ID, Straße, Hausnummer, PLZ, Ort}
+	rueckgabe(posten, zeit, menge)
+	verlustMelden(posten, zeit, menge)
+	ausleihe(ausleihe)
+	abrechnung(zeit) -> RechnungPosten[]
+	berechneUmsatz() -> int
+	transaktionenSammeln() -> String[]
+	kaufen(posten, menge)
+
+Ausleihe
+	buchen()
+	getPosten() -> LagerPosten
+	getMenge() -> menge
+	getZeit() -> zeit
+	verlust(menge) -> menge
+		annuliert eine bestimmte Menge in der Ausleihe, gibt ggf. die Menge, die von anderen Ausleihen gedeckt wird, zurück
+	rueckgabe(menge) -> menge
+		bucht eine bestimmte Menge zurück, gibt ggf. die Menge, die von anderen Ausleihen gedeckt wird, zurück
+
+LagerPosten
+	toString() -> String
+		gibt die Daten des Postens, zB in der Form "<Bestand> x <ID> <Name> (<Einheit>)" als String zurück
+	istVerkaeuflich() -> boolean
+	istVerleihbar() -> boolean
+	bestandAendern(menge)
+		ändert den Bestand um die angegebene Menge (positiv oder negativ)
+		Exception wenn Bestand negativ werden würde
+	getBestand() -> int
+	ausleihePreis(zeit, menge) -> int
+	kaufPreis(menge) -> int
+	verlustGebuer(zeit, menge) -> int
+
+
+Betrieb:
+	main(args)
+		Hauptmenü
+	bestandAuflisten(modus)
+		listet den Bestand, gefiltert nach Kriterien, die durch modus bestimmt werden (Gesamtbestand, verf. Verkaufsware, verf. Verleihware, oÄ), auf
+	verkaufen()
+		der Verkaufs-Menüpunkt
+	verleih()
+		der Verleih-Menüpunkt
+	abrechnung(kundenID)
+		rechnet alle ausstehenden Rechnungspunkte beim Kunden ab
+	rückgabe()
+		der Rückgabe-Menüpunkt
+	verlust()
+		der Verlust-Meldungs-Menüpunkt
+	umsatzBericht()
+		listet die Umsätze der Kunden auf
+	datenAendern(kundenID)
+		ändert die Daten eines Kunden (Menü)
+	transaktionen(kundenID)
+		zeigt die Transaktionen eines Kunden an
+	anDerUhrDrehen(zeit)
+		schreitet die Zeit voran
