@@ -1,4 +1,4 @@
-\documentclass[a4paper,12pt]{article}
+\documentclass[a4paper,12pt]{book}
 \usepackage[a4paper]{geometry}
 \usepackage[ngerman]{babel}
 \usepackage{fontspec}
@@ -8,14 +8,73 @@
 \title{Hamelner Party-Broker Warenwirtschaftssystem}
 \author{Florian Bussmann \and Leon Westhof \and Jona Stubbe}
 \begin{document}
+\frontmatter
 \maketitle
 \tableofcontents
+\mainmatter
 \part{Klassendiagramm}
 \part{Methodenbeschreibung}
 \section{Kunde}
+\begin{description}
+\item[\{set, get\}\{Name, VorName, ID, Straße, Hausnummer, PLZ, Ort\}]
+\item[rueckgabe(posten, zeit, menge)]
+\item[verlustMelden(posten, zeit, menge)]
+\item[ausleihe(ausleihe)]
+\item[abrechnung(zeit) -> RechnungPosten{[]}]
+\item[berechneUmsatz() -> geld]
+\item[transaktionenSammeln() -> String{[]}]
+\item[kaufen(posten, menge)]
+\end{description}
 \section{Ausleihe}
+\begin{description}
+\item[buchen()]
+\item[getPosten() -> LagerPosten]
+\item[getMenge() -> menge]
+\item[getZeit() -> zeit]
+\item[verlust(menge) -> menge]
+annuliert eine bestimmte Menge in der Ausleihe, gibt ggf. die Menge, die von anderen Ausleihen gedeckt wird, zurück
+\item[rueckgabe(menge) -> menge]
+bucht eine bestimmte Menge zurück, gibt ggf. die Menge, die von anderen Ausleihen gedeckt wird, zurück
+\end{description}
 \section{LagerPosten}
+\begin{description}
+\item[toString() -> String]
+gibt die Daten des Postens, zB in der Form \enquote{<Bestand> x <ID> <Name> (<Einheit>)} als String zurück
+\item[istVerkaeuflich() -> boolean]
+\item[istVerleihbar() -> boolean]
+\item[bestandAendern(menge)]
+ändert den Bestand um die angegebene Menge (positiv oder negativ) \\
+Exception wenn Bestand negativ werden würde
+\item[getBestand() -> geld]
+\item[ausleihePreis(zeit, menge) -> geld]
+\item[kaufPreis(menge) -> geld]
+\item[verlustGebuer(zeit, menge) -> geld]
+\end{description}
 \section{Betrieb}
+\begin{description}
+\item[main(args)]
+Hauptmenü
+\item[bestandAuflisten(modus)]
+listet den Bestand, gefiltert nach Kriterien, die durch modus bestimmt werden (Gesamtbestand, verf. Verkaufsware, verf. Verleihware, oÄ), auf
+\item[verkaufen()]
+der Verkaufs-Menüpunkt
+\item[verleih()]
+der Verleih-Menüpunkt
+\item[abrechnung(kundenID)]
+rechnet alle ausstehenden Rechnungspunkte beim Kunden ab
+\item[rückgabe()]
+der Rückgabe-Menüpunkt
+\item[verlust()]
+der Verlust-Meldungs-Menüpunkt
+\item[umsatzBericht()]
+listet die Umsätze der Kunden auf
+\item[datenAendern(kundenID)]
+ändert die Daten eines Kunden (Menü)
+\item[transaktionen(kundenID)]
+zeigt die Transaktionen eines Kunden an
+\item[anDerUhrDrehen(zeit)]
+schreitet die Zeit voran
+\end{description}
 \part{Testfälle}
 \begin{enumerate}
 \item
@@ -48,5 +107,6 @@ Leih von von nicht verleihbaren Objekten(sollte nicht möglich sein)
 zeitpunkt in die Vergangenheit ändern bzw. Negative zeitdauer(sollte nicht möglich sein)
 
 \end{enumerate}
+\appendix
 \part{Eigenständigkeitserklärung}
 \end{document}
