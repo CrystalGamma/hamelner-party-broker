@@ -103,33 +103,47 @@ schreitet die Zeit voran
 \part{Testfälle}
 \begin{enumerate}
 \item
-Auflistung des Gesamtbestandes zum Kaufen und zum Verleihen 
+Auflistung des Gesamtbestandes zum Kaufen und zum Verleihen.\\
+\Rightarrow Liste mit n Elementen zum Verkaufen und n Elementen zum Verleihen
 \item
-Auflistung des aktuell verfügbaren Bestandes zum Ausleihen und zum Kaufen
+Auflistung des Gesamtbestandes zum Kaufen und zum Verleihen nach einer Änderung um x.\\
+\Rightarrow Liste mit n-x bzw. n+x Elementen zum Verkaufen und zum Verleihen
 \item
-Kaufen und Verleihen von Mengen, die größer sind als die verfügbaren Mengen(sollte nicht möglich sein)
+Auflistung des aktuell verfügbaren Bestandes zum Ausleihen und zum Kaufen.
+\Rightarrow Liste mit y Elemente unterschiedlich(nach Ausleihe oder Verkauf) bzw. gleich zur Liste des Gesamtbestandes. 
 \item
-Rückgabe von Mengen, die die Ausleihe übersteigen(sollte nicht möglich sein)
+Verleihen von verfügbaren, nicht verfügbaren (die größer sind als die verfügbaren Mengen) und nichtganzzahligen Mengen.
+\Rightarrow Führt zu Veränderungen am Bestand der zurzeit verfügbaren Objekten 
 \item
-Rückgabe testen(auch unvollständig)
+Verkauf von verfügbaren, nicht verfügbaren (die größer sind als die verfügbaren Mengen) und nichtganzzahligen Mengen.
+\Rightarrow Führt zu Veränderungen am Gesammtbestand und am zurzeit verfügbaren Bestand
 \item
-Abrechnung testen
+Rückgabe von Mengen, die die Ausleihe übersteigen(sollte nicht möglich sein).
 \item
-Umsatzliste testen
+Rückgabe testen:
+-vollsändig
+-unvollständig
+-im teilweise oder vollständig beschädigten Zustand
 \item
-Transaktionen auflisten
+Abrechnung testen.
 \item
-Kundendaten ändern 
+Umsatzliste testen.
 \item
-neuen Kunden aufnehmen
+Transaktionen auflisten.
 \item
-Computer-Mensch Dialog überprüfen( und nicht Aktionen auswählen können, die nicht existent sind)
+Kundendaten ändern .
 \item
-Kauf von nicht verkäuflichen Objekten(sollte nicht möglich sein)
+Neuen Kunden aufnehmen.
 \item
-Leih von von nicht verleihbaren Objekten(sollte nicht möglich sein)
+Computer-Mensch Dialog überprüfen (auf Aktionen die möglich sind und welche die nicht möglich sind).
 \item
-Zeitpunkt in die Vergangenheit ändern bzw. negative Zeitdauer(sollte nicht möglich sein)
+Kauf von nicht verkäuflichen Objekten(sollte nicht möglich sein).
+\item
+Leih von von nicht verleihbaren Objekten(sollte nicht möglich sein).
+\item
+Zeitpunkt in die Vergangenheit ändern bzw. negative Zeitdauer(sollte nicht möglich sein).
+\item
+Zeitpunkt in die Zukunft ändern.
 
 \end{enumerate}
 \appendix
