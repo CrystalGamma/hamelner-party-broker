@@ -31,11 +31,11 @@ Exception wenn der Posten nicht ausgeliehen war oder die angegebene Menge die Le
 und stellt dem Kunden die Verlustgebühr in Rechnung.
 \item[ausleihe(ausleihe)]
 Fügt eine Ausleihe dem Kundenkonto hinzu. Dabei wird diese gebucht.
-\item[abrechnung(zeit) -> RechnungPosten{[]}]
+\item[abrechnung(zeit) $\rightarrow$ RechnungPosten{[]}]
 Gibt alle ausstehenden Rechnungspunkte zurück und legt sie damit zu den bearbeiteten Rechnungspunkten.
-\item[berechneUmsatz() -> geld]
+\item[berechneUmsatz() $\rightarrow$ geld]
 Berechnet den gesamten Umsatz, der durch den Kunden verursacht wurde, d. h. der Wert aller bearbeiteten Rechnungspunkte.
-\item[transaktionenSammeln() -> String{[]}]
+\item[transaktionenSammeln() $\rightarrow$ String{[]}]
 Stellt alle Rechungspunkte und bestehenden Ausleihen zusammen.
 \item[kaufen(posten, menge)]
 Verkauft (entfernt Bestand) und stellt dem Kunden den Kaufpreis in Rechnung.
@@ -44,35 +44,35 @@ Verkauft (entfernt Bestand) und stellt dem Kunden den Kaufpreis in Rechnung.
 \begin{description}
 \item[buchen()]
 Die Ausleihe tritt in Kraft: Entfernt die auszuleihende Menge des Posten aus dem Lager.
-\item[getPosten() -> LagerPosten]
+\item[getPosten() $\rightarrow$ LagerPosten]
 Gibt den Posten der geliehen wird, zurück.
-\item[getMenge() -> menge]
+\item[getMenge() $\rightarrow$ menge]
 Gibt die ausgeliehende / auszuleihende Menge zurück.
-\item[getZeit() -> zeit]
+\item[getZeit() $\rightarrow$ zeit]
 Gibt die Startzeit der Ausleihe zurück.
-\item[verlust(menge) -> menge]
+\item[verlust(menge) $\rightarrow$ menge]
 Annuliert eine bestimmte Menge in der Ausleihe, gibt ggf. die Menge, die von anderen Ausleihen gedeckt wird, zurück.
-\item[rueckgabe(menge) -> menge]
+\item[rueckgabe(menge) $\rightarrow$ menge]
 Bucht eine bestimmte Menge zurück, gibt ggf. die Menge, die von anderen Ausleihen gedeckt wird, zurück.
 \end{description}
 \section{LagerPosten}
 \begin{description}
-\item[toString() -> String]
+\item[toString() $\rightarrow$ String]
 gibt die Daten des Postens, zB in der Form \enquote{<Bestand> x <ID> <Name> (<Einheit>)} als String zurück
-\item[istVerkaeuflich() -> boolean]
+\item[istVerkaeuflich() $\rightarrow$ boolean]
 Bestimmt ob der Artikel verkäuflich ist.
-\item[istVerleihbar() -> boolean]
+\item[istVerleihbar() $\rightarrow$ boolean]
 Bestimmt ob der Artikel verleihbar ist.
 \item[bestandAendern(menge)]
 Ändert den Bestand um die angegebene Menge (positiv oder negativ). \\
 Exception wenn Bestand negativ werden würde.
-\item[getBestand() -> geld]
+\item[getBestand() $\rightarrow$ geld]
 Gibt den aktuellen Lagerbestand zurück.
-\item[ausleihePreis(zeit, menge) -> geld]
+\item[ausleihePreis(zeit, menge) $\rightarrow$ geld]
 Bestimmt die Leihgebühr einer gegebenen Menge des Postens über eine gegebene Zeitspanne.
-\item[kaufPreis(menge) -> geld]
+\item[kaufPreis(menge) $\rightarrow$ geld]
 Bestimmt den Kaufpreis einer gegebenen Menge des Postens.
-\item[verlustGebuer(zeit, menge) -> geld]
+\item[verlustGebuer(zeit, menge) $\rightarrow$ geld]
 Bestimmt die Gebühr, die bei Verlust einer gegebenen Menge des Postens nach gegebener Zeit entsteht.
 \end{description}
 \section{Betrieb}
@@ -104,55 +104,55 @@ schreitet die Zeit voran
 \begin{enumerate}
 \item
 Auflistung des Gesamtbestandes zum Kaufen und zum Verleihen.\\
-\Rightarrow Liste mit n Elementen zum Verkaufen und n Elementen zum Verleihen
+$\Rightarrow$ Liste mit n Elementen zum Verkaufen und n Elementen zum Verleihen
 \item
 Auflistung des Gesamtbestandes zum Kaufen und zum Verleihen nach einer Änderung um x.\\
-\Rightarrow Liste mit n-x bzw. n+x Elementen zum Verkaufen und zum Verleihen
+$\Rightarrow$ Liste mit n-x bzw. n+x Elementen zum Verkaufen und zum Verleihen
 \item
 Auflistung des aktuell verfügbaren Bestandes zum Ausleihen und zum Kaufen.
-\Rightarrow Liste mit y Elemente unterschiedlich(nach Ausleihe oder Verkauf) bzw. gleich zur Liste des Gesamtbestandes. 
+$\Rightarrow$ Liste mit y Elemente unterschiedlich(nach Ausleihe oder Verkauf) bzw. gleich zur Liste des Gesamtbestandes. 
 \item
 Verleihen von verfügbaren, nicht verfügbaren (die größer sind als die verfügbaren Mengen) und nichtganzzahligen Mengen.
-\Rightarrow Führt zu Veränderungen am Bestand der zurzeit verfügbaren Objekten, sofern es möglich war 
+$\Rightarrow$ Führt zu Veränderungen am Bestand der zurzeit verfügbaren Objekten, sofern es möglich war 
 \item
 Verkauf von verfügbaren, nicht verfügbaren (die größer sind als die verfügbaren Mengen) und nichtganzzahligen Mengen.
-\Rightarrow Führt zu Veränderungen am Gesammtbestand und am zurzeit verfügbaren Bestand, sofern es möglich war
+$\Rightarrow$ Führt zu Veränderungen am Gesammtbestand und am zurzeit verfügbaren Bestand, sofern es möglich war
 \item
 Rückgabe von Mengen, die die Ausleihe übersteigen(sollte nicht möglich sein).
-\Rightarrow sollte eine Fehlermeldung ausgeben und keine Ausleihmengen, Rechnungspunkte oder sonstige Daten ändern
+$\Rightarrow$ sollte eine Fehlermeldung ausgeben und keine Ausleihmengen, Rechnungspunkte oder sonstige Daten ändern
 \item
 Rückgabe testen:
 -vollsändig
 -unvollständig 
 -im teilweise oder vollständig beschädigten Zustand(Verlustfall)
-\Rightarrow Veränderungen der Liste aktuell verfügbarer Objekte, macht eine Abrechnung , löscht oder ändert(bei unvollständig) das entsprechnende Ausleih-Objekt und den Verweis
+$\Rightarrow$ Veränderungen der Liste aktuell verfügbarer Objekte, macht eine Abrechnung , löscht oder ändert(bei unvollständig) das entsprechnende Ausleih-Objekt und den Verweis
 \item
 Abrechnung testen.
-\Rightarrow schafft einen neuen Rechnungspunkt
+$\Rightarrow$ schafft einen neuen Rechnungspunkt
 \item
 Umsatzliste testen.
-\Rightarrow Gibt eine Liste mit einem Eintrag pro Kunden aus, wo die Gesammtsumme der Transaktionen steht
+$\Rightarrow$ Gibt eine Liste mit einem Eintrag pro Kunden aus, wo die Gesammtsumme der Transaktionen steht
 \item
 Transaktionen auflisten.
 \item
-\Rightarrow Gibt eine Liste von n Rechnungspunkten mit Menge, Art, Zeitraum, Preis der Transaktion und Gesammttransaktionenpreis für einen bestimmten Kunden aus
+$\Rightarrow$ Gibt eine Liste von n Rechnungspunkten mit Menge, Art, Zeitraum, Preis der Transaktion und Gesammttransaktionenpreis für einen bestimmten Kunden aus
 Kundendaten ändern .
-\Rightarrow Sollte die entsprechende Änderung speichern und zurückgeben
+$\Rightarrow$ Sollte die entsprechende Änderung speichern und zurückgeben
 \item
 Neuen Kunden aufnehmen.
-\Rightarrow erzeugt ein neues Kundenobjekte, führt zu einem weiteren Eintrag in der Umsatzanzeige
+$\Rightarrow$ erzeugt ein neues Kundenobjekte, führt zu einem weiteren Eintrag in der Umsatzanzeige
 \item
 Computer-Mensch Dialog überprüfen (auf Aktionen die möglich sind und welche die nicht möglich sind).
-\Rightarrow Fehlermeldungen bei Falscheingabe
+$\Rightarrow$ Fehlermeldungen bei Falscheingabe
 \item
 Kauf von nicht verkäuflichen Objekten(sollte nicht möglich sein).
-\Rightarrow Fehlermeldungen bei Falscheingabe, keine Änderung von Daten(Gesammtbestand, zurzeit verfügbarer Bestand, Rechnungspunkt )
+$\Rightarrow$ Fehlermeldungen bei Falscheingabe, keine Änderung von Daten(Gesammtbestand, zurzeit verfügbarer Bestand, Rechnungspunkt )
 \item
 Leih von von nicht verleihbaren Objekten(sollte nicht möglich sein).
-\Rightarrow Fehlermeldungen bei Falscheingabe, keine Änderung von Daten(zurzeit verfügbarer Bestand, Ausleihobjekt )
+$\Rightarrow$ Fehlermeldungen bei Falscheingabe, keine Änderung von Daten(zurzeit verfügbarer Bestand, Ausleihobjekt )
 \item
 Zeitpunkt in die Vergangenheit ändern bzw. negative Zeitdauer(sollte nicht möglich sein).
-\Rightarrow Fehlermeldung, keine Datenänerung, bitte um Neueingabe
+$\Rightarrow$ Fehlermeldung, keine Datenänerung, bitte um Neueingabe
 \item
 Zeitpunkt in die Zukunft ändern.
 \item
