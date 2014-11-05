@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generiert durch Microsoft Visio, SVG Export Klassendiagramm.svg Page-1 -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events"
+		width="8.26772in" height="11.6929in" viewBox="0 0 595.276 841.89" xml:space="preserve" color-interpolation-filters="sRGB"
+		class="st13">
+	<style type="text/css">
+	<![CDATA[
+		.st1 {fill:#f2f2f2;stroke:#ffffff;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.5}
+		.st2 {fill:#5b9bd5;stroke:#ffffff;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.5}
+		.st3 {fill:#ffffff;font-family:Arial;font-size:1.00001em}
+		.st4 {fill:#5b9bd5;fill-opacity:0}
+		.st5 {stroke:#5b9bd5;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.5;visibility:hidden}
+		.st6 {fill:#5b9bd5;font-family:Arial;font-size:0.833336em}
+		.st7 {fill:#5b9bd5}
+		.st8 {stroke:#5592c9;stroke-dasharray:1,0.5;stroke-linecap:butt;stroke-width:0.5}
+		.st9 {font-size:1em}
+		.st10 {stroke:#5592c9;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.5}
+		.st11 {marker-start:url(#mrkr22-144);stroke:#5592c9;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.5}
+		.st12 {fill:#5592c9;fill-opacity:1;stroke:#5592c9;stroke-opacity:1;stroke-width:0.16556291390728}
+		.st13 {fill:none;fill-rule:evenodd;font-size:12px;overflow:visible;stroke-linecap:square;stroke-miterlimit:3}
+	]]>
+	</style>
+
+	<defs id="Markers">
+		<g id="lend22">
+			<path d="M 0 0 L 2.25 -1.125 L 4.5 0 L 2.25 1.125 L 0 0 " style="stroke-linecap:round;stroke-linejoin:round;fill:none"/>
+		</g>
+		<marker id="mrkr22-144" class="st12" refX="26.46" orient="auto" markerUnits="strokeWidth" overflow="visible">
+			<use xlink:href="#lend22" transform="scale(6.04) "/>
+		</marker>
+	</defs>
+	<g>
+		<title>Zeichenblatt-1</title>
+		<g id="group1-1" transform="translate(28.3465,-590.011)">
+			<title>Klasse</title>
+			<desc>Kunde</desc>
+			<g id="shape2-2">
+				<title>Tabelle.2</title>
+				<path d="M0 841.89 L184.25 841.89 L184.25 749.38 L0 749.38 L0 841.89 Z" class="st1"/>
+			</g>
+			<g id="shape3-4" transform="translate(0,-92.5114)">
+				<title>Tabelle.3</title>
+				<path d="M0 841.89 L184.25 841.89 L184.25 810.49 L0 810.49 L0 841.89 Z" class="st2"/>
+			</g>
+			<g id="shape5-6" transform="translate(175.748,-123.915)">
+				<title>Tabelle.5</title>
+				<desc>Parameter</desc>
+			</g>
+			<g id="shape1-7">
+				<text x="4" y="737.28" class="st3">Kunde</text>			</g>
+		</g>
+		<g id="shape6-9" transform="translate(31.1811,-667.684)">
+			<title>Mitglied</title>
+			<desc>Stammdaten</desc>
+			<rect x="0" y="829.886" width="178.583" height="12.0036" class="st4"/>
+			<rect x="0" y="829.886" width="178.583" height="12.0036" class="st5"/>
+			<text x="8.5" y="838.89" class="st6">Stammdaten</text>		</g>
+		<g id="shape7-13" transform="translate(31.1811,-664.849)">
+			<title>Trennzeichen</title>
+			<path d="M0 840.47 L178.58 840.47 L0 840.47 Z" class="st7"/>
+			<path d="M0 840.47 L178.58 840.47" class="st8"/>
+		</g>
+		<g id="shape8-16" transform="translate(31.1811,-592.846)">
+			<title>Mitglied.8</title>
+			<desc>abrechnung ausleihe berechneUmsatz rueckgabe transaktionenSam...</desc>
+			<rect x="0" y="769.886" width="178.583" height="72.0038" class="st4"/>
+			<rect x="0" y="769.886" width="178.583" height="72.0038" class="st5"/>
+			<text x="8.5" y="778.89" class="st6">abrechnung <tspan x="8.5" dy="1.2em" class="st9">ausleihe </tspan><tspan x="8.5"
+						dy="1.2em" class="st9">berechneUmsatz </tspan><tspan x="8.5" dy="1.2em" class="st9">rueckgabe </tspan><tspan
+						x="8.5" dy="1.2em" class="st9">transaktionenSammeln </tspan><tspan x="8.5" dy="1.2em" class="st9">verlustMelden</tspan></text>		</g>
+		<g id="group9-25" transform="translate(206.018,-212.268)">
+			<title>Klasse.9</title>
+			<desc>Rechnungspunkt</desc>
+			<g id="shape10-26">
+				<title>Tabelle.10</title>
+				<path d="M0 841.89 L184.25 841.89 L184.25 785.38 L0 785.38 L0 841.89 Z" class="st1"/>
+			</g>
+			<g id="shape11-28" transform="translate(0,-56.5076)">
+				<title>Tabelle.11</title>
+				<path d="M0 841.89 L184.25 841.89 L184.25 810.49 L0 810.49 L0 841.89 Z" class="st2"/>
+			</g>
+			<g id="shape13-30" transform="translate(175.748,-87.9114)">
+				<title>Tabelle.13</title>
+				<desc>Parameter</desc>
+			</g>
+			<g id="shape9-31">
+				<text x="4" y="773.28" class="st3">Rechnungspunkt</text>			</g>
+		</g>
+		<g id="shape14-33" transform="translate(208.853,-229.937)">
+			<title>Mitglied.14</title>
+			<desc>Uhrzeit Menge Betrag</desc>
+			<rect x="0" y="805.886" width="178.583" height="36.0037" class="st4"/>
+			<rect x="0" y="805.886" width="178.583" height="36.0037" class="st5"/>
+			<text x="8.5" y="814.89" class="st6">Uhrzeit <tspan x="8.5" dy="1.2em" class="st9">Menge </tspan><tspan x="8.5"
+						dy="1.2em" class="st9">Betrag</tspan></text>		</g>
+		<g id="shape15-39" transform="translate(208.853,-227.102)">
+			<title>Trennzeichen.15</title>
+			<path d="M0 840.47 L178.58 840.47 L0 840.47 Z" class="st7"/>
+			<path d="M0 840.47 L178.58 840.47" class="st8"/>
+		</g>
+		<g id="shape16-42" transform="translate(208.853,-215.102)">
+			<title>Mitglied.16</title>
+			<rect x="0" y="829.89" width="178.583" height="12" class="st4"/>
+			<rect x="0" y="829.89" width="178.583" height="12" class="st5"/>
+		</g>
+		<g id="group17-45" transform="translate(368.504,-340.494)">
+			<title>Klasse.17</title>
+			<desc>Lagerposten</desc>
+			<g id="shape18-46">
+				<title>Tabelle.18</title>
+				<path d="M0 841.89 L184.25 841.89 L184.25 689.38 L0 689.38 L0 841.89 Z" class="st1"/>
+			</g>
+			<g id="shape19-48" transform="translate(0,-152.512)">
+				<title>Tabelle.19</title>
+				<path d="M0 841.89 L184.25 841.89 L184.25 810.49 L0 810.49 L0 841.89 Z" class="st2"/>
+			</g>
+			<g id="shape21-50" transform="translate(175.748,-183.915)">
+				<title>Tabelle.21</title>
+				<desc>Parameter</desc>
+			</g>
+			<g id="shape17-51">
+				<text x="4" y="677.28" class="st3">Lagerposten</text>			</g>
+		</g>
+		<g id="shape22-53" transform="translate(371.339,-442.167)">
+			<title>Mitglied.22</title>
+			<desc>Name Preis pro Einheit Leihgebühr Bestand</desc>
+			<rect x="0" y="793.886" width="178.583" height="48.0037" class="st4"/>
+			<rect x="0" y="793.886" width="178.583" height="48.0037" class="st5"/>
+			<text x="8.5" y="802.89" class="st6">Name <tspan x="8.5" dy="1.2em" class="st9">Preis pro Einheit </tspan><tspan
+						x="8.5" dy="1.2em" class="st9">Leihgebühr </tspan><tspan x="8.5" dy="1.2em" class="st9">Bestand</tspan></text>		</g>
+		<g id="shape23-60" transform="translate(371.339,-439.333)">
+			<title>Trennzeichen.23</title>
+			<path d="M0 840.47 L178.58 840.47 L0 840.47 Z" class="st7"/>
+			<path d="M0 840.47 L178.58 840.47" class="st8"/>
+		</g>
+		<g id="shape24-63" transform="translate(371.339,-343.329)">
+			<title>Mitglied.24</title>
+			<desc>ausleihePreis bestandAendern getBestand istVerleihbar istVerk...</desc>
+			<rect x="0" y="745.886" width="178.583" height="96.0039" class="st4"/>
+			<rect x="0" y="745.886" width="178.583" height="96.0039" class="st5"/>
+			<text x="8.5" y="754.89" class="st6">ausleihePreis <tspan x="8.5" dy="1.2em" class="st9">bestandAendern </tspan><tspan
+						x="8.5" dy="1.2em" class="st9">getBestand </tspan><tspan x="8.5" dy="1.2em" class="st9">istVerleihbar </tspan><tspan
+						x="8.5" dy="1.2em" class="st9">istVerkaeuflich </tspan><tspan x="8.5" dy="1.2em" class="st9">kaufPreis </tspan><tspan
+						x="8.5" dy="1.2em" class="st9">toString </tspan><tspan x="8.5" dy="1.2em" class="st9">verlustGebuehr</tspan></text>		</g>
+		<g id="group25-74" transform="translate(318.898,-609.449)">
+			<title>Klasse.25</title>
+			<desc>Ausleihe</desc>
+			<g id="shape26-75">
+				<title>Tabelle.26</title>
+				<path d="M0 841.89 L184.25 841.89 L184.25 737.38 L0 737.38 L0 841.89 Z" class="st1"/>
+			</g>
+			<g id="shape27-77" transform="translate(0,-104.511)">
+				<title>Tabelle.27</title>
+				<path d="M0 841.89 L184.25 841.89 L184.25 810.49 L0 810.49 L0 841.89 Z" class="st2"/>
+			</g>
+			<g id="shape29-79" transform="translate(175.748,-135.915)">
+				<title>Tabelle.29</title>
+				<desc>Parameter</desc>
+			</g>
+			<g id="shape25-80">
+				<text x="4" y="725.28" class="st3">Ausleihe</text>			</g>
+		</g>
+		<g id="shape30-82" transform="translate(321.732,-687.122)">
+			<title>Mitglied.30</title>
+			<desc>Uhrzeit Menge</desc>
+			<rect x="0" y="817.886" width="178.583" height="24.0037" class="st4"/>
+			<rect x="0" y="817.886" width="178.583" height="24.0037" class="st5"/>
+			<text x="8.5" y="826.89" class="st6">Uhrzeit <tspan x="8.5" dy="1.2em" class="st9">Menge</tspan></text>		</g>
+		<g id="shape31-87" transform="translate(321.732,-684.287)">
+			<title>Trennzeichen.31</title>
+			<path d="M0 840.47 L178.58 840.47 L0 840.47 Z" class="st7"/>
+			<path d="M0 840.47 L178.58 840.47" class="st8"/>
+		</g>
+		<g id="shape32-90" transform="translate(321.732,-612.283)">
+			<title>Mitglied.32</title>
+			<desc>buchen getMenge getPosten getZeit verlust rueckgabe</desc>
+			<rect x="0" y="769.886" width="178.583" height="72.0038" class="st4"/>
+			<rect x="0" y="769.886" width="178.583" height="72.0038" class="st5"/>
+			<text x="8.5" y="778.89" class="st6">buchen <tspan x="8.5" dy="1.2em" class="st9">getMenge </tspan><tspan x="8.5"
+						dy="1.2em" class="st9">getPosten </tspan><tspan x="8.5" dy="1.2em" class="st9">getZeit </tspan><tspan
+						x="8.5" dy="1.2em" class="st9">verlust </tspan><tspan x="8.5" dy="1.2em" class="st9">rueckgabe</tspan></text>		</g>
+		<g id="group33-99" transform="translate(28.3465,-359.412)">
+			<title>Klasse.33</title>
+			<desc>Betrieb</desc>
+			<g id="shape34-100">
+				<title>Tabelle.34</title>
+				<path d="M0 841.89 L184.25 841.89 L184.25 713.38 L0 713.38 L0 841.89 Z" class="st1"/>
+			</g>
+			<g id="shape35-102" transform="translate(0,-128.512)">
+				<title>Tabelle.35</title>
+				<path d="M0 841.89 L184.25 841.89 L184.25 810.49 L0 810.49 L0 841.89 Z" class="st2"/>
+			</g>
+			<g id="shape37-104" transform="translate(175.748,-159.915)">
+				<title>Tabelle.37</title>
+				<desc>Parameter</desc>
+			</g>
+			<g id="shape33-105">
+				<text x="4" y="701.28" class="st3">Betrieb</text>			</g>
+		</g>
+		<g id="shape38-107" transform="translate(31.1811,-473.086)">
+			<title>Mitglied.38</title>
+			<desc>Uhr</desc>
+			<rect x="0" y="829.886" width="178.583" height="12.0036" class="st4"/>
+			<rect x="0" y="829.886" width="178.583" height="12.0036" class="st5"/>
+			<text x="8.5" y="838.89" class="st6">Uhr</text>		</g>
+		<g id="shape39-111" transform="translate(31.1811,-470.251)">
+			<title>Trennzeichen.39</title>
+			<path d="M0 840.47 L178.58 840.47 L0 840.47 Z" class="st7"/>
+			<path d="M0 840.47 L178.58 840.47" class="st8"/>
+		</g>
+		<g id="shape40-114" transform="translate(31.1811,-362.247)">
+			<title>Mitglied.40</title>
+			<desc>abrechnung anDerUhrDrehen bestandAuflisten datenAendern trans...</desc>
+			<rect x="0" y="733.886" width="178.583" height="108.004" class="st4"/>
+			<rect x="0" y="733.886" width="178.583" height="108.004" class="st5"/>
+			<text x="8.5" y="742.89" class="st6">abrechnung <tspan x="8.5" dy="1.2em" class="st9">anDerUhrDrehen </tspan><tspan
+						x="8.5" dy="1.2em" class="st9">bestandAuflisten </tspan><tspan x="8.5" dy="1.2em" class="st9">datenAendern </tspan><tspan
+						x="8.5" dy="1.2em" class="st9">transaktionen </tspan><tspan x="8.5" dy="1.2em" class="st9">umsatzBericht </tspan><tspan
+						x="8.5" dy="1.2em" class="st9">verkaufen </tspan><tspan x="8.5" dy="1.2em" class="st9">verleih </tspan><tspan
+						x="8.5" dy="1.2em" class="st9">verlust</tspan></text>		</g>
+		<g id="group56-126" transform="translate(113.386,-519.328)">
+			<title>Zusammensetzung</title>
+			<g id="shape56-127">
+				<path d="M7.09 841.89 L7.09 771.21" class="st10"/>
+			</g>
+		</g>
+		<g id="group76-130" transform="translate(120.472,-520.388)">
+			<title>Zusammensetzung.76</title>
+			<g id="shape76-131">
+				<path d="M0 841.89 L83.27 841.89 L83.27 809.52 L175.31 809.52 A2.3622 2.3622 0 0 1 180.03 809.52 L290.55 809.52 L290.55
+							 752.83" class="st10"/>
+			</g>
+		</g>
+		<g id="group81-134" transform="translate(120.472,-713.926)">
+			<title>Zusammensetzung.81</title>
+			<g id="shape81-135">
+				<path d="M0 841.89 L0 805.89 L290.55 805.89 L290.55 810.45" class="st10"/>
+			</g>
+		</g>
+		<g id="group91-138" transform="translate(411.024,-745.364)">
+			<title>Aggregation</title>
+			<g id="shape91-139">
+				<path d="M0 828.66 L0 828.3 L0 805.89 L128.13 805.89 L128.13 1026.84 L49.61 1026.84 L49.61 1062.84" class="st11"/>
+			</g>
+		</g>
+		<g id="group101-145" transform="translate(298.144,-300.179)">
+			<title>Aggregation.101</title>
+			<g id="shape101-146">
+				<path d="M0 828.66 L0 828.3 L0 464.66 L20.75 464.66" class="st11"/>
+			</g>
+		</g>
+		<g id="group106-151" transform="translate(18,-113.386)">
+			<title>Klasse.106</title>
+			<desc>Verlust</desc>
+			<g id="shape107-152">
+				<title>Tabelle.107</title>
+				<path d="M0 841.89 L184.25 841.89 L184.25 809.38 L0 809.38 L0 841.89 Z" class="st1"/>
+			</g>
+			<g id="shape108-154" transform="translate(0,-32.5076)">
+				<title>Tabelle.108</title>
+				<path d="M0 841.89 L184.25 841.89 L184.25 810.49 L0 810.49 L0 841.89 Z" class="st2"/>
+			</g>
+			<g id="shape110-156" transform="translate(175.748,-63.9113)">
+				<title>Tabelle.110</title>
+				<desc>Parameter</desc>
+			</g>
+			<g id="shape106-157">
+				<text x="4" y="797.28" class="st3">Verlust</text>			</g>
+		</g>
+		<g id="shape111-159" transform="translate(20.8346,-131.055)">
+			<title>Mitglied.111</title>
+			<desc>Posten</desc>
+			<rect x="0" y="829.886" width="178.583" height="12.0036" class="st4"/>
+			<rect x="0" y="829.886" width="178.583" height="12.0036" class="st5"/>
+			<text x="8.5" y="838.89" class="st6">Posten</text>		</g>
+		<g id="shape112-163" transform="translate(20.8346,-128.22)">
+			<title>Trennzeichen.112</title>
+			<path d="M0 840.47 L178.58 840.47 L0 840.47 Z" class="st7"/>
+			<path d="M0 840.47 L178.58 840.47" class="st8"/>
+		</g>
+		<g id="shape113-166" transform="translate(20.8346,-116.22)">
+			<title>Mitglied.113</title>
+			<rect x="0" y="829.89" width="178.583" height="12" class="st4"/>
+			<rect x="0" y="829.89" width="178.583" height="12" class="st5"/>
+		</g>
+		<g id="group114-169" transform="translate(393.024,-113.386)">
+			<title>Klasse.114</title>
+			<desc>Verkauf</desc>
+			<g id="shape115-170">
+				<title>Tabelle.115</title>
+				<path d="M0 841.89 L184.25 841.89 L184.25 809.38 L0 809.38 L0 841.89 Z" class="st1"/>
+			</g>
+			<g id="shape116-172" transform="translate(0,-32.5076)">
+				<title>Tabelle.116</title>
+				<path d="M0 841.89 L184.25 841.89 L184.25 810.49 L0 810.49 L0 841.89 Z" class="st2"/>
+			</g>
+			<g id="shape118-174" transform="translate(175.748,-63.9113)">
+				<title>Tabelle.118</title>
+				<desc>Parameter</desc>
+			</g>
+			<g id="shape114-175">
+				<text x="4" y="797.28" class="st3">Verkauf</text>			</g>
+		</g>
+		<g id="shape119-177" transform="translate(395.858,-131.055)">
+			<title>Mitglied.119</title>
+			<desc>Posten</desc>
+			<rect x="0" y="829.886" width="178.583" height="12.0036" class="st4"/>
+			<rect x="0" y="829.886" width="178.583" height="12.0036" class="st5"/>
+			<text x="8.5" y="838.89" class="st6">Posten</text>		</g>
+		<g id="shape120-181" transform="translate(395.858,-128.22)">
+			<title>Trennzeichen.120</title>
+			<path d="M0 840.47 L178.58 840.47 L0 840.47 Z" class="st7"/>
+			<path d="M0 840.47 L178.58 840.47" class="st8"/>
+		</g>
+		<g id="shape121-184" transform="translate(395.858,-116.22)">
+			<title>Mitglied.121</title>
+			<rect x="0" y="829.89" width="178.583" height="12" class="st4"/>
+			<rect x="0" y="829.89" width="178.583" height="12" class="st5"/>
+		</g>
+		<g id="group122-187" transform="translate(205.512,-113.386)">
+			<title>Klasse.122</title>
+			<desc>Verleih</desc>
+			<g id="shape123-188">
+				<title>Tabelle.123</title>
+				<path d="M0 841.89 L184.25 841.89 L184.25 809.38 L0 809.38 L0 841.89 Z" class="st1"/>
+			</g>
+			<g id="shape124-190" transform="translate(0,-32.5076)">
+				<title>Tabelle.124</title>
+				<path d="M0 841.89 L184.25 841.89 L184.25 810.49 L0 810.49 L0 841.89 Z" class="st2"/>
+			</g>
+			<g id="shape126-192" transform="translate(175.748,-63.9113)">
+				<title>Tabelle.126</title>
+				<desc>Parameter</desc>
+			</g>
+			<g id="shape122-193">
+				<text x="4" y="797.28" class="st3">Verleih</text>			</g>
+		</g>
+		<g id="shape127-195" transform="translate(208.346,-131.055)">
+			<title>Mitglied.127</title>
+			<desc>Posten</desc>
+			<rect x="0" y="829.886" width="178.583" height="12.0036" class="st4"/>
+			<rect x="0" y="829.886" width="178.583" height="12.0036" class="st5"/>
+			<text x="8.5" y="838.89" class="st6">Posten</text>		</g>
+		<g id="shape128-199" transform="translate(208.346,-128.22)">
+			<title>Trennzeichen.128</title>
+			<path d="M0 840.47 L178.58 840.47 L0 840.47 Z" class="st7"/>
+			<path d="M0 840.47 L178.58 840.47" class="st8"/>
+		</g>
+		<g id="shape129-202" transform="translate(208.346,-116.22)">
+			<title>Mitglied.129</title>
+			<rect x="0" y="829.89" width="178.583" height="12" class="st4"/>
+			<rect x="0" y="829.89" width="178.583" height="12" class="st5"/>
+		</g>
+		<g id="group145-205" transform="translate(212.598,-439.37)">
+			<title>Zusammensetzung.145</title>
+			<g id="shape145-206">
+				<path d="M0 841.89 L85.55 841.89 L85.55 981.08" class="st10"/>
+			</g>
+		</g>
+		<g id="group150-209" transform="translate(206.018,-284.477)">
+			<title>Zusammensetzung.150</title>
+			<g id="shape150-210">
+				<path d="M0 841.89 L-95.89 841.89 L-95.89 949.07" class="st10"/>
+			</g>
+		</g>
+		<g id="group155-213" transform="translate(304.978,-212.268)">
+			<title>Zusammensetzung.155</title>
+			<g id="shape155-214">
+				<path d="M-6.83 841.89 L-6.83 877.89 L-7.34 877.89 L-7.34 876.86" class="st10"/>
+			</g>
+		</g>
+		<g id="group160-217" transform="translate(390.27,-284.477)">
+			<title>Zusammensetzung.160</title>
+			<g id="shape160-218">
+				<path d="M0 841.89 L94.88 841.89 L94.88 949.07" class="st10"/>
+			</g>
+		</g>
+	</g>
+</svg>
