@@ -27,57 +27,52 @@ und stellt die Kosten der Ausleihe dem Kunden in Rechnung.\\
 Exception wenn der Posten nicht ausgeliehen war oder die angegebene Menge die Leihmenge übersteigt.
 \item[verlustMelden(posten, zeit, menge)]
 Streicht eine gegebene Menge eines gegebenen Postens von den Ausleihen des Kunden\\
-Exception wenn der Posten nicht ausgeliehen war oder die angegebene Menge die Leihmenge übersteigt
+Exception wenn der Posten nicht ausgeliehen war oder die angegebene Menge die Leihmenge übersteigt.
 und stellt dem Kunden die Verlustgebühr in Rechnung.
 \item[ausleihe(ausleihe)]
 Fügt eine Ausleihe dem Kundenkonto hinzu. Dabei wird diese gebucht.
-\item[abrechnung(zeit) \rightarrow RechnungPosten{[]}]
+\item[abrechnung(zeit) -> RechnungPosten{[]}]
 Gibt alle ausstehenden Rechnungspunkte zurück und legt sie damit zu den bearbeiteten Rechnungspunkten.
-\item[berechneUmsatz() \rightarrow geld]
+\item[berechneUmsatz() -> geld]
 Berechnet den gesamten Umsatz, der durch den Kunden verursacht wurde, d. h. der Wert aller bearbeiteten Rechnungspunkte.
-\item[transaktionenSammeln() \rightarrow String{[]}]
+\item[transaktionenSammeln() -> String{[]}]
 Stellt alle Rechungspunkte und bestehenden Ausleihen zusammen.
 \item[kaufen(posten, menge)]
 Verkauft (entfernt Bestand) und stellt dem Kunden den Kaufpreis in Rechnung.
 \end{description}
 \section{Ausleihe}
 \begin{description}
-\item[kostenVoranschlag() \rightarrow geld]
-Berechnet wieviel die Ausleihe bei rechtzeitiger Rückgabe kosten würde.
 \item[buchen()]
 Die Ausleihe tritt in Kraft: Entfernt die auszuleihende Menge des Posten aus dem Lager.
-\item[getPosten() \rightarrow LagerPosten]
+\item[getPosten() -> LagerPosten]
 Gibt den Posten der geliehen wird, zurück.
-\item[getMenge() \rightarrow menge]
+\item[getMenge() -> menge]
 Gibt die ausgeliehende / auszuleihende Menge zurück.
-\item[getStartZeit() \rightarrow zeit]
+\item[getZeit() -> zeit]
 Gibt die Startzeit der Ausleihe zurück.
-\item[getEndZeit() \rightarrow zeit]
-Gibt die geplane Endzeit der Ausleihe zurück.
-\item[verlust(menge, zeit) \rightarrow menge]
+\item[verlust(menge) -> menge]
 Annuliert eine bestimmte Menge in der Ausleihe, gibt ggf. die Menge, die von anderen Ausleihen gedeckt wird, zurück.
-\item[rueckgabe(menge, zeit) \rightarrow menge]
+\item[rueckgabe(menge) -> menge]
 Bucht eine bestimmte Menge zurück, gibt ggf. die Menge, die von anderen Ausleihen gedeckt wird, zurück.
 \end{description}
 \section{LagerPosten}
 \begin{description}
-\item[toString() \rightarrow String]
+\item[toString() -> String]
 gibt die Daten des Postens, zB in der Form \enquote{<Bestand> x <ID> <Name> (<Einheit>)} als String zurück
-\item[istVerkaeuflich() \rightarrow boolean]
+\item[istVerkaeuflich() -> boolean]
 Bestimmt ob der Artikel verkäuflich ist.
-\item[istVerleihbar() \rightarrow boolean]
+\item[istVerleihbar() -> boolean]
 Bestimmt ob der Artikel verleihbar ist.
 \item[bestandAendern(menge)]
 Ändert den Bestand um die angegebene Menge (positiv oder negativ). \\
 Exception wenn Bestand negativ werden würde.
-\item[getBestand() \rightarrow geld]
+\item[getBestand() -> geld]
 Gibt den aktuellen Lagerbestand zurück.
-\item[ausleihePreis(zeitGeplant, menge, zeitDelta) \rightarrow geld]
+\item[ausleihePreis(zeit, menge) -> geld]
 Bestimmt die Leihgebühr einer gegebenen Menge des Postens über eine gegebene Zeitspanne.
-zeitDelta ist die Differenz von realer Ausleihezeit 
-\item[kaufPreis(menge) \rightarrow geld]
+\item[kaufPreis(menge) -> geld]
 Bestimmt den Kaufpreis einer gegebenen Menge des Postens.
-\item[verlustGebuer(zeitGeplant, menge, zeitDelta) \rightarrow geld]
+\item[verlustGebuer(zeit, menge) -> geld]
 Bestimmt die Gebühr, die bei Verlust einer gegebenen Menge des Postens nach gegebener Zeit entsteht.
 \end{description}
 \section{Betrieb}
@@ -118,37 +113,51 @@ Auflistung des aktuell verfügbaren Bestandes zum Ausleihen und zum Kaufen.
 \Rightarrow Liste mit y Elemente unterschiedlich(nach Ausleihe oder Verkauf) bzw. gleich zur Liste des Gesamtbestandes. 
 \item
 Verleihen von verfügbaren, nicht verfügbaren (die größer sind als die verfügbaren Mengen) und nichtganzzahligen Mengen.
-\Rightarrow Führt zu Veränderungen am Bestand der zurzeit verfügbaren Objekten 
+\Rightarrow Führt zu Veränderungen am Bestand der zurzeit verfügbaren Objekten, sofern es möglich war 
 \item
 Verkauf von verfügbaren, nicht verfügbaren (die größer sind als die verfügbaren Mengen) und nichtganzzahligen Mengen.
-\Rightarrow Führt zu Veränderungen am Gesammtbestand und am zurzeit verfügbaren Bestand
+\Rightarrow Führt zu Veränderungen am Gesammtbestand und am zurzeit verfügbaren Bestand, sofern es möglich war
 \item
 Rückgabe von Mengen, die die Ausleihe übersteigen(sollte nicht möglich sein).
+\Rightarrow sollte eine Fehlermeldung ausgeben und keine Ausleihmengen, Rechnungspunkte oder sonstige Daten ändern
 \item
 Rückgabe testen:
 -vollsändig
--unvollständig
--im teilweise oder vollständig beschädigten Zustand
+-unvollständig 
+-im teilweise oder vollständig beschädigten Zustand(Verlustfall)
+\Rightarrow Veränderungen der Liste aktuell verfügbarer Objekte, macht eine Abrechnung , löscht oder ändert(bei unvollständig) das entsprechnende Ausleih-Objekt und den Verweis
 \item
 Abrechnung testen.
+\Rightarrow schafft einen neuen Rechnungspunkt
 \item
 Umsatzliste testen.
+\Rightarrow Gibt eine Liste mit einem Eintrag pro Kunden aus, wo die Gesammtsumme der Transaktionen steht
 \item
 Transaktionen auflisten.
 \item
+\Rightarrow Gibt eine Liste von n Rechnungspunkten mit Menge, Art, Zeitraum, Preis der Transaktion und Gesammttransaktionenpreis für einen bestimmten Kunden aus
 Kundendaten ändern .
+\Rightarrow Sollte die entsprechende Änderung speichern und zurückgeben
 \item
 Neuen Kunden aufnehmen.
+\Rightarrow erzeugt ein neues Kundenobjekte, führt zu einem weiteren Eintrag in der Umsatzanzeige
 \item
 Computer-Mensch Dialog überprüfen (auf Aktionen die möglich sind und welche die nicht möglich sind).
+\Rightarrow Fehlermeldungen bei Falscheingabe
 \item
 Kauf von nicht verkäuflichen Objekten(sollte nicht möglich sein).
+\Rightarrow Fehlermeldungen bei Falscheingabe, keine Änderung von Daten(Gesammtbestand, zurzeit verfügbarer Bestand, Rechnungspunkt )
 \item
 Leih von von nicht verleihbaren Objekten(sollte nicht möglich sein).
+\Rightarrow Fehlermeldungen bei Falscheingabe, keine Änderung von Daten(zurzeit verfügbarer Bestand, Ausleihobjekt )
 \item
 Zeitpunkt in die Vergangenheit ändern bzw. negative Zeitdauer(sollte nicht möglich sein).
+\Rightarrow Fehlermeldung, keine Datenänerung, bitte um Neueingabe
 \item
 Zeitpunkt in die Zukunft ändern.
+\item
+Differenzberechnung zwischen entliehenem und zurückgegebenen Zeitpunkt
+\item
 
 \end{enumerate}
 \appendix
@@ -159,8 +168,8 @@ als die angegebenen benutzt und die Stellen der Arbeit, die anderen Werken dem W
 in jedem einzelnen Fall unter Angabe der Quelle als Entlehnung kenntlich gemacht haben.
 Das gleiche gilt auch für eingefügte Zeichnungen, Kartenskizzen und Darstellungen.
 
-Hameln, \today, \includegraphics{UnterschriftJonaStubbe.png}
+\today, \includegraphics{UnterschriftJonaStubbe.png}
 
-Hameln, \today,
-Hameln, \today,
+\today, 
+\today,
 \end{document}
