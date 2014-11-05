@@ -55,12 +55,15 @@ Annuliert eine bestimmte Menge in der Ausleihe, gibt ggf. die Menge, die von and
 \item[rueckgabe(menge) $\rightarrow$ menge]
 Bucht eine bestimmte Menge zurück, gibt ggf. die Menge, die von anderen Ausleihen gedeckt wird, zurück.
 \end{description}
-\section{LagerPosten}
+\section{Artikel}
 \begin{description}
 \item[toString() $\rightarrow$ String]
 gibt die Daten des Postens, zB in der Form \enquote{<Bestand> x <ID> <Name> (<Einheit>)} als String zurück
 \item[istVerkaeuflich() $\rightarrow$ boolean]
 Bestimmt ob der Artikel verkäuflich ist.
+\item[kaufPreis(menge) $\rightarrow$ geld]
+Bestimmt den Kaufpreis einer gegebenen Menge des Postens.
+\section{Lagerposten}
 \item[istVerleihbar() $\rightarrow$ boolean]
 Bestimmt ob der Artikel verleihbar ist.
 \item[bestandAendern(menge)]
@@ -70,9 +73,7 @@ Exception wenn Bestand negativ werden würde.
 Gibt den aktuellen Lagerbestand zurück.
 \item[ausleihePreis(zeit, menge) $\rightarrow$ geld]
 Bestimmt die Leihgebühr einer gegebenen Menge des Postens über eine gegebene Zeitspanne.
-\item[kaufPreis(menge) $\rightarrow$ geld]
-Bestimmt den Kaufpreis einer gegebenen Menge des Postens.
-\item[verlustGebuer(zeit, menge) $\rightarrow$ geld]
+\item[verlustGebuehr(zeit, menge) $\rightarrow$ geld]
 Bestimmt die Gebühr, die bei Verlust einer gegebenen Menge des Postens nach gegebener Zeit entsteht.
 \end{description}
 \section{Betrieb}
@@ -172,8 +173,8 @@ als die angegebenen benutzt und die Stellen der Arbeit, die anderen Werken dem W
 in jedem einzelnen Fall unter Angabe der Quelle als Entlehnung kenntlich gemacht haben.
 Das gleiche gilt auch für eingefügte Zeichnungen, Kartenskizzen und Darstellungen.
 
-\today, \includegraphics{UnterschriftJonaStubbe.png}
+Hameln, \today, \includegraphics{UnterschriftJonaStubbe.png}
 
-\today, 
-\today,
+Hameln, \today, 
+Hameln, \today,
 \end{document}
