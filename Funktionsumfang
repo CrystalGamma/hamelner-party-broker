@@ -1,0 +1,11 @@
+•	Auflistung der aktuell verfügbaren verkäuflichen Gegenstände
+•	Auflistung der aktuell verfügbaren  Leihgegenstände
+•	Auflistung des gesamten verkäuflichen und verleihbaren Bestands
+•	Auflistung der aller Kunden mit ihren Gesamtumsätzen
+•	Auflistung aller offenen Transaktionen  und fertigen rechnungspunkte eines Kunden
+•	Verkauf eines verfügbaren Objekts
+•	Ausleihe eines verfügbaren Objekts für eine prognostizierte Zeitdauer
+•	Rückgabe einer vollständigen oder unvollständigen Menge an Objekten
+•	Verlustmeldung eines Teiles bzw. der gesamten Ausleihe
+•	Abrechnung eines Kunden bei  Rückgabe, Verlust, Kauf oder Nutzung einer Dienstleistung für die entsprechenden Mengen (keine Berücksichtigung von noch ausgeliehenen Gegenständen)
+•	Anlegen und Ändern von Kundendaten 
