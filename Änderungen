@@ -2,9 +2,9 @@ betrieb: Kunden ändern(), und attribut Kunde
 
 Kunde Array für Ausleihen, Arrayfür  Rechnungspunktey
 
-Rechnungspunkt unterklasse für Dienstleistungen(, da sie vorher berechnet werden)
+Bei Dienstleistung direkte Abrechnung
 
 Artikel erhält die Attribute Name und die Methode handliungpauschale(statt Lagerposten)
 
-Funktionsumfang einfügen
+
 
