@@ -51,7 +51,7 @@ Fügt eine Ausleihe dem Kundenkonto hinzu. Dabei wird diese gebucht.
 Gibt alle ausstehenden Rechnungspunkte zurück und legt sie damit zu den bearbeiteten Rechnungspunkten.
 \item[berechneUmsatz() $\rightarrow$ geld]
 Berechnet den gesamten Umsatz, der durch den Kunden verursacht wurde, d. h. der Wert aller bearbeiteten Rechnungspunkte.
-\item[transaktionenSammeln() $\rightarrow$ String{[]}]
+\item[getTransaktionen() $\rightarrow$ String{[]}]
 Stellt alle Rechungspunkte und bestehenden Ausleihen zusammen.
 \item[kaufen(artikel, menge)]
 Verkauft (entfernt Bestand) und stellt dem Kunden den Kaufpreis in Rechnung.
@@ -71,17 +71,17 @@ Annuliert eine bestimmte Menge in der Ausleihe, gibt ggf. die Menge, die von and
 \item[rueckgabe(menge) $\rightarrow$ menge]
 Bucht eine bestimmte Menge zurück, gibt ggf. die Menge, die von anderen Ausleihen gedeckt wird, zurück.
 \end{description}
-\section{Artikel}
+\section{Artikel (abstract)}
 \begin{description}
 \item[toString() $\rightarrow$ String]
 gibt die Daten des Postens, zB in der Form \enquote{<Bestand> x <ID> <Name> (<Einheit>)} als String zurück
 \item[istVerkaeuflich() $\rightarrow$ boolean]
 Bestimmt ob der Artikel verkäuflich ist.
+\item[istVerleihbar() $\rightarrow$ boolean]
+Bestimmt ob der Artikel verleihbar ist.
 \item[kaufPreis(menge) $\rightarrow$ geld]
 Bestimmt den Kaufpreis einer gegebenen Menge des Postens.
 \section{Lagerposten}
-\item[istVerleihbar() $\rightarrow$ boolean]
-Bestimmt ob der Artikel verleihbar ist.
 \item[bestandAendern(menge)]
 Ändert den Bestand um die angegebene Menge (positiv oder negativ). \\
 Exception wenn Bestand negativ werden würde.
@@ -104,7 +104,7 @@ der Verkaufs-Menüpunkt
 der Verleih-Menüpunkt
 \item[abrechnung(kundenID)]
 rechnet alle ausstehenden Rechnungspunkte beim Kunden ab
-\item[rückgabe()]
+\item[rueckgabe()]
 der Rückgabe-Menüpunkt
 \item[verlust()]
 der Verlust-Meldungs-Menüpunkt
@@ -116,6 +116,8 @@ listet die Umsätze der Kunden auf
 zeigt die Transaktionen eines Kunden an
 \item[anDerUhrDrehen(zeit)]
 schreitet die Zeit voran
+\item[kundeWechseln()]
+wechselt den aktiven Kunden
 \end{description}
 \part{Testfälle}
 \begin{enumerate}
@@ -196,9 +198,9 @@ Wir versichern hiermit, dass wir diese Arbeit selbständig verfasst, keine ander
 als die angegebenen benutzt und die Stellen der Arbeit, die anderen Werken dem Wortlaut oder dem Sinn nach entnommen sind,
 in jedem einzelnen Fall unter Angabe der Quelle als Entlehnung kenntlich gemacht haben.
 Das gleiche gilt auch für eingefügte Zeichnungen, Kartenskizzen und Darstellungen.
-
-Hameln, \today, \includegraphics{UnterschriftJonaStubbe.png}
-
-Hameln, \today, 
-Hameln, \today,
+\begin{itemize}
+\item Hameln, \today, \includegraphics{UnterschriftJonaStubbe.png}
+\item Hameln, \today, Florian Bussmann	
+\item Hameln, \today, Leon Westhof
+\end{itemize}
 \end{document}
