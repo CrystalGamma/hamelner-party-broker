@@ -56,4 +56,8 @@ public class Ausleihe {
 		}
 		return pMenge;//gibt den Parameter zurück der Angibt welche Menge von der Rückgabe noch übrig ist, bei ungleich null kann ausleihe in rechnungspunkt umgewandelt werden
 	}
+
+	long getEndZeit() {
+		return endzeit;
+	}
 }
