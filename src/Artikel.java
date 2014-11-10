@@ -7,4 +7,7 @@ public abstract class Artikel {
 	public abstract boolean istVerleihbar();
 	public abstract boolean istVerfuegbar();
 	public abstract int kaufPreis(int menge);
+	public void setHandlingPauschale(int p) {
+		handlingPauschale = p;
+	}
 }
