@@ -5,7 +5,7 @@ public class DienstLeistung extends Artikel {
 
 	@Override
 	public String toString() {
-		return "todo";
+		return "";
 	}
 
 	@Override
