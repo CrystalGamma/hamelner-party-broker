@@ -8,12 +8,13 @@ public class Betrieb {
 
 	}
 
-	private String abrechung(int pKundenID) {
-		return "";
+	private void abrechnung(int pKundenID) {
 	}
 	
-	private void anDerUhrDrehen(int pZeit){
-		zeit += pZeit;
+	private void anDerUhrDrehen(int zeit){
+		if(zeit < 0)
+			throw new Error("Zeit kann nicht rückwärts gehen");
+		this.zeit += zeit;
 	}
 
 	private String bestandAuflisten(int pModus) {
