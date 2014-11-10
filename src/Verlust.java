@@ -1,4 +1,4 @@
-public class Verlust extends RechungsPosten {
+public class Verlust extends RechnungsPosten {
 	public Verlust(Ausleihe pAusleihe, int pMenge) {
 		this.menge = pMenge;
 		this.artikel = pAusleihe.getPosten();

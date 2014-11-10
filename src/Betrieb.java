@@ -6,7 +6,11 @@ public class Betrieb {
 
 	public Betrieb() {
 		artikel = new Artikel[] {
-			new LagerPosten("Test", 1000, true, false, 100)
+			new LagerPosten("Test1", 1000, true, false, 100),
+			new LagerPosten("Test2", 200, true, true, 300),
+			new LagerPosten("Test3", 10000, false, true, 50),
+			new LagerPosten("Test4", 3000, true, true, 42),
+			new LagerPosten("Test5", 159900, false, false, 3)
 		};
 	}
 
@@ -25,8 +29,9 @@ public class Betrieb {
 				continue;
 			if (verl && !art.istVerleihbar())
 				continue;
-			// TODO: verfügbar
-			System.out.println(art);
+			if (verf && !art.istVerfuegbar())
+				continue;
+			System.out.println("Produkt " + art);
 		}
 	}
 
@@ -64,6 +69,11 @@ public class Betrieb {
 
 	public static void main(String[] args) {
 		Betrieb betr = new Betrieb();
-		betr.bestandAuflisten(false, true, false);
+		System.out.println("verfügbar, verleihbar:");
+		betr.bestandAuflisten(false, true, true);
+		System.out.println("gesamt verfügbar:");
+		betr.bestandAuflisten(false, false, true);
+		System.out.println("Gesamtsortiment:");
+		betr.bestandAuflisten(false, false, false);
 	}
 }

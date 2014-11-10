@@ -1,4 +1,4 @@
-public class Verleih extends RechungsPosten {
+public class Verleih extends RechnungsPosten {
 	public Verleih(Ausleihe pAusleihe, int pMenge) {
 		this.menge = pMenge;
 		this.artikel = pAusleihe.getPosten();

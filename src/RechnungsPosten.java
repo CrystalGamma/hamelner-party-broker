@@ -1,4 +1,4 @@
-public abstract class RechungsPosten {
+public abstract class RechnungsPosten {
 	private long zeit;
 	protected int menge;
 	protected double betrag;

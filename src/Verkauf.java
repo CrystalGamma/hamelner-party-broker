@@ -1,4 +1,4 @@
-public class Verkauf extends RechungsPosten {
+public class Verkauf extends RechnungsPosten {
 	public Verkauf(int pMenge, Artikel pArtikel) {
 		this.menge = pMenge;
 		this.artikel = pArtikel;
