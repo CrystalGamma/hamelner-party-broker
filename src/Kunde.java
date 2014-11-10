@@ -3,7 +3,9 @@ public class Kunde {
 	int iD, hausnummer, plz, umsatz;
 	Ausleihe ausleihe[]=new Ausleihe[10];//maximal 10 ausleihen
 	int ausleihNummer;
-	//RechnungsPosten Rechnungspunkte[]=new RechnungsPosten[10];
+	RechnungsPosten offeneRechnungspunkte[]=new RechnungsPosten[10];
+	RechnungsPosten geschlosseneRechnungspunkte[]=new RechnungsPosten[10];
+	
 	public void setName( String name) {
 		
 		this.name=name;
