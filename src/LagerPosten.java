@@ -2,7 +2,7 @@ public class LagerPosten extends Artikel {
 	public String toString() {
 		return "";
 	}
-	public int kaufPreis(int menge) {
+	public double kaufPreis(int menge) {
 		return 0;
 	}
 	public boolean istVerkaeuflich() {
