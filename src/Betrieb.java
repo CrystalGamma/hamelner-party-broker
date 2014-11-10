@@ -5,7 +5,9 @@ public class Betrieb {
 	private Artikel[] artikel;
 
 	public Betrieb() {
-
+		artikel = new Artikel[] {
+			new LagerPosten("Test", 1000, true, false, 100)
+		};
 	}
 
 	private void abrechnung(int pKundenID) {
@@ -62,6 +64,6 @@ public class Betrieb {
 
 	public static void main(String[] args) {
 		Betrieb betr = new Betrieb();
-		betr.bestandAuflisten(true, false, false);
+		betr.bestandAuflisten(false, true, false);
 	}
 }
