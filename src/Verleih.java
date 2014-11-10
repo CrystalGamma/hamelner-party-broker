@@ -11,6 +11,6 @@ public class Verleih extends RechungsPosten {
 
 	@Override
 	public String toString() {
-		return "Rechnungspunkt f�r den Verleih von " + this.menge + "x" + this.artikel + " zu einer Geb�hr von " + this.betrag + "�.";
+		return "Rechnungspunkt für den Verleih von " + this.menge + "x" + this.artikel + " zu einer Gebühr von " + this.betrag + "€.";
 	}
 }
