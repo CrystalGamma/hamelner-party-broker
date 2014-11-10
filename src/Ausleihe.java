@@ -13,7 +13,7 @@ public class Ausleihe {
 		lagerposten.bestandAendern(menge);
 	}
 
-	private LagerPosten getPosten() {
+	LagerPosten getPosten() {
 		return lagerposten;
 	}
 
