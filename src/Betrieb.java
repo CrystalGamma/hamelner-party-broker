@@ -17,8 +17,15 @@ public class Betrieb {
 		this.zeit += zeit;
 	}
 
-	private String bestandAuflisten(int pModus) {
-		return "";
+	private void bestandAuflisten(boolean verk, boolean verl, boolean verf) {
+		for (Artikel art : artikel) {
+			if (verk && !art.istVerkaeuflich())
+				continue;
+			if (verl && !art.istVerleihbar())
+				continue;
+			// TODO: verfügbar
+			System.out.println(art);
+		}
 	}
 
 	private void datenAendern(int pKundenID) {
@@ -54,6 +61,7 @@ public class Betrieb {
 	}
 
 	public static void main(String[] args) {
-		new Betrieb();
+		Betrieb betr = new Betrieb();
+		betr.bestandAuflisten(true, false, false);
 	}
 }
