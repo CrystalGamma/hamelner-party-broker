@@ -21,7 +21,7 @@ public class Ausleihe {
 		return menge;
 	}
 
-	private long getStartZeit() {
+	long getStartZeit() {
 		return startzeit;
 	}
 	private void setEndzeit(long endzeit)
@@ -54,6 +54,6 @@ public class Ausleihe {
 		menge=menge-pMenge;
 		pMenge=0;
 		}
-		return pMenge;//gibt den Parameter zurück der Angibt welche Menge von der Rückgabe noch übrig ist, bei ungleich null kann ausleihe in rechnungspunkt umgewandelt werden
+		return pMenge;//gibt den Parameter zurï¿½ck der Angibt welche Menge von der Rï¿½ckgabe noch ï¿½brig ist, bei ungleich null kann ausleihe in rechnungspunkt umgewandelt werden
 	}
 }

@@ -7,6 +7,6 @@ public class Verkauf extends RechungsPosten {
 
 	@Override
 	public String toString() {
-		return "Rechnungspunkt für den Verkauf von " + this.menge + "x" + this.artikel + " zu einem Preis von " + this.betrag + "€.";
+		return "Rechnungspunkt fÃ¼r den Verkauf von " + this.menge + "x" + this.artikel + " zu einem Preis von " + this.betrag + "â‚¬.";
 	}
 }
