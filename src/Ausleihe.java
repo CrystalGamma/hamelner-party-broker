@@ -1,14 +1,16 @@
 public class Ausleihe {
-	private long zeit;
+	private long startzeit, endzeit;
 	private int menge;
 	private LagerPosten lagerposten;
 
 	private Ausleihe() {
-
+		
+	
 	}
 
 	private void buchen() {
 
+		lagerposten.bestandAendern(menge);
 	}
 
 	private LagerPosten getPosten() {
@@ -19,15 +21,39 @@ public class Ausleihe {
 		return menge;
 	}
 
-	private long getZeit() {
-		return zeit;
+	private long getStartZeit() {
+		return startzeit;
+	}
+	private void setEndzeit(long endzeit)
+	{
+		this.endzeit=endzeit;
 	}
 
 	private int verlust(int pMenge) {
-		return menge - pMenge;
+		if(pMenge>menge)
+		{
+			pMenge -= menge;
+			menge=0; 
+		}
+		else
+		{
+		menge=menge-pMenge;
+		pMenge=0;
+		}
+		return pMenge;
 	}
 
 	private int rueckgabe(int pMenge) {
-		return menge - pMenge;
+		if(pMenge>menge)
+		{
+			pMenge -= menge;
+			menge=0; 
+		}
+		else
+		{
+		menge=menge-pMenge;
+		pMenge=0;
+		}
+		return pMenge;//gibt den Parameter zurück der Angibt welche Menge von der Rückgabe noch übrig ist, bei ungleich null kann ausleihe in rechnungspunkt umgewandelt werden
 	}
 }
