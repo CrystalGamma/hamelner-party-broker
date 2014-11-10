@@ -1,5 +1,10 @@
-/**
- * Created by jona on 10.11.14.
- */
 public class Verkauf {
+	public Verkauf() {
+
+	}
+
+	@Override
+	public String toString() {
+		return "";
+	}
 }
