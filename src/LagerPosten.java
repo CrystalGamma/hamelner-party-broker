@@ -1,8 +1,15 @@
 public class LagerPosten extends Artikel {
+	String name;
+	int bestand;
+	boolean verkäuflich, verleihbar;
+
+	public LagerPosten(String name, ) {
+
+	}
 	public String toString() {
 		return "";
 	}
-	public double kaufPreis(int menge) {
+	public int kaufPreis(int menge) {
 		return 0;
 	}
 	public boolean istVerkaeuflich() {
