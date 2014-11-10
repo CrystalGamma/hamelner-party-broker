@@ -1,14 +1,22 @@
 public class DienstLeistung extends Artikel {
-	public String toString() {
-		return "";
+	public DienstLeistung(String pName, double pPreis){
+		name = pName;
+		handlingPauschale = pPreis;
 	}
-	public int kaufPreis(int menge) {
-		return 0;
+
+	public double kaufPreis(int menge) {
+		return menge * handlingPauschale;
 	}
+	
 	public boolean istVerkaeuflich() {
 		return false;
 	}
+	
 	public boolean istVerleihbar() {
 		return false;
+	}
+	
+	public String toString() {
+		return "Die Dienstleistung " + this.name + " kostet " + this.handlingPauschale + "€.";
 	}
 }
