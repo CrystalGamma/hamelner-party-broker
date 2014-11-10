@@ -2,7 +2,7 @@
  * Created by jona on 10.11.14.
  */
 public class Kunde {
-	String name, vorName, straﬂe, ort;
+	String name, vorName, strasze, ort;
 	int iD, hausnummer, plz, umsatz;
 	public void setName()
 	{
@@ -40,9 +40,9 @@ public class Kunde {
 	{
 		return iD;
 	}
-	public String getStraﬂe()
+	public String getStrasze()
 	{
-		return straﬂe;
+		return strasze;
 	}
 	public int getHausnummer()
 	{
