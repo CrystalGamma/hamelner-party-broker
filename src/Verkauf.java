@@ -2,7 +2,7 @@ public class Verkauf extends RechungsPosten {
 	public Verkauf(int pMenge, Artikel pArtikel) {
 		this.menge = pMenge;
 		this.artikel = pArtikel;
-		this.betrag = this.artikel.kaufPreis(menge)+this.artikel.handlingPauschale;
+		this.betrag = pArtikel.kaufPreis(menge);
 	}
 
 	@Override
