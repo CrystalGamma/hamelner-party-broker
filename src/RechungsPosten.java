@@ -1,8 +1,8 @@
 public abstract class RechungsPosten {
 	private long zeit;
-	private int menge;
-	private double betrag;
-	private Artikel artikel;
+	protected int menge;
+	protected double betrag;
+	protected Artikel artikel;
 	
 	public abstract String toString();
 }
