@@ -1,0 +1,4 @@
+Überzugszeiten:
+	zusätzliche Parameter for die Kostenfunktionen der Posten
+
+zwei listen für Rechungspunkte in Kunde
