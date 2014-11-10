@@ -5,5 +5,5 @@ public abstract class Artikel {
 	public abstract String toString();
 	public abstract boolean istVerkaeuflich();
 	public abstract boolean istVerleihbar();
-	public abstract double kaufPreis(int menge);
+	public abstract int kaufPreis(int menge);
 }
