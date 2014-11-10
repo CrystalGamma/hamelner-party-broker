@@ -1,32 +1,64 @@
 public class LagerPosten extends Artikel {
 	String name;
 	int bestand;
-	boolean verkäuflich, verleihbar;
+	boolean verkaeuflich, verleihbar;
+	int preis, handling, leihGebuehr, ueberzugsGebuehr, verlustGebuehr;
 
-	public LagerPosten(String name, ) {
-
+	public LagerPosten(String name) {
+		this.name = name;
+	}
+	public void setVerkäuflich(boolean b) {
+		verkaeuflich = b;
+	}
+	public void setVerleihbar(boolean b) {
+		verleihbar = b;
+	}
+	public void setPreis(int p) {
+		preis = p;
+	}
+	public void setHandlingPauschale(int p) {
+		handling = p;
+	}
+	public void setLeihGebuehr(int p) {
+		leihGebuehr = p;
+	}
+	public void setUeberzugsGebuehr(int p) {
+		ueberzugsGebuehr = p;
+	}
+	public void setVerlustGebuehr(int p) {
+		verlustGebuehr = p;
 	}
 	public String toString() {
-		return "";
+		return bestand + "x " + name;
 	}
 	public int kaufPreis(int menge) {
-		return 0;
+		return preis;
 	}
 	public boolean istVerkaeuflich() {
-		return false;
+		return verkaeuflich;
 	}
 	public boolean istVerleihbar() {
-		return false;
+		return verleihbar;
 	}
 	public void bestandAendern(int menge) {
+		if (bestand < menge) {
+			throw new Error("Nicht genug Bestand verfügbar");
+		}
+		bestand -= menge;
 	}
 	public int getBestand() {
-		return 0;
+		return bestand;
+	}
+	private static int inTagen(int stunden) {
+		return (stunden + 23) / 24;
 	}
 	public int ausleihePreis(int zeitGeplant, int menge, int zeitDelta) {
-		return 0;
+		if (zeitDelta > 0)
+			return handling + leihGebuehr * inTagen(zeitGeplant) + ueberzugsGebuehr * zeitDelta;
+		else
+			return handling + leihGebuehr * inTagen(zeitGeplant);
 	}
 	public int verlustGebuehr(int zeitGeplant, int menge, int zeitDelta) {
-		return 0;
+		return ausleihePreis(zeitGeplant, menge, zeitDelta) + verlustGebuehr;
 	}
 }
