@@ -1,4 +1,4 @@
-public class Verleih {
+public class Verleih extends RechungsPosten {
 	public Verleih() {
 
 	}

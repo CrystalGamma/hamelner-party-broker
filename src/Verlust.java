@@ -1,4 +1,4 @@
-public class Verlust {
+public class Verlust extends RechungsPosten {
 	public Verlust() {
 
 	}

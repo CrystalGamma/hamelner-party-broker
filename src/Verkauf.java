@@ -1,4 +1,4 @@
-public class Verkauf {
+public class Verkauf extends RechungsPosten {
 	public Verkauf() {
 
 	}
