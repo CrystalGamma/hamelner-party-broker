@@ -1,10 +1,10 @@
 public class DienstLeistung extends Artikel {
-	public DienstLeistung(String pName, double pPreis){
+	public DienstLeistung(String pName, int pPreis){
 		name = pName;
 		handlingPauschale = pPreis;
 	}
 
-	public double kaufPreis(int menge) {
+	public int kaufPreis(int menge) {
 		return menge * handlingPauschale;
 	}
 	
@@ -18,5 +18,10 @@ public class DienstLeistung extends Artikel {
 	
 	public String toString() {
 		return "Die Dienstleistung " + this.name + " kostet " + this.handlingPauschale + "€.";
+	}
+
+	@Override
+	public boolean istVerfuegbar() {
+		return false;
 	}
 }
