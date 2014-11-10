@@ -2,28 +2,41 @@ public class Kunde {
 	String name, vorName, strasse, ort;
 	int iD, hausnummer, plz, umsatz;
 
-	public void setName() {
-
+	public void setName( String name) {
+		
+		this.name=name;
 	}
 
-	public void setVorName() {
-
+	public void setVorName(String vorName) {
+		
+		this.vorName=vorName;
 	}
 
-	public void setStraße() {
+	public void setStrasse(String strasse) {
 
+		this.strasse=strasse;
 	}
 
-	public void setHausnummer() {
+	public void setHausnummer(int hausnummer) {
 
+		if(hausnummer>0)
+		{
+		this.hausnummer=hausnummer;
+		}
+		else
+		{
+			throw new Error();
+		}
 	}
 
-	public void setPlz() {
+	public void setPlz(int plz) {
 
+		this.plz=plz;
 	}
 
-	public void setOrt() {
+	public void setOrt(String ort) {
 
+		this.ort=ort;
 	}
 
 	public String getName() {
