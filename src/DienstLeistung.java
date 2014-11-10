@@ -1,5 +1,25 @@
-/**
- * Created by jona on 10.11.14.
- */
-public class DienstLeistung {
+public class DienstLeistung extends Artikel {
+	public DienstLeistung() {
+
+	}
+
+	@Override
+	public String toString() {
+		return "todo";
+	}
+
+	@Override
+	public boolean istVerkaeuflich() {
+		return false;
+	}
+
+	@Override
+	public boolean istVerleihbar() {
+		return false;
+	}
+
+	@Override
+	public int kaufPreis(int menge) {
+		return 0;
+	}
 }
