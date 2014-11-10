@@ -1,8 +1,7 @@
 public class LagerPosten extends Artikel {
-	String name;
 	int bestand;
 	boolean verkaeuflich, verleihbar;
-	int preis, handling, leihGebuehr, ueberzugsGebuehr, verlustGebuehr;
+	int preis, leihGebuehr, ueberzugsGebuehr, verlustGebuehr;
 
 	public LagerPosten(String name) {
 		this.name = name;
@@ -15,9 +14,6 @@ public class LagerPosten extends Artikel {
 	}
 	public void setPreis(int p) {
 		preis = p;
-	}
-	public void setHandlingPauschale(int p) {
-		handling = p;
 	}
 	public void setLeihGebuehr(int p) {
 		leihGebuehr = p;
@@ -54,9 +50,9 @@ public class LagerPosten extends Artikel {
 	}
 	public int ausleihePreis(int zeitGeplant, int menge, int zeitDelta) {
 		if (zeitDelta > 0)
-			return handling + leihGebuehr * inTagen(zeitGeplant) + ueberzugsGebuehr * zeitDelta;
+			return handlingPauschale + leihGebuehr * inTagen(zeitGeplant) + ueberzugsGebuehr * zeitDelta;
 		else
-			return handling + leihGebuehr * inTagen(zeitGeplant);
+			return handlingPauschale + leihGebuehr * inTagen(zeitGeplant);
 	}
 	public int verlustGebuehr(int zeitGeplant, int menge, int zeitDelta) {
 		return ausleihePreis(zeitGeplant, menge, zeitDelta) + verlustGebuehr;
