@@ -6,7 +6,7 @@ public class Verleih extends RechnungsPosten {
 		long startZeit = pAusleihe.getStartZeit();
 		long endZeit = pAusleihe.getEndZeit();
 		long zeitDelta = endZeit-startZeit;
-		this.betrag = ((LagerPosten) this.artikel).ausleihePreis(0, this.menge, (int)zeitDelta)+this.artikel.handlingPauschale;
+		this.betrag = ((LagerPosten) this.artikel).ausleihePreis(0, this.menge, (int)zeitDelta);
 	}
 
 	@Override
