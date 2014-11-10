@@ -1,7 +1,9 @@
 public class Kunde {
 	String name, vorName, strasse, ort;
 	int iD, hausnummer, plz, umsatz;
-
+	Ausleihe ausleihe[]=new Ausleihe[10];//maximal 10 ausleihen
+	int ausleihNummer;
+	//RechnungsPosten Rechnungspunkte[]=new RechnungsPosten[10];
 	public void setName( String name) {
 		
 		this.name=name;
@@ -18,20 +20,26 @@ public class Kunde {
 	}
 
 	public void setHausnummer(int hausnummer) {
-
+//b oder a zusatz muss abgefangen werden
 		if(hausnummer>0)
 		{
 		this.hausnummer=hausnummer;
 		}
 		else
 		{
-			throw new Error();
+			throw new Error("Negative oder 0 Hausnummern gibt es nicht");
 		}
 	}
 
 	public void setPlz(int plz) {
-
+		if(plz >= 10000 && plz >= 99999)
+		{
 		this.plz=plz;
+		}
+		else
+		{
+			throw new Error("Plz ist immer 5-stellig");
+		}
 	}
 
 	public void setOrt(String ort) {
@@ -68,8 +76,9 @@ public class Kunde {
 		return ort;
 	}
 
-	public void rueckgabe(LagerPosten LagerPosten, int zeit, int menge) {
-
+	public void rueckgabe(LagerPosten lagerPosten, int zeit, int menge) {
+		
+		
 	}
 
 	public void verlustmelden(LagerPosten LagerPosten, int zeit, int menge) {
@@ -78,6 +87,8 @@ public class Kunde {
 
 	public void ausleihe(Ausleihe Ausleihe) {
 
+		ausleihe[ausleihNummer]=Ausleihe;
+		ausleihe[ausleihNummer].buchen();
 	}
 
 	public void abrechnung() {
