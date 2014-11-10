@@ -56,4 +56,8 @@ public class Ausleihe {
 		}
 		return pMenge;//gibt den Parameter zur�ck der Angibt welche Menge von der R�ckgabe noch �brig ist, bei ungleich null kann ausleihe in rechnungspunkt umgewandelt werden
 	}
+
+	public long getEndZeit() {
+		return endzeit;
+	}
 }

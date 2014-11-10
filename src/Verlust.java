@@ -1,12 +1,12 @@
 public class Verlust extends RechungsPosten {
-	public Verlust(Ausleihe pAusleihe, int pMenge, int zeitDelta) {
+	public Verlust(Ausleihe pAusleihe, int pMenge) {
 		this.menge = pMenge;
 		this.artikel = pAusleihe.getPosten();
 		
 		long startZeit = pAusleihe.getStartZeit();
 		long endZeit = pAusleihe.getEndZeit();
 		long zeitDelta = endZeit-startZeit;
-		this.betrag = ((LagerPosten) this.artikel).verlustGebuehr(0, pMenge, zeitDelta);
+		this.betrag = ((LagerPosten) this.artikel).verlustGebuehr(0, pMenge, (int)zeitDelta);
 	}
 
 	@Override
