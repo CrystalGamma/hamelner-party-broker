@@ -1,5 +1,8 @@
-/**
- * Created by jona on 10.11.14.
- */
-public class RechungsPosten {
+public abstract class RechungsPosten {
+	private long zeit;
+	private int menge;
+	private double betrag;
+	private Artikel artikel;
+	
+	public abstract String toString();
 }
