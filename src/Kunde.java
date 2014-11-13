@@ -1,21 +1,16 @@
 public class Kunde {
 	String name, vorName, strasse, ort;
-	int iD, hausnummer, plz, umsatz;
+	int id, hausnummer, plz, umsatz;//id muss noch gesetzt werden mit static als global
 	Ausleihe ausleihe[]=new Ausleihe[10];//maximal 10 ausleihen
 	int ausleihNummer;
-	RechnungsPosten offeneRechnungspunkte[]=new RechnungsPosten[10];
-	RechnungsPosten geschlosseneRechnungspunkte[]=new RechnungsPosten[10];
-	
-	public void setName( String name) {
-		
+	RechnungsPosten[] offeneRechnungspunkte=new RechnungsPosten[10];
+	RechnungsPosten[] geschlosseneRechnungspunkte=new RechnungsPosten[10];
+	public Kunde(String name, String vorName)
+	{
+		ausleihNummer=0;
 		this.name=name;
-	}
-
-	public void setVorName(String vorName) {
-		
 		this.vorName=vorName;
 	}
-
 	public void setStrasse(String strasse) {
 
 		this.strasse=strasse;
@@ -58,7 +53,7 @@ public class Kunde {
 	}
 
 	public int getID() {
-		return iD;
+		return id;
 	}
 
 	public String getStrasse()
@@ -87,14 +82,17 @@ public class Kunde {
 
 	}
 
-	public void ausleihe(Ausleihe Ausleihe) {
+	public void ausleihe(Ausleihe ausleihe) {
 
-		ausleihe[ausleihNummer]=Ausleihe;
-		ausleihe[ausleihNummer].buchen();
+		this.ausleihe[ausleihNummer]=ausleihe;
+		ausleihe.buchen();
+		ausleihNummer++;
 	}
 
-	public void abrechnung() {
-
+	public RechnungsPosten[] abrechnung() {
+		//noch nicht fertig
+		RechnungsPosten[] RechnungspunkteTemp= new RechnungsPosten[10];
+		return RechnungspunkteTemp;//liefert die bis zu diesem zeitpunkt noch offene Rechnungspunkte zurück und schiebt diese von offen nach geschlossen
 	}
 
 	public int berechneUmsatz() {
