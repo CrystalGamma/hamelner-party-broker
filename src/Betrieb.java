@@ -39,7 +39,7 @@ public class Betrieb {
 
 	}
 	
-	private void kundeWechseln(){
+	private void kundeWechseln(Kunde kunde){
 		
 	}
 

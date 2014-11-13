@@ -1,63 +1,62 @@
 public class Ausleihe {
-	private long startzeit, endzeit;
+	private long startZeit, endZeit;
 	private int menge;
-	private LagerPosten lagerposten;
+	private LagerPosten lagerPosten;
 
-	private Ausleihe() {
-		
-	
+	public Ausleihe(int startZeit, int endZeit, LagerPosten posten, int menge) {
+		this.startZeit = startZeit;
+		this.endZeit = endZeit;
+		lagerPosten = posten;
+		this.menge = menge;
 	}
 
 	public void buchen() {
-
-		lagerposten.bestandAendern(menge);
+		lagerPosten.bestandAendern(menge);
 	}
 
 	public LagerPosten getPosten() {
-		return lagerposten;
+		return lagerPosten;
 	}
 
 	public int getMenge() {
 		return menge;
 	}
 
+	public boolean istLeer() {
+		return menge == 0;
+	}
+
 	public long getStartZeit() {
-		return startzeit;
-	}
-	public void setEndzeit(long endzeit)
-	{
-		this.endzeit=endzeit;
+		return startZeit;
 	}
 
-	public int verlust(int pMenge) {
-		if(pMenge>menge)
-		{
-			pMenge -= menge;
-			menge=0; 
-		}
-		else
-		{
-		menge=menge-pMenge;
-		pMenge=0;
-		}
-		return pMenge;
+	public void setEndZeit(long endZeit) {
+		this.endZeit = endZeit;
 	}
 
-	public int rueckgabe(int pMenge) {
-		if(pMenge>menge)
-		{
-			pMenge -= menge;
-			menge=0; 
+	public int verlust(int menge) {
+		if (menge > this.menge) {
+			menge -= this.menge;
+			this.menge = 0;
+		} else {
+			this.menge = this.menge - menge;
+			menge = 0;
 		}
-		else
-		{
-		menge=menge-pMenge;
-		pMenge=0;
+		return menge;
+	}
+
+	public int rueckgabe(int menge) {
+		if (menge > this.menge) {
+			menge -= this.menge;
+			this.menge = 0;
+		} else {
+			this.menge = this.menge - menge;
+			menge = 0;
 		}
-		return pMenge;//gibt den Parameter zurück der Angibt welche Menge von der Rückgabe noch übrig ist, bei ungleich null kann ausleihe in rechnungspunkt umgewandelt werden
+		return menge;//gibt den Parameter zurück der Angibt welche Menge von der Rückgabe noch übrig ist, bei ungleich null kann ausleihe in rechnungspunkt umgewandelt werden
 	}
 
 	long getEndZeit() {
-		return endzeit;
+		return endZeit;
 	}
 }
