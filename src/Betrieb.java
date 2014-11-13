@@ -14,7 +14,11 @@ public class Betrieb {
 		};
 	}
 
-	private void abrechnung(int pKundenID) {
+	private void abrechnung() {
+		RechnungsPosten[] posten = aktuellerKunde.abrechnung();
+		for (RechnungsPosten p : posten) {
+			System.out.println(p);
+		}
 	}
 	
 	private void anDerUhrDrehen(int zeit){
@@ -31,16 +35,15 @@ public class Betrieb {
 				continue;
 			if (verf && !art.istVerfuegbar())
 				continue;
-			System.out.println("Produkt " + art);
+			System.out.println("Produkt " + art.bestandString());
 		}
 	}
 
 	private void datenAendern(int pKundenID) {
-
 	}
 	
 	private void kundeWechseln(Kunde kunde){
-		
+		aktuellerKunde = kunde;
 	}
 
 	private void rueckgabe() {
