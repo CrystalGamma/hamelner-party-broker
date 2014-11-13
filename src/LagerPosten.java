@@ -43,8 +43,8 @@ public class LagerPosten extends Artikel {
 		verlustGebuehr = p;
 	}
 
-	public String toString() {
-		return bestand + "x " + name;
+	public String bestandString() {
+		return bestand + "x " + name + "(" + preis +")";
 	}
 
 	public int kaufPreis(int menge) {

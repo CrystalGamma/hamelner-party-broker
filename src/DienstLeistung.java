@@ -16,8 +16,8 @@ public class DienstLeistung extends Artikel {
 		return false;
 	}
 	
-	public String toString() {
-		return "Die Dienstleistung " + this.name + " kostet " + this.handlingPauschale + "€.";
+	public String bestandString() {
+		return this.name + ": " + this.handlingPauschale + "â‚¬";
 	}
 
 	@Override
