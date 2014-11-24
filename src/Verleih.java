@@ -1,16 +1,12 @@
 public class Verleih extends RechnungsPosten {
-	public Verleih(Ausleihe pAusleihe, int pMenge) {
+	public Verleih(LagerPosten posten, int pMenge, int betrag) {
 		this.menge = pMenge;
-		this.artikel = pAusleihe.getPosten();
-		
-		long startZeit = pAusleihe.getStartZeit();
-		long endZeit = pAusleihe.getEndZeit();
-		long zeitDelta = endZeit-startZeit;
-		this.betrag = ((LagerPosten) this.artikel).ausleihePreis(0, this.menge, (int)zeitDelta);
+		this.artikel = posten;
+		this.betrag = betrag;
 	}
 
 	@Override
 	public String toString() {
-		return "Rechnungspunkt für den Verleih von " + this.menge + "x" + this.artikel + " zu einer Gebühr von " + this.betrag + "€.";
+		return "Verleih von " + this.menge + "x" + this.artikel + " zu einer Gebühr von " + this.betrag + "€.";
 	}
 }
