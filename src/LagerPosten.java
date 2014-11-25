@@ -59,7 +59,7 @@ public class LagerPosten extends Artikel {
 	}
 
 	public String bestandString() {
-		return bestand + "x " + name + "(" + preis + ")";
+		return bestand + "x " + name + "(" + preis +"€)";
 	}
 
 	public int kaufPreis(int menge) {

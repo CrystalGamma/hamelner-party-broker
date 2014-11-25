@@ -3,11 +3,10 @@ public class Kunde {
 	String name, vorName, strasse, ort;
 	int id, hausnummer, plz, umsatz;// id muss noch gesetzt werden mit static
 									// als global
-	Ausleihe ausleihe[] = new Ausleihe[10];// maximal 10 ausleihen
+	LinkedList<Ausleihe> ausleihe = new LinkedList<Ausleihe>();
 	int ausleihNummer, posRechnungspunkte;
-	RechnungsPosten[] offeneRechnungspunkte = new RechnungsPosten[10];
-	RechnungsPosten[] geschlosseneRechnungspunkte = new RechnungsPosten[10];
-	LinkedList<RechnungsPosten> test;
+	LinkedList<RechnungsPosten> offeneRechnungspunkte = new LinkedList<RechnungsPosten>();
+	LinkedList<RechnungsPosten> geschlosseneRechnungspunkte = new LinkedList<RechnungsPosten>();
 	public Kunde(String name, String vorName) {
 		ausleihNummer = 0;
 		this.name = name;
@@ -69,7 +68,7 @@ public class Kunde {
 		return ort;
 	}
 
-	public void rueckgabe(LagerPosten lagerPosten, int zeit, int menge) {
+	/*public void rueckgabe(LagerPosten lagerPosten, int zeit, int menge) {
 		//Ändern in geht durch wenn funktioniert wird es angenommen wenn nicht ber temp array wiedr zurückgeschrieben
 		if (menge > 0) {
 			int gesamtMenge = 0;
@@ -179,56 +178,41 @@ public class Kunde {
 			ausleihe.buchen();
 			ausleihNummer++;
 	//	} würde das ändern das hier ein Lagerposten übergeben wird und keine ausleihe
-	}
+	}*/
 
 	public RechnungsPosten[] abrechnung() {
-		// exception werfen wenn array voll bzw. in liste ändern
-		RechnungsPosten[] RechnungspunkteTemp = new RechnungsPosten[10];
-
-		for (int i = 0; i < offeneRechnungspunkte.length; i++) {
-			geschlosseneRechnungspunkte[geschlosseneRechnungspunkte.length] = offeneRechnungspunkte[i];
-			RechnungspunkteTemp[i] = offeneRechnungspunkte[i];
-		}
-		return RechnungspunkteTemp;// liefert die bis zu diesem zeitpunkt noch
-									// offene Rechnungspunkte zurück und schiebt
-									// diese von offen nach geschlossen
+		LinkedList<RechnungsPosten> tmp = offeneRechnungspunkte;
+		geschlosseneRechnungspunkte.addAll(0, tmp);
+		return (RechnungsPosten[])tmp.toArray();
 	}
 
 	public int berechneUmsatz() {
-		int gesamtUmsatz;
-		for (int i = 0; i < geschlosseneRechnungspunkte.length; i++)// Rechnungsposten
-		{
-			gesamtUmsatz = gesamtUmsatz
-					+ geschlosseneRechnungspunkte[i].getUmsatz();
+		int gesamtUmsatz = 0;
+		for (RechnungsPosten rp: geschlosseneRechnungspunkte) {
+			gesamtUmsatz += rp.getUmsatz();
 		}
 		return gesamtUmsatz;
 	}
 
 	public String[] getTransaktionen() {
-		String[] Transaktionen = new String[10];
-		int position = 0;
-		for (int i = 0; i < geschlosseneRechnungspunkte.length; i++)// geschlossene
-																	// rechnungspunkte
-		{
-			Transaktionen[position] = geschlosseneRechnungspunkte[i].toString();
-			position++;
-		}
-		for (int i = 0; i < offeneRechnungspunkte.length; i++) // offene
-																// Rechnungspunkte=Ausleihe
-		{
-			Transaktionen[position] = offeneRechnungspunkte[i].toString();
-			position++;
-		}
-
-		return Transaktionen;
+		LinkedList<String> transaktionen = new LinkedList<String>();
+		for (RechnungsPosten rp : geschlosseneRechnungspunkte)
+			transaktionen.addFirst(rp.toString());
+		for (RechnungsPosten rp: offeneRechnungspunkte)
+			transaktionen.addFirst(rp.toString());
+		for (Ausleihe ausl: ausleihe)
+			transaktionen.addFirst(ausl.toString());
+		return (String[])transaktionen.toArray();
 	}
 
-	public void kaufen(Artikel Artikel, int menge) {
-		if (Artikel.istVerkaeuflich())// unterscheidung Dienstleistung und
-										// Objekte also artikel und dienstleistung
-		{//antwort beides!
-
-		}
+	public void kaufen(Artikel artikel, int menge) {
+		if (!artikel.istVerkaeuflich())
+			throw new Error("Artikel ist nicht verkäuflich");
+		if (menge < 0)
+			throw new Error("Kann keine negative Menge kaufen");
+		if (artikel instanceof LagerPosten)
+			((LagerPosten)artikel).bestandAendern(-menge);
+		offeneRechnungspunkte.addFirst(new Verkauf(menge, artikel));
 	}
 	
 }
