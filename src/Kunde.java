@@ -116,58 +116,34 @@ public class Kunde {
 		} else {
 			throw new Error("Negative Mengen");
 		}
-	}
-
-	public void verlustMelden(LagerPosten lagerPosten, int zeit, int menge) {
-		if (menge > 0) {
-			int gesamtMenge = 0;
-			for (int i = 0; i < ausleihe.length; i++) {
-				if (ausleihe[i].getPosten().name == lagerPosten.name)// ausgeliehe
-																		// Menge
-																		// von
-																		// diesem
-																		// posten
-																		// errechnen
-				{
-					gesamtMenge = gesamtMenge + ausleihe[i].getMenge();
-				}
-
-			}
-			// bis hierhin wurde die gesammt menge des ausgeliehenen gutes
-			// bestimmt
-			if (gesamtMenge >= menge) {
-				int restMenge = menge;
-				int alteRestmenge;
-				for (int i = 0; restMenge > 0; i++) {
-					alteRestmenge = restMenge;
-					restMenge = ausleihe[i].rueckgabe(restMenge);
-					// ausleihe[i].setEndZeit(zeit);///endzeit setzten//
-					// geplante endzeit wurde gesetzt nun muss ich noch die
-					// reale endzeit eingeben und florian die kosten berechnen
-					offeneRechnungspunkte[posRechnungspunkte] = new Verlust(
-							ausleihe[i], (alteRestmenge - restMenge));
-					if (restMenge != 0) {
-						for (int k = i; k < (ausleihe.length - 1); k++)//
-						{
-							ausleihe[k] = ausleihe[k + 1];
-						}
-					}
-
-					lagerPosten.bestandAendern(alteRestmenge - restMenge);// hier
-																			// muss
-																			// die
-																			// gesammtmenge
-																			// stehen
-
-				}
-
-			} else {
-				throw new Error("Diese Menge hast du nicht ausgeliehen");
-			}
-		} else {
-			throw new Error("Negative Mengen");
-		}
 	}*/
+
+	public Verlust verlustMelden(LagerPosten lagerPosten, int zeit, int menge) {
+		int pos = ausleihe.size();
+		Ausleihe[] rev = new Ausleihe[pos];
+		for (Ausleihe ausl: ausleihe)
+			rev[--pos] = ausl;
+		LinkedList<Ausleihe> tmp = new LinkedList<Ausleihe>();
+		int gesamtMenge = menge;
+		int betrag = 0;
+		for (Ausleihe ausl: rev) {
+			if (ausl.getPosten() == lagerPosten) {
+				int vorher = menge;
+				menge = ausl.verlust(menge);
+				betrag += lagerPosten.verlustGebuehr(ausl.getEndZeit() - ausl.getStartZeit(),
+								vorher - menge,
+								zeit - ausl.getEndZeit());
+			}
+			if (!ausl.istLeer())
+				tmp.addFirst(ausl);
+		}
+		if (menge > 0)
+			throw new Error("Verlustmenge übersteigt Ausleihmenge");
+		ausleihe = tmp;
+		Verlust verl = new Verlust(lagerPosten, gesamtMenge, betrag);
+		geschlosseneRechnungspunkte.addFirst(verl);
+		return verl;
+	}
 
 	public void ausleihe(Ausleihe ausl) {
 		ausleihe.addFirst(ausl);

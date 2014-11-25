@@ -1,5 +1,5 @@
 public class Ausleihe {
-	private long startZeit, endZeit;
+	private int startZeit, endZeit;
 	private int menge;
 	private LagerPosten lagerPosten;
 
@@ -26,11 +26,11 @@ public class Ausleihe {
 		return menge == 0;
 	}
 
-	public long getStartZeit() {
+	public int getStartZeit() {
 		return startZeit;
 	}
 
-	public void setEndZeit(long endZeit) {
+	public void setEndZeit(int endZeit) {
 		this.endZeit = endZeit;
 	}
 
@@ -58,7 +58,7 @@ public class Ausleihe {
 		return menge;//gibt den Parameter zurück der Angibt welche Menge von der Rückgabe noch übrig ist, bei ungleich null kann ausleihe in rechnungspunkt umgewandelt werden
 	}
 
-	long getEndZeit() {
+	int getEndZeit() {
 		return endZeit;
 	}
 }
