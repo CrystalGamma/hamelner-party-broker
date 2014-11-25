@@ -3,10 +3,10 @@ public class Kunde {
 	String name, vorName, strasse, ort;
 	int id, hausnummer, plz, umsatz;// id muss noch gesetzt werden mit static
 									// als global
-	Ausleihe ausleihe[] = new Ausleihe[10];// maximal 10 ausleihen
+	LinkedList<Ausleihe> ausleihe = new LinkedList<Ausleihe>();
 	int ausleihNummer, posRechnungspunkte;
 	LinkedList<RechnungsPosten> offeneRechnungspunkte = new LinkedList<RechnungsPosten>();
-	RechnungsPosten[] geschlosseneRechnungspunkte = new RechnungsPosten[10];
+	LinkedList<RechnungsPosten> geschlosseneRechnungspunkte = new LinkedList<RechnungsPosten>();
 	public Kunde(String name, String vorName) {
 		ausleihNummer = 0;
 		this.name = name;
@@ -201,26 +201,18 @@ public class Kunde {
 					+ geschlosseneRechnungspunkte[i].getUmsatz();
 		}
 		return gesamtUmsatz;
-	}
+	}*/
 
 	public String[] getTransaktionen() {
-		String[] Transaktionen = new String[10];
-		int position = 0;
-		for (int i = 0; i < geschlosseneRechnungspunkte.length; i++)// geschlossene
-																	// rechnungspunkte
-		{
-			Transaktionen[position] = geschlosseneRechnungspunkte[i].toString();
-			position++;
-		}
-		for (int i = 0; i < offeneRechnungspunkte.length; i++) // offene
-																// Rechnungspunkte=Ausleihe
-		{
-			Transaktionen[position] = offeneRechnungspunkte[i].toString();
-			position++;
-		}
-
-		return Transaktionen;
-	}*/
+		LinkedList<String> transaktionen = new LinkedList<String>();
+		for (RechnungsPosten rp : geschlosseneRechnungspunkte)
+			transaktionen.addFirst(rp.toString());
+		for (RechnungsPosten rp: offeneRechnungspunkte)
+			transaktionen.addFirst(rp.toString());
+		for (Ausleihe ausl: ausleihe)
+			transaktionen.addFirst(ausl.toString());
+		return (String[])transaktionen.toArray();
+	}
 
 	public void kaufen(Artikel artikel, int menge) {
 		if (!artikel.istVerkaeuflich())
