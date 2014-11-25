@@ -58,7 +58,7 @@ public class Ausleihe {
 		return menge;//gibt den Parameter zurück der Angibt welche Menge von der Rückgabe noch übrig ist, bei ungleich null kann ausleihe in rechnungspunkt umgewandelt werden
 	}
 
-	int getEndZeit() {
+	public int getEndZeit() {
 		return endZeit;
 	}
 }
