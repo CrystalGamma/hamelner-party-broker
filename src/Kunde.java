@@ -4,11 +4,9 @@ public class Kunde {
 	int id, hausnummer, plz, umsatz;// id muss noch gesetzt werden mit static
 									// als global
 	LinkedList<Ausleihe> ausleihe = new LinkedList<Ausleihe>();
-	int ausleihNummer, posRechnungspunkte;
 	LinkedList<RechnungsPosten> offeneRechnungspunkte = new LinkedList<RechnungsPosten>();
 	LinkedList<RechnungsPosten> geschlosseneRechnungspunkte = new LinkedList<RechnungsPosten>();
 	public Kunde(String name, String vorName) {
-		ausleihNummer = 0;
 		this.name = name;
 		this.vorName = vorName;
 	}
@@ -169,16 +167,12 @@ public class Kunde {
 		} else {
 			throw new Error("Negative Mengen");
 		}
-	}
-
-	public void ausleihe(Ausleihe ausleihe) {
-
-//		if (lagerPosten.istVerleihbar()) {
-			this.ausleihe[ausleihNummer] = ausleihe;
-			ausleihe.buchen();
-			ausleihNummer++;
-	//	} würde das ändern das hier ein Lagerposten übergeben wird und keine ausleihe
 	}*/
+
+	public void ausleihe(Ausleihe ausl) {
+		ausleihe.addFirst(ausl);
+		ausl.buchen();
+	}
 
 	public RechnungsPosten[] abrechnung() {
 		LinkedList<RechnungsPosten> tmp = offeneRechnungspunkte;
