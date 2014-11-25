@@ -191,17 +191,15 @@ public class Kunde {
 		return RechnungspunkteTemp;// liefert die bis zu diesem zeitpunkt noch
 									// offene Rechnungspunkte zurück und schiebt
 									// diese von offen nach geschlossen
-	}
+	}*/
 
 	public int berechneUmsatz() {
-		int gesamtUmsatz;
-		for (int i = 0; i < geschlosseneRechnungspunkte.length; i++)// Rechnungsposten
-		{
-			gesamtUmsatz = gesamtUmsatz
-					+ geschlosseneRechnungspunkte[i].getUmsatz();
+		int gesamtUmsatz = 0;
+		for (RechnungsPosten rp: geschlosseneRechnungspunkte) {
+			gesamtUmsatz += rp.getUmsatz();
 		}
 		return gesamtUmsatz;
-	}*/
+	}
 
 	public String[] getTransaktionen() {
 		LinkedList<String> transaktionen = new LinkedList<String>();
