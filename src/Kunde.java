@@ -178,20 +178,13 @@ public class Kunde {
 			ausleihe.buchen();
 			ausleihNummer++;
 	//	} würde das ändern das hier ein Lagerposten übergeben wird und keine ausleihe
-	}
+	}*/
 
 	public RechnungsPosten[] abrechnung() {
-		// exception werfen wenn array voll bzw. in liste ändern
-		RechnungsPosten[] RechnungspunkteTemp = new RechnungsPosten[10];
-
-		for (int i = 0; i < offeneRechnungspunkte.length; i++) {
-			geschlosseneRechnungspunkte[geschlosseneRechnungspunkte.length] = offeneRechnungspunkte[i];
-			RechnungspunkteTemp[i] = offeneRechnungspunkte[i];
-		}
-		return RechnungspunkteTemp;// liefert die bis zu diesem zeitpunkt noch
-									// offene Rechnungspunkte zurück und schiebt
-									// diese von offen nach geschlossen
-	}*/
+		LinkedList<RechnungsPosten> tmp = offeneRechnungspunkte;
+		geschlosseneRechnungspunkte.addAll(0, tmp);
+		return (RechnungsPosten[])tmp.toArray();
+	}
 
 	public int berechneUmsatz() {
 		int gesamtUmsatz = 0;
