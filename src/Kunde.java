@@ -5,9 +5,8 @@ public class Kunde {
 									// als global
 	Ausleihe ausleihe[] = new Ausleihe[10];// maximal 10 ausleihen
 	int ausleihNummer, posRechnungspunkte;
-	RechnungsPosten[] offeneRechnungspunkte = new RechnungsPosten[10];
+	LinkedList<RechnungsPosten> offeneRechnungspunkte = new LinkedList<RechnungsPosten>();
 	RechnungsPosten[] geschlosseneRechnungspunkte = new RechnungsPosten[10];
-	LinkedList<RechnungsPosten> test;
 	public Kunde(String name, String vorName) {
 		ausleihNummer = 0;
 		this.name = name;
@@ -69,7 +68,7 @@ public class Kunde {
 		return ort;
 	}
 
-	public void rueckgabe(LagerPosten lagerPosten, int zeit, int menge) {
+	/*public void rueckgabe(LagerPosten lagerPosten, int zeit, int menge) {
 		//Ändern in geht durch wenn funktioniert wird es angenommen wenn nicht ber temp array wiedr zurückgeschrieben
 		if (menge > 0) {
 			int gesamtMenge = 0;
@@ -221,14 +220,16 @@ public class Kunde {
 		}
 
 		return Transaktionen;
-	}
+	}*/
 
-	public void kaufen(Artikel Artikel, int menge) {
-		if (Artikel.istVerkaeuflich())// unterscheidung Dienstleistung und
-										// Objekte also artikel und dienstleistung
-		{//antwort beides!
-
-		}
+	public void kaufen(Artikel artikel, int menge) {
+		if (!artikel.istVerkaeuflich())
+			throw new Error("Artikel ist nicht verkäuflich");
+		if (menge < 0)
+			throw new Error("Kann keine negative Menge kaufen");
+		if (artikel instanceof LagerPosten)
+			((LagerPosten)artikel).bestandAendern(-menge);
+		offeneRechnungspunkte.addFirst(new Verkauf(menge, artikel));
 	}
 	
 }
