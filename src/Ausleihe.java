@@ -49,9 +49,11 @@ public class Ausleihe {
 		if (menge > this.menge) {
 			menge -= this.menge;
 			this.menge = 0;
+			//rechnungspunkt erzeugen
 		} else {
 			this.menge = this.menge - menge;
 			menge = 0;
+			//rechnungspunkt erzeugen
 		}
 		return menge;//gibt den Parameter zurück der Angibt welche Menge von der Rückgabe noch übrig ist, bei ungleich null kann ausleihe in rechnungspunkt umgewandelt werden
 	}
