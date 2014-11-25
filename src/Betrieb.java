@@ -13,6 +13,9 @@ public class Betrieb {
 				new LagerPosten("Test3", 10000, false, true, 50),
 				new LagerPosten("Test4", 3000, true, true, 42),
 				new LagerPosten("Test5", 159900, false, false, 3) };
+
+		kunden = new Kunde[] { new Kunde("Mertens", "Robert") };
+		aktuellerKunde = kunden[0];
 	}
 
 	private void abrechnung() {
