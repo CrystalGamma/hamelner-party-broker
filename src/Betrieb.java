@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Betrieb {
 	private long zeit;
 	private Kunde aktuellerKunde;
@@ -6,12 +8,11 @@ public class Betrieb {
 
 	public Betrieb() {
 		artikel = new Artikel[] {
-			new LagerPosten("Test1", 1000, true, false, 100),
-			new LagerPosten("Test2", 200, true, true, 300),
-			new LagerPosten("Test3", 10000, false, true, 50),
-			new LagerPosten("Test4", 3000, true, true, 42),
-			new LagerPosten("Test5", 159900, false, false, 3)
-		};
+				new LagerPosten("Test1", 1000, true, false, 100),
+				new LagerPosten("Test2", 200, true, true, 300),
+				new LagerPosten("Test3", 10000, false, true, 50),
+				new LagerPosten("Test4", 3000, true, true, 42),
+				new LagerPosten("Test5", 159900, false, false, 3) };
 	}
 
 	private void abrechnung() {
@@ -20,9 +21,9 @@ public class Betrieb {
 			System.out.println(p);
 		}
 	}
-	
-	private void anDerUhrDrehen(int zeit){
-		if(zeit < 0)
+
+	private void anDerUhrDrehen(int zeit) {
+		if (zeit < 0)
 			throw new Error("Zeit kann nicht rückwärts gehen");
 		this.zeit += zeit;
 	}
@@ -41,16 +42,16 @@ public class Betrieb {
 
 	private void datenAendern(int pKundenID) {
 	}
-	
-	private void kundeWechseln(Kunde kunde){
+
+	private void kundeWechseln(Kunde kunde) {
 		aktuellerKunde = kunde;
 	}
 
 	private void rueckgabe() {
 
 	}
-	
-	private String transaktionen(int pKundenID){
+
+	private String transaktionen(int pKundenID) {
 		return "";
 	}
 
@@ -59,7 +60,19 @@ public class Betrieb {
 	}
 
 	private void verkaufen() {
+		Scanner scanner = new Scanner(System.in);
+		System.out
+				.println("Zum Verkauf stehen derzeit folgende Produkte zur Verfügung:");
+		this.bestandAuflisten(true, false, true);
+		System.out.print("Welches Produkt möchten Sie kaufen? "); // Index bei Bestandaufslistung fehlt.
+		int eingabeProdukt = scanner.nextInt();
+		System.out.print("Aktuell sind " + artikel[0].bestandString()
+				+ " in unserem Lager, wie viele davon möchten Sie erwerben? ");
+		int eingabeAnzahl = scanner.nextInt();
+		System.out.println("Sie kaufen " + eingabeAnzahl + " x "
+				+ artikel[0].name + ".");
 
+		aktuellerKunde.kaufen(artikel[eingabeProdukt], eingabeAnzahl);
 	}
 
 	private void verleih() {
@@ -78,5 +91,7 @@ public class Betrieb {
 		betr.bestandAuflisten(false, false, true);
 		System.out.println("Gesamtsortiment:");
 		betr.bestandAuflisten(false, false, false);
+
+		betr.verkaufen();
 	}
 }
