@@ -26,7 +26,7 @@ public class Kunde {
 	}
 
 	public void setPlz(int plz) {
-		if (plz >= 10000 && plz >= 99999) {
+		if (plz >= 1000 && plz <= 99998) {
 			this.plz = plz;
 		} else {
 			throw new Error("Plz ist immer 5-stellig");
@@ -122,7 +122,7 @@ public class Kunde {
 
 	public void ausleihe(Ausleihe ausl) {
 		ausleihe.addFirst(ausl);
-		// TODO: sortiert nach startzeit einfügen	
+		// TODO: sortiert nach startzeit einfügen
 		ausl.buchen();
 	}
 
