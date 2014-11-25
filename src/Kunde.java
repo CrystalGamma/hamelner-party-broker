@@ -1,3 +1,4 @@
+import java.util.LinkedList;
 public class Kunde {
 	String name, vorName, strasse, ort;
 	int id, hausnummer, plz, umsatz;// id muss noch gesetzt werden mit static
@@ -6,7 +7,7 @@ public class Kunde {
 	int ausleihNummer, posRechnungspunkte;
 	RechnungsPosten[] offeneRechnungspunkte = new RechnungsPosten[10];
 	RechnungsPosten[] geschlosseneRechnungspunkte = new RechnungsPosten[10];
-
+	LinkedList<RechnungsPosten> test;
 	public Kunde(String name, String vorName) {
 		ausleihNummer = 0;
 		this.name = name;
@@ -69,6 +70,7 @@ public class Kunde {
 	}
 
 	public void rueckgabe(LagerPosten lagerPosten, int zeit, int menge) {
+		//Ändern in geht durch wenn funktioniert wird es angenommen wenn nicht ber temp array wiedr zurückgeschrieben
 		if (menge > 0) {
 			int gesamtMenge = 0;
 			for (int i = 0; i < ausleihe.length; i++) {
@@ -91,8 +93,11 @@ public class Kunde {
 				for (int i = 0; restMenge > 0; i++) {
 					alteRestmenge = restMenge;
 					restMenge = ausleihe[i].rueckgabe(restMenge);
+					// ausleihe[i].setEndZeit(zeit);///endzeit setzten//
+					// geplante endzeit wurde gesetzt nun muss ich noch die
+					// reale endzeit eingeben und florian die kosten berechnen
 					offeneRechnungspunkte[posRechnungspunkte] = new Verleih(
-							ausleihe[i], (alteRestmenge - restMenge));// zeit
+							ausleihe[i], (alteRestmenge - restMenge));
 					if (restMenge != 0) {
 						for (int k = i; k < (ausleihe.length - 1); k++)//
 						{
@@ -100,25 +105,80 @@ public class Kunde {
 						}
 					}
 
-					lagerPosten.bestandAendern(alteRestmenge - restMenge);
+					lagerPosten.bestandAendern(alteRestmenge - restMenge);// hier
+																			// muss
+																			// die
+																			// verfügbare
+																			// stehen
 
 				}
 
+			} else {
+				throw new Error("Diese Menge hast du nicht ausgeliehen");
 			}
 		} else {
-			throw new Error("Diese Menge hast du nicht ausgeliehen");
+			throw new Error("Negative Mengen");
 		}
 	}
 
-	public void verlustMelden(LagerPosten LagerPosten, int zeit, int menge) {
+	public void verlustMelden(LagerPosten lagerPosten, int zeit, int menge) {
+		if (menge > 0) {
+			int gesamtMenge = 0;
+			for (int i = 0; i < ausleihe.length; i++) {
+				if (ausleihe[i].getPosten().name == lagerPosten.name)// ausgeliehe
+																		// Menge
+																		// von
+																		// diesem
+																		// posten
+																		// errechnen
+				{
+					gesamtMenge = gesamtMenge + ausleihe[i].getMenge();
+				}
 
+			}
+			// bis hierhin wurde die gesammt menge des ausgeliehenen gutes
+			// bestimmt
+			if (gesamtMenge >= menge) {
+				int restMenge = menge;
+				int alteRestmenge;
+				for (int i = 0; restMenge > 0; i++) {
+					alteRestmenge = restMenge;
+					restMenge = ausleihe[i].rueckgabe(restMenge);
+					// ausleihe[i].setEndZeit(zeit);///endzeit setzten//
+					// geplante endzeit wurde gesetzt nun muss ich noch die
+					// reale endzeit eingeben und florian die kosten berechnen
+					offeneRechnungspunkte[posRechnungspunkte] = new Verlust(
+							ausleihe[i], (alteRestmenge - restMenge));
+					if (restMenge != 0) {
+						for (int k = i; k < (ausleihe.length - 1); k++)//
+						{
+							ausleihe[k] = ausleihe[k + 1];
+						}
+					}
+
+					lagerPosten.bestandAendern(alteRestmenge - restMenge);// hier
+																			// muss
+																			// die
+																			// gesammtmenge
+																			// stehen
+
+				}
+
+			} else {
+				throw new Error("Diese Menge hast du nicht ausgeliehen");
+			}
+		} else {
+			throw new Error("Negative Mengen");
+		}
 	}
 
 	public void ausleihe(Ausleihe ausleihe) {
 
-		this.ausleihe[ausleihNummer] = ausleihe;
-		ausleihe.buchen();
-		ausleihNummer++;
+//		if (lagerPosten.istVerleihbar()) {
+			this.ausleihe[ausleihNummer] = ausleihe;
+			ausleihe.buchen();
+			ausleihNummer++;
+	//	} würde das ändern das hier ein Lagerposten übergeben wird und keine ausleihe
 	}
 
 	public RechnungsPosten[] abrechnung() {
@@ -165,9 +225,10 @@ public class Kunde {
 
 	public void kaufen(Artikel Artikel, int menge) {
 		if (Artikel.istVerkaeuflich())// unterscheidung Dienstleistung und
-										// Objekte
-		{
+										// Objekte also artikel und dienstleistung
+		{//antwort beides!
 
 		}
 	}
+	
 }
