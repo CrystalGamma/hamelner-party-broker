@@ -67,8 +67,12 @@ public class Betrieb {
 		System.out
 				.println("Zum Verkauf stehen derzeit folgende Produkte zur Verfügung:");
 		this.bestandAuflisten(true, false, true);
-		System.out.print("Welches Produkt möchten Sie kaufen? "); // Index bei Bestandaufslistung fehlt.
-		int eingabeProdukt = scanner.nextInt();
+		int eingabeProdukt;
+		do{
+			System.out.print("Welches Produkt möchten Sie kaufen? "); // Index bei Bestandaufslistung fehlt.
+			eingabeProdukt = scanner.nextInt();
+			if(!artikel[eingabeProdukt].istVerkaeuflich()) System.out.println("Dieses Produkt ist leider nicht käuflich.");
+		}while(!artikel[eingabeProdukt].istVerkaeuflich());
 		System.out.print("Aktuell sind " + artikel[0].bestandString()
 				+ " in unserem Lager, wie viele davon möchten Sie erwerben? ");
 		int eingabeAnzahl = scanner.nextInt();
