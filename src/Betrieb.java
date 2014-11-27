@@ -87,8 +87,10 @@ public class Betrieb {
 
 	}
 
-	private String transaktionen(int pKundenID) {
-		return "";
+	private void transaktionen() {
+		for (String str: aktuellerKunde.getTransaktionen()) {
+			System.out.println(str);
+		}
 	}
 
 	private void umsatzBericht() {
@@ -191,6 +193,7 @@ public class Betrieb {
 		betr.aktuellerKunde.kaufen(betr.artikel[0], 10);
 		betr.aktuellerKunde.abrechnung();
 		betr.umsatzBericht();
+		betr.transaktionen();
 
 		betr.verleih();
 	}

@@ -130,6 +130,7 @@ public class Kunde {
 	public RechnungsPosten[] abrechnung() {
 		LinkedList<RechnungsPosten> tmp = offeneRechnungspunkte;
 		geschlosseneRechnungspunkte.addAll(0, tmp);
+		offeneRechnungspunkte = new LinkedList<>();
 		return Arrays.copyOf(tmp.toArray(), tmp.size(), RechnungsPosten[].class);
 	}
 
@@ -149,7 +150,8 @@ public class Kunde {
 			transaktionen.addFirst(rp.toString());
 		for (Ausleihe ausl: ausleihe)
 			transaktionen.addFirst(ausl.toString());
-		return (String[])transaktionen.toArray();
+		return Arrays.copyOf(transaktionen.toArray(), transaktionen.size(),
+							String[].class);
 	}
 
 	public void kaufen(Artikel artikel, int menge) {

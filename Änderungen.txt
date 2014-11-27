@@ -7,4 +7,4 @@ toString und bestandString in Artikel
 
 verlust und rueckgabe geben RechnungsPunkte (bzw unterklassen) zurück
 
-funtionen in Betrieb auf global-zustand von kunde umstellen
+funktionen in Betrieb auf global-zustand von kunde umstellen
