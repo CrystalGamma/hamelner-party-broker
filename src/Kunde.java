@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.LinkedList;
 public class Kunde {
 	String name, vorName, strasse, ort;
@@ -129,7 +130,7 @@ public class Kunde {
 	public RechnungsPosten[] abrechnung() {
 		LinkedList<RechnungsPosten> tmp = offeneRechnungspunkte;
 		geschlosseneRechnungspunkte.addAll(0, tmp);
-		return (RechnungsPosten[])tmp.toArray();
+		return Arrays.copyOf(tmp.toArray(), tmp.size(), RechnungsPosten[].class);
 	}
 
 	public int berechneUmsatz() {

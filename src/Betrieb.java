@@ -35,7 +35,6 @@ public class Betrieb {
 				new LagerPosten("Toilettenwagen", 0, 8900, 29900, 0, false,
 						true, 6),
 				new DienstLeistung("Frischwasserinstallation", 18500) };
-		kundeHinzufuegen(new Kunde("Mertens", "Robert"));
 	}
 
 	private void kundeHinzufuegen(Kunde kunde) {
@@ -89,8 +88,11 @@ public class Betrieb {
 		return "";
 	}
 
-	private String umsatzBericht() {
-		return "";
+	private void umsatzBericht() {
+		for (Kunde kunde: kunden.values()) {
+			System.out.println(kunde.getVorName() + ", " + kunde.getName()
+					+ ": "+ kunde.berechneUmsatz());
+		}
 	}
 
 	private void verkaufen() { // TODO Exception-Handling
@@ -146,6 +148,11 @@ public class Betrieb {
 		System.out.println("Gesamtsortiment:");
 		betr.bestandAuflisten(false, false, false);
 
-		betr.verkaufen();
+		betr.kundeHinzufuegen(new Kunde("Mertens", "Robert"));
+		betr.aktuellerKunde.kaufen(betr.artikel[0], 10);
+		betr.aktuellerKunde.abrechnung();
+		betr.umsatzBericht();
+
+//		betr.verkaufen();
 	}
 }
