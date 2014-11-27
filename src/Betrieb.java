@@ -302,6 +302,7 @@ public class Betrieb {
 		betr.bestandAuflisten(false, false, false);
 
 		String[] aktionen = new String[] {
+				"Status / mögliche Befehle",
 				"Auflistung der aktuell verfügbaren verkäuflichen Gegenstände",
 				"Auflistung der aktuell verfügbaren Leihgegenstände",
 				"Auflistung des gesamten verkäuflichen Bestands",
@@ -319,22 +320,24 @@ public class Betrieb {
 		boolean run = true;
 		String next = "";
 		Scanner scanner = new Scanner(System.in);
+		System.out.println("Für Befehlsliste 0 eingeben");
 		do {
-			System.out.println("Aktueller Kunde: " + betr.aktuellerKunde);
-			System.out.println("Bitte Aktion wählen:");
-			int aktionsID = 0;
-			for (String aktionsBeschreibung : aktionen) {
-				System.out.printf("%4s %s\n", "[" + (aktionsID + 1) + "]",
-						aktionen[aktionsID]);
-				aktionsID++;
-			}
-
 			do {
 				aktion = scanner.nextInt();
-			} while (aktion < 1 || aktion > 15);
+			} while (aktion < 0 || aktion > 15);
 
-			System.out.println(aktionen[aktion-1]);
+			System.out.println(aktionen[aktion]);
 			switch (aktion) {
+			case 0:
+				System.out.println("Aktueller Kunde: " + betr.aktuellerKunde);
+				System.out.println("Bitte Aktion wählen:");
+				int aktionsID = 0;
+				for (String aktionsBeschreibung : aktionen) {
+					System.out.printf("%4s %s\n", "[" + aktionsID + "]",
+							aktionen[aktionsID]);
+					aktionsID++;
+				}
+				break;
 			case 1: betr.bestandAuflisten(true, false, true); break;
 			case 2: betr.bestandAuflisten(false, true, true); break;
 			case 3: betr.bestandAuflisten(true, false, false); break;
@@ -371,13 +374,6 @@ public class Betrieb {
 			case 14: betr.kundeWechseln(); break;
 			case 15: run = false; break;
 			default:
-			}
-			
-			System.out.println("Weiter mit [w]");
-			if(aktion != 15){
-				do {
-					next = scanner.nextLine();
-				}while(!next.equals("w"));
 			}
 		} while (run);
 
