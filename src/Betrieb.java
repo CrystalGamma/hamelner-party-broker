@@ -198,7 +198,7 @@ public class Betrieb {
 	}
 
 	private void rueckgabe() {
-		System.out.println("Welche der folgenden Objekte möchten Sie zurückgeben");
+		System.out.println("Welches der folgenden Objekttypen möchten Sie zurückgeben");
 		//bestandAuflisten(false, true, false);//to do ändern, brauche die anzahl verfügbarer oder den preis nicht wissen
 		int index = 0;
 		System.out.printf("%5s  %-20s\n", "ID", "Produktname");
@@ -249,7 +249,8 @@ public class Betrieb {
 				continue;
 			}
 		}
-		aktuellerKunde.rueckgabe((LagerPosten)artikel[schluesselID],this.zeit , menge);
+		aktuellerKunde.rueckgabe((LagerPosten)artikel[schluesselID],this.zeit , menge).toString();
+		
 	}
 
 	private void transaktionen() {
@@ -295,10 +296,14 @@ public class Betrieb {
 				+ " in unserem Lager, wie viele davon möchten Sie erwerben? ");
 		int eingabeAnzahl = scanner.nextInt();
 
+		System.out.println(eingabeAnzahl + " x " + gewaehltesProdukt.name + " an " + aktuellerKunde + " verkaufen? Bestätigen mit [j], sonst beliebige Taste drücken ");
+		String weiter = scanner.next();
+		if(weiter.equals("j")){
 		// Kauf abwickeln
 		aktuellerKunde.kaufen(gewaehltesProdukt, eingabeAnzahl);
 		System.out.println("Es wurden " + eingabeAnzahl + " x "
 				+ gewaehltesProdukt.name + " an " + aktuellerKunde + " verkauft.");
+		}else System.out.println("Verkauf abgebrochen.");
 	}
 
 	private void verleih() { // TODO Exception-Handling
@@ -344,7 +349,59 @@ public class Betrieb {
 	}
 
 	private void verlust() {
-
+		System.out.println("Welches der folgenden Objekttypen haben Sie verlohren");
+		//to do ändern, brauche die anzahl verfügbarer oder den preis nicht wissen
+		int index = 0;
+		System.out.printf("%5s  %-20s\n", "ID", "Produktname");
+		for (Artikel art : artikel) {
+			index++;	
+			if (!art.istVerleihbar())
+				continue;
+			System.out.printf("%5s  %-20s\n", index-1 , art.bestandString());	
+		}
+		int schluesselID=0;
+		int menge=0;
+		Scanner scannerID=new Scanner(System.in);
+		while(true)
+		{
+			System.out.println("Bitte eine Verlust-ID eingeben");
+			try
+			{
+				schluesselID=scannerID.nextInt();
+				
+			}
+			catch(InputMismatchException e)
+			{
+				System.out.println("Fehler in der Eingabe! Es war keine Zahl");
+				scannerID.nextLine();
+				continue;
+			}
+			if(schluesselID>0&&schluesselID<=8)
+			{
+				break;
+			}
+			else
+			{
+				System.out.println("Diese Option ist nicht verfügbar");
+			}
+		}
+		System.out.println("Bitte eine Menge eingeben");
+		while(true)	
+		{
+			try
+			{
+				menge=scannerID.nextInt();
+				break;
+			}
+			catch(InputMismatchException e)
+			{
+				System.out.println("Fehler in der Eingabe! Es war keine Zahl");
+				scannerID.nextLine();
+				continue;
+			}
+		}
+		aktuellerKunde.rueckgabe((LagerPosten)artikel[schluesselID],this.zeit , menge);
+		
 	}
 
 	public static void main(String[] args) {
