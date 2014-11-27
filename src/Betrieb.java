@@ -296,10 +296,14 @@ public class Betrieb {
 				+ " in unserem Lager, wie viele davon möchten Sie erwerben? ");
 		int eingabeAnzahl = scanner.nextInt();
 
+		System.out.println(eingabeAnzahl + " x " + gewaehltesProdukt.name + " an " + aktuellerKunde + " verkaufen? Bestätigen mit [j], sonst beliebige Taste drücken ");
+		String weiter = scanner.next();
+		if(weiter.equals("j")){
 		// Kauf abwickeln
 		aktuellerKunde.kaufen(gewaehltesProdukt, eingabeAnzahl);
 		System.out.println("Es wurden " + eingabeAnzahl + " x "
 				+ gewaehltesProdukt.name + " an " + aktuellerKunde + " verkauft.");
+		}else System.out.println("Verkauf abgebrochen.");
 	}
 
 	private void verleih() { // TODO Exception-Handling
