@@ -32,14 +32,17 @@ public class Betrieb {
 	}
 
 	private void bestandAuflisten(boolean verk, boolean verl, boolean verf) {
+		int index = 0;
+		System.out.printf("%5s  %-20s\n", "ID", "Produktname");
 		for (Artikel art : artikel) {
+			index++;
 			if (verk && !art.istVerkaeuflich())
 				continue;
 			if (verl && !art.istVerleihbar())
 				continue;
 			if (verf && !art.istVerfuegbar())
 				continue;
-			System.out.println("Produkt " + art.bestandString());
+			System.out.printf("%5s  %-20s\n", index - 1, art.bestandString());
 		}
 	}
 
@@ -68,17 +71,26 @@ public class Betrieb {
 				.println("Zum Verkauf stehen derzeit folgende Produkte zur Verfügung:");
 		this.bestandAuflisten(true, false, true);
 		int eingabeProdukt;
-		do{
-			System.out.print("Welches Produkt möchten Sie kaufen? "); // Index bei Bestandaufslistung fehlt.
+		do {
+			System.out.print("Welches Produkt möchten Sie kaufen? "); // Index
+																		// bei
+																		// Bestandaufslistung
+																		// fehlt.
 			eingabeProdukt = scanner.nextInt();
-			if(!artikel[eingabeProdukt].istVerkaeuflich()) System.out.println("Dieses Produkt ist leider nicht käuflich.");
-		}while(!artikel[eingabeProdukt].istVerkaeuflich());
-		System.out.print("Aktuell sind " + artikel[0].bestandString()
+			if (!artikel[eingabeProdukt].istVerkaeuflich())
+				System.out.println("Dieses Produkt ist leider nicht käuflich.");
+		} while (!artikel[eingabeProdukt].istVerkaeuflich());
+		System.out.print("Aktuell sind "
+				+ artikel[eingabeProdukt].bestandString()
 				+ " in unserem Lager, wie viele davon möchten Sie erwerben? ");
-		int eingabeAnzahl = scanner.nextInt();
-		System.out.println("Sie kaufen " + eingabeAnzahl + " x "
-				+ artikel[0].name + ".");
-
+		int eingabeAnzahl;
+		int bestand = 10; // Kann noch nicht direkt abgerufen werden.
+		do {
+			eingabeAnzahl = scanner.nextInt();
+			if(eingabeAnzahl > bestand) System.out.println("So viel haben wir nicht. Bitte neue Eingabe: ");
+			else System.out.println("Sie kaufen " + eingabeAnzahl + " x "
+					+ artikel[eingabeProdukt].name + ".");
+		} while (eingabeAnzahl > bestand);
 		aktuellerKunde.kaufen(artikel[eingabeProdukt], eingabeAnzahl);
 	}
 
