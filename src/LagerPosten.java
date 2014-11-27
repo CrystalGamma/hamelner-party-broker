@@ -78,7 +78,7 @@ public class LagerPosten extends Artikel {
 		if (bestand < menge) {
 			throw new Error("Nicht genug Bestand verfügbar");
 		}
-		bestand -= menge;
+		bestand += menge;
 	}
 
 	public int getBestand() {
