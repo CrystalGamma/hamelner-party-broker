@@ -10,10 +10,12 @@ public class Ausleihe {
 		this.menge = menge;
 		if (!posten.istVerleihbar())
 			throw new ArtikelFehler(posten, ArtikelFehler.Art.NichtVerleihbar);
+		if (menge < 0)
+			throw new MengenFehler(MengenFehler.Art.NegativLeihen, menge);
 	}
 
 	public void buchen() {
-		lagerPosten.bestandAendern(menge);
+		lagerPosten.bestandAendern(-menge);
 	}
 
 	public LagerPosten getPosten() {

@@ -1,6 +1,7 @@
 public class MengenFehler extends RuntimeException {
     enum Art {
         NegativKaufen,
+        NegativLeihen,
         ZuvielAusgeben,
         ZuvielRueckgeben,
         ZuvielVerloren
@@ -18,6 +19,8 @@ public class MengenFehler extends RuntimeException {
         switch (art) {
             case NegativKaufen:
                 return "Negative Menge " + menge + " kann nicht gekauft werden";
+            case NegativLeihen:
+                return "Negative Menge " + menge + " kann nicht verliehen werden";
             case ZuvielAusgeben:
                 return "Nicht genug Bestand verfügbar um " + menge + "auszugeben";
             case ZuvielRueckgeben:

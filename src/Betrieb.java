@@ -61,7 +61,7 @@ public class Betrieb {
 
 	private void bestandAuflisten(boolean verk, boolean verl, boolean verf) {
 		int len = Math.max((int) Math.ceil(Math.log10(artikel.length)), 2);
-		System.out.printf("%" + len + "s Artikel", "ID");
+		System.out.printf("%" + len + "s Artikel\n", "ID");
 		String format = "%" + len + "s %s\n";
 		for (int index = 0; index < artikel.length; index++) {
 			Artikel art = artikel[index];
@@ -364,64 +364,94 @@ public class Betrieb {
 				"Auflistung der mit einem Kunden durchgeführten Transaktionen",
 				"Neuen Kunden anlegen", "Ändern von Kundendaten",
 				"Aktuellen Kunden wechseln", "Beenden" };
-		int aktion;
 		boolean run = true;
-		String next = "";
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Für Befehlsliste 0 eingeben");
 		do {
+			System.out.print("Befehl >");
+			int aktion;
 			do {
 				aktion = scanner.nextInt();
 			} while (aktion < 0 || aktion > 15);
 
 			System.out.println(aktionen[aktion]);
-			switch (aktion) {
-			case 0:
-				System.out.println("Aktueller Kunde: " + betr.aktuellerKunde);
-				System.out.println("Bitte Aktion wählen:");
-				int aktionsID = 0;
-				for (String aktionsBeschreibung : aktionen) {
-					System.out.printf("%4s %s\n", "[" + aktionsID + "]",
-							aktionen[aktionsID]);
-					aktionsID++;
+			try {
+				switch (aktion) {
+					case 0:
+						System.out.println("Aktueller Kunde: " + betr.aktuellerKunde);
+						System.out.println("Bitte Aktion wählen:");
+						int aktionsID = 0;
+						for (String aktionsBeschreibung : aktionen) {
+							System.out.printf("%4s %s\n", "[" + aktionsID + "]",
+									aktionen[aktionsID]);
+							aktionsID++;
+						}
+						break;
+					case 1:
+						betr.bestandAuflisten(true, false, true);
+						break;
+					case 2:
+						betr.bestandAuflisten(false, true, true);
+						break;
+					case 3:
+						betr.bestandAuflisten(true, false, false);
+						break;
+					case 4:
+						boolean retry = false;
+						do {
+							try {
+								betr.verkaufen();
+							} catch (MengenFehler e) {
+								System.out.println(e);
+								retry = true;
+							}
+						} while (retry);
+						break;
+					case 5:
+						betr.bestandAuflisten(false, true, false);
+						break;
+					case 6:
+						boolean retryVerleih = false;
+						do {
+							try {
+								betr.verleih();
+							} catch (MengenFehler e) { // TODO wird noch nicht geworfen
+								System.out.println(e);
+								retryVerleih = true;
+							}
+						} while (retryVerleih);
+						break;
+					case 7:
+						betr.rueckgabe();
+						break;
+					case 8:
+						betr.verlust();
+						break;
+					case 9:
+						betr.abrechnung();
+						break;
+					case 10:
+						betr.umsatzBericht();
+						break;
+					case 11:
+						betr.transaktionen();
+						break;
+					case 12:
+						betr.kundeHinzufuegen();
+						break;
+					case 13:
+						betr.datenAendern();
+						break;
+					case 14:
+						betr.kundeWechseln();
+						break;
+					case 15:
+						run = false;
+						break;
+					default:
 				}
-				break;
-			case 1: betr.bestandAuflisten(true, false, true); break;
-			case 2: betr.bestandAuflisten(false, true, true); break;
-			case 3: betr.bestandAuflisten(true, false, false); break;
-			case 4: 
-				boolean retry = false;
-				do{
-					try {
-						betr.verkaufen();
-					}catch(MengenFehler e){
-						System.out.println(e);
-						retry = true;
-					}
-				}while(retry);
-				break;
-			case 5: betr.bestandAuflisten(false, true, false); break;
-			case 6:
-				boolean retryVerleih = false;
-				do{
-					try {
-						betr.verleih();
-					}catch(MengenFehler e){ // TODO wird noch nicht geworfen
-						System.out.println(e);
-						retryVerleih = true;
-					}
-				}while(retryVerleih);
-				break;
-			case 7: betr.rueckgabe(); break;
-			case 8: betr.verlust(); break;
-			case 9: betr.abrechnung(); break;
-			case 10: betr.umsatzBericht(); break;
-			case 11: betr.transaktionen(); break;
-			case 12: betr.kundeHinzufuegen(); break;
-			case 13: betr.datenAendern(); break;
-			case 14: betr.kundeWechseln(); break;
-			case 15: run = false; break;
-			default:
+			} catch(Exception e) {
+				System.out.println("FEHLER: " + e);
 			}
 		} while (run);
 	}
