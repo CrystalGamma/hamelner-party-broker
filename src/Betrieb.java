@@ -434,6 +434,7 @@ public class Betrieb {
 		System.out.println("Für Befehlsliste 0 eingeben");
 		do {
 			System.out.print("Befehl >");
+			System.out.flush();
 			int aktion;
 			do {
 				aktion = scanner.nextInt();
