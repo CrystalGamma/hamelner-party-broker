@@ -51,9 +51,11 @@ public class Betrieb {
 	}
 
 	private void bestandAuflisten(boolean verk, boolean verl, boolean verf) {
-		int index = 0;
-		System.out.printf("%5s  %-20s\n", "ID", "Produktname");
-		for (Artikel art : artikel) {
+		int len = Math.max((int)Math.ceil(Math.log10(artikel.length)), 2);
+		System.out.printf("%" + len + "s Artikel", "ID");
+		String format = "%" + len + "s %s\n";
+		for (int index = 0; index < artikel.length; index++) {
+			Artikel art = artikel[index];
 			index++;
 			if (verk && !art.istVerkaeuflich())
 				continue;
@@ -61,7 +63,7 @@ public class Betrieb {
 				continue;
 			if (verf && !art.istVerfuegbar())
 				continue;
-			System.out.printf("%5s  %-20s\n", index - 1, art.bestandString());
+			System.out.printf(format, index, art.bestandString());
 		}
 	}
 
