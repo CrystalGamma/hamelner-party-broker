@@ -88,7 +88,7 @@ public class Kunde {
 				tmp.addFirst(ausl);
 		}
 		if (menge > 0)
-			throw new Error("Verlustmenge übersteigt Ausleihmenge");
+			throw new MengenFehler(MengenFehler.Art.ZuvielRueckgeben, menge);
 		ausleihe = tmp;
 		Verleih verl = new Verleih(lagerPosten, gesamtMenge, betrag);
 		geschlosseneRechnungspunkte.addFirst(verl);
@@ -115,7 +115,7 @@ public class Kunde {
 				tmp.addFirst(ausl);
 		}
 		if (menge > 0)
-			throw new Error("Verlustmenge übersteigt Ausleihmenge");
+			throw new MengenFehler(MengenFehler.Art.ZuvielVerloren, menge);
 		ausleihe = tmp;
 		Verlust verl = new Verlust(lagerPosten, gesamtMenge, betrag);
 		geschlosseneRechnungspunkte.addFirst(verl);
