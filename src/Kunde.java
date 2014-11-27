@@ -164,4 +164,8 @@ public class Kunde {
 		offeneRechnungspunkte.addFirst(new Verkauf(menge, artikel));
 	}
 	
+	@Override
+	public String toString(){
+		return this.name + ", " + this.vorName;
+	}
 }
