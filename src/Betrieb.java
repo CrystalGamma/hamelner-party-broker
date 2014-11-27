@@ -11,31 +11,24 @@ public class Betrieb {
 
 	public Betrieb() {
 		artikel = new Artikel[] {
-				new LagerPosten("Test1", 1000, true, false, 100),
-				new LagerPosten("Test2", 200, true, true, 300),
-				new LagerPosten("Test3", 10000, false, true, 50),
-				new LagerPosten("Test4", 3000, true, true, 42),
-				new LagerPosten("Test5", 159900, false, false, 3),
-				/*
-				 * LagerPosten(String name,int verkaufspreis, int leihGebuehr,
-				 * int handlingPauschale, int verlustGebuehr, boolean
-				 * verkaeuflich, boolean verleihbar, int bestand)
-				 */
-				new LagerPosten("Bierglas", 160, 80, 20, 100, true, true, 1250),
-				new LagerPosten("Pinneken", 140, 100, 20, 50, true, true, 1490),
-				new LagerPosten("Dose Lauwarme Cervisia", 200, 0, 0, 0, true,
-						false, 520),
-				new LagerPosten("Faß Lauwarme Cervisia", 5000, 0, 0, 0, true,
-						false, 10),
-				new LagerPosten("kleine Zapfanlage", 20900, 8000, 900, 9000,
-						true, true, 18),
-				new LagerPosten("große Zapfanlage", 0, 22000, 2900, 80000,
-						false, true, 3),
-				new LagerPosten("10er Bierdeckel", 15, 0, 0, 0, true, false,
-						3900),
-				new LagerPosten("Toilettenwagen", 0, 8900, 29900, 0, false,
-						true, 6),
-				new DienstLeistung("Frischwasserinstallation", 18500) };
+			new LagerPosten("Test1", 1000, true, false, 100),
+			new LagerPosten("Test2", 200, true, true, 300),
+			new LagerPosten("Test3", 10000, false, true, 50),
+			new LagerPosten("Test4", 3000, true, true, 42),
+			new LagerPosten("Test5", 159900, false, false, 3),
+			/*LagerPosten(String name,int verkaufspreis, int leihGebuehr, int handlingPauschale,
+			int verlustGebuehr, boolean verkaeuflich, boolean verleihbar,
+			int bestand)*/
+			new LagerPosten("Bierglas", 160,80,20,100, true, true, 1250),
+			new LagerPosten("Pinneken", 140,100,20,50, true, true, 1490),
+			new LagerPosten("Dose Lauwarme Cervisia", 200,0,0,0, true, false, 520),
+			new LagerPosten("Faß Lauwarme Cervisia", 5000,0,0,0, true, false, 10),
+			new LagerPosten("kleine Zapfanlage",20900,8000,900,9000, true,true,18),
+			new LagerPosten("große Zapfanlage",0,22000,2900,80000, false, true, 3),
+			new LagerPosten("10er Bierdeckel",15,0,0,0, true, false, 3900),
+			new LagerPosten("Toilettenwagen",0,8900,29900,0, false, true, 6),
+			new DienstLeistung("Frischwasserinstallation",18500)
+		};
 		kundeHinzufuegen(new Kunde("Mertens", "Robert"));
 	}
 
@@ -73,8 +66,98 @@ public class Betrieb {
 		}
 	}
 
-	private void datenAendern(int pKundenID) {
+	private void datenAendern() {
+		System.out.println("Was möchten Sie ändern");
+		System.out.println("1 :komplette Anschrift ändern");
+		System.out.println("2 :Straße und Hausnummer ändern");
+		System.out.println("3 :Abbrechen");
+		int eingabeID;
+		
+		Scanner scanner=new Scanner(System.in);
+		while(true)
+		{
+			try
+			{
+				eingabeID=scanner.nextInt();
+				if(eingabeID==1||eingabeID==2||eingabeID==3)
+				{
+					break;
+				}
+				else
+				{
+					System.out.println("Die Option gab es nicht");
+				}
+					
+			}
+			catch(InputMismatchException e)
+			{
+				System.out.println("1Fehler in der Eingabe! Es war keine Zahl");
+				scanner.nextLine();
+				continue;
+			}
+		}
+		
+		int eingabeInt;
+		String eingabe;
+		while(true){
+		
+			if(eingabeID==3)
+			{
+				break;
+			}
+			if(eingabeID==1)
+			{
+				System.out.println("Geben Sie ihren Ort ein");
+				eingabe= scanner.next();
+				aktuellerKunde.setOrt(eingabe);
+				System.out.println("Geben Sie Ihre Plz ein");
+				try
+				{
+					eingabeInt=scanner.nextInt();
+				}
+				catch(InputMismatchException e)
+				{
 
+					System.out.println("Fehler in der Eingabe! Es war keine Zahl");
+					scanner.nextLine();
+					continue;
+				}
+				if(eingabeInt >= 1000 && eingabeInt <= 99998)
+						{
+						aktuellerKunde.setPlz(eingabeInt);
+						eingabeID=2;
+						}
+				else
+				{
+					System.out.println("Plz sind immer 5-Stellig");
+				}
+			}
+			if(eingabeID==2)
+			{
+				System.out.println("Geben Sie ihre Straße ein");
+				eingabe= scanner.next();
+				aktuellerKunde.setStrasse(eingabe);
+				System.out.println("Geben Sie Ihre Hausnummer ein");
+				try
+				{
+					eingabeInt=scanner.nextInt();
+					aktuellerKunde.setHausnummer(eingabeInt);
+					break;
+				}
+				catch(InputMismatchException e)
+				{
+
+					System.out.println("Fehler in der Eingabe! Es war keine Zahl");
+					scanner.nextLine();
+					continue;
+				}
+			}
+			else
+			{
+				System.out.println("Nur 1 oder 2 stehen zur Verfügung");
+			}
+		}
+		
 	}
 
 	private void kundeWechseln() {
@@ -162,8 +245,7 @@ public class Betrieb {
 		Scanner scanner = new Scanner(System.in);
 
 		// Gewünschtes Produkt erfragen
-		// TODO Bestand auflisten zeigt aktuell nur den Verkaufspreis,
-		// Unterscheidung notwendig.
+		// TODO Bestand auflisten zeigt aktuell nur den Verkaufspreis, Unterscheidung notwendig.
 		System.out
 				.println("Zum Verleih stehen derzeit folgende Produkte zur Verfügung:");
 		this.bestandAuflisten(false, true, true);
@@ -194,8 +276,7 @@ public class Betrieb {
 		} while (eingabeAnzahl > bestand);
 
 		// Zeitdauer erfragen
-		System.out
-				.print("Bitte geben Sie an für wie viel Tage Sie das Produkt ausleihen wollen: ");
+		System.out.print("Bitte geben Sie an für wie viel Tage Sie das Produkt ausleihen wollen: ");
 		int eingabeTage = 0;
 		do {
 			eingabeTage = scanner.nextInt();
@@ -273,7 +354,7 @@ public class Betrieb {
 				Kunde kunde = new Kunde("Nachname", "Vorname"); // TODO
 				betr.kundeHinzufuegen(kunde);
 				break;
-			case 13: betr.datenAendern(0); break;
+			case 13: betr.datenAendern(); break;
 			case 14: betr.kundeWechseln(); break;
 			case 15: run = false; break;
 			default:
