@@ -155,8 +155,7 @@ public class Betrieb {
 		// Gewünschte Anzahl erfragen
 		System.out.print("Aktuell sind " + gewaehltesProdukt.bestandString()
 				+ " in unserem Lager, wie viele davon möchten Sie erwerben? ");
-		int eingabeAnzahl;
-		eingabeAnzahl = scanner.nextInt();
+		int eingabeAnzahl = scanner.nextInt();
 
 		// Kauf abwickeln
 		aktuellerKunde.kaufen(gewaehltesProdukt, eingabeAnzahl);
@@ -185,19 +184,9 @@ public class Betrieb {
 		} while (!gewaehltesProdukt.istVerleihbar());
 
 		// Gewünschte Anzahl erfragen
-		System.out.print("Aktuell sind " + gewaehltesProdukt.bestandString()
+		System.out.print("Aktuell sind " + gewaehltesProdukt.getBestand()
 				+ " in unserem Lager, wie viele davon möchten Sie ausleihen? ");
-		int eingabeAnzahl;
-		int bestand = gewaehltesProdukt.getBestand();
-		do {
-			eingabeAnzahl = scanner.nextInt();
-			if (eingabeAnzahl > bestand)
-				System.out
-						.print("So viel haben wir nicht. Bitte neue Eingabe: ");
-			else
-				System.out.println("Sie sind dabei sich " + eingabeAnzahl
-						+ " x " + gewaehltesProdukt.name + " auszuleihen.");
-		} while (eingabeAnzahl > bestand);
+		int eingabeAnzahl = scanner.nextInt();
 
 		// Zeitdauer erfragen
 		System.out
@@ -214,7 +203,8 @@ public class Betrieb {
 		Ausleihe neueAusleihe = new Ausleihe(zeit, zeit + eingabeTage * 24,
 				(LagerPosten) gewaehltesProdukt, eingabeAnzahl);
 		aktuellerKunde.ausleihe(neueAusleihe);
-		System.out.println("Ausleihe erfolgreich abgeschlossen.");
+		System.out.println("Es wurden " + eingabeAnzahl
+				+ " x " + gewaehltesProdukt.name + " an " + aktuellerKunde + " ausgeliehen.");
 	}
 
 	private void verlust() {
@@ -279,7 +269,17 @@ public class Betrieb {
 				}while(retry);
 				break;
 			case 5: betr.bestandAuflisten(false, true, false); break;
-			case 6: betr.verleih(); break;
+			case 6:
+				boolean retryVerleih = false;
+				do{
+					try {
+						betr.verleih();
+					}catch(MengenFehler e){ // TODO wird noch nicht geworfen
+						System.out.println(e);
+						retryVerleih = true;
+					}
+				}while(retryVerleih);
+				break;
 			case 7: betr.rueckgabe(); break;
 			case 8: betr.verlust(); break;
 			case 9: betr.abrechnung(); break;
