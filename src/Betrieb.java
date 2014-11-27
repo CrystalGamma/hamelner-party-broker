@@ -65,7 +65,97 @@ public class Betrieb {
 		}
 	}
 
-	private void datenAendern(int pKundenID) {
+	private void datenAendern() {
+		System.out.println("Was möchten Sie ändern");
+		System.out.println("1 :komplette Anschrift ändern");
+		System.out.println("2 :Straße und Hausnummer ändern");
+		System.out.println("3 :Abbrechen");
+		int eingabeID;
+		
+		Scanner scanner=new Scanner(System.in);
+		while(true)
+		{
+			try
+			{
+				eingabeID=scanner.nextInt();
+				if(eingabeID==1||eingabeID==2||eingabeID==3)
+				{
+					break;
+				}
+				else
+				{
+					System.out.println("Die Option gab es nicht");
+				}
+					
+			}
+			catch(InputMismatchException e)
+			{
+				System.out.println("1Fehler in der Eingabe! Es war keine Zahl");
+				scanner.nextLine();
+				continue;
+			}
+		}
+		
+		int eingabeInt;
+		String eingabe;
+		while(true){
+		
+			if(eingabeID==3)
+			{
+				break;
+			}
+			if(eingabeID==1)
+			{
+				System.out.println("Geben Sie ihren Ort ein");
+				eingabe= scanner.next();
+				aktuellerKunde.setOrt(eingabe);
+				System.out.println("Geben Sie Ihre Plz ein");
+				try
+				{
+					eingabeInt=scanner.nextInt();
+				}
+				catch(InputMismatchException e)
+				{
+
+					System.out.println("Fehler in der Eingabe! Es war keine Zahl");
+					scanner.nextLine();
+					continue;
+				}
+				if(eingabeInt >= 1000 && eingabeInt <= 99998)
+						{
+						aktuellerKunde.setPlz(eingabeInt);
+						eingabeID=2;
+						}
+				else
+				{
+					System.out.println("Plz sind immer 5-Stellig");
+				}
+			}
+			if(eingabeID==2)
+			{
+				System.out.println("Geben Sie ihre Straße ein");
+				eingabe= scanner.next();
+				aktuellerKunde.setStrasse(eingabe);
+				System.out.println("Geben Sie Ihre Hausnummer ein");
+				try
+				{
+					eingabeInt=scanner.nextInt();
+					aktuellerKunde.setHausnummer(eingabeInt);
+					break;
+				}
+				catch(InputMismatchException e)
+				{
+
+					System.out.println("Fehler in der Eingabe! Es war keine Zahl");
+					scanner.nextLine();
+					continue;
+				}
+			}
+			else
+			{
+				System.out.println("Nur 1 oder 2 stehen zur Verfügung");
+			}
+		}
 		
 	}
 
@@ -221,5 +311,6 @@ public class Betrieb {
 		betr.bestandAuflisten(false, false, true);
 		System.out.println("Gesamtsortiment:");
 		betr.bestandAuflisten(false, false, false);
+		betr.datenAendern();
 	}
 }

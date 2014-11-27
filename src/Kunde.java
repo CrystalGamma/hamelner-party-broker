@@ -30,7 +30,7 @@ public class Kunde {
 		if (plz >= 1000 && plz <= 99998) {
 			this.plz = plz;
 		} else {
-			throw new Error("Plz ist immer 5-stellig");
+			throw new Error("Plz ist immer 5-stellig");//die überprüfung ist überflüssig
 		}
 	}
 
