@@ -396,7 +396,8 @@ public class Betrieb {
 				continue;
 			}
 		}
-		aktuellerKunde.rueckgabe((LagerPosten)artikel[schluesselID],this.zeit , menge);
+		//noch überprüfen ob verlust die menge von bestand schon abzieht
+		aktuellerKunde.verlustMelden((LagerPosten)artikel[schluesselID],this.zeit , menge).toString();
 		
 	}
 
