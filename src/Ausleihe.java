@@ -8,6 +8,8 @@ public class Ausleihe {
 		this.endZeit = endZeit;
 		lagerPosten = posten;
 		this.menge = menge;
+		if (!posten.istVerleihbar())
+			throw new ArtikelFehler(posten, ArtikelFehler.Art.NichtVerleihbar);
 	}
 
 	public void buchen() {

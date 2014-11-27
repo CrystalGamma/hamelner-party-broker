@@ -28,9 +28,22 @@ public class Betrieb {
 		kundeHinzufuegen(new Kunde("Mertens", "Robert"));
 	}
 
+	private void kundeHinzufuegen() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Bitte machen Sie folgende Angaben");
+		System.out.print("Nachname: ");
+		String nachname = scanner.nextLine();
+		System.out.print("Vorname: ");
+		String vorname = scanner.nextLine();
+		
+		Kunde kunde = new Kunde(nachname, vorname);
+		kundeHinzufuegen(kunde);
+	}
+	
 	private void kundeHinzufuegen(Kunde kunde) {
 		kunden.put(naechsteKundenID++, kunde);
 		aktuellerKunde = kunde;
+		System.out.println("Kunde " + kunde + " erfolgreich erstellt.");
 	}
 
 	private void abrechnung() {
@@ -47,17 +60,18 @@ public class Betrieb {
 	}
 
 	private void bestandAuflisten(boolean verk, boolean verl, boolean verf) {
-		int index = 0;
-		System.out.printf("%5s  %-20s\n", "ID", "Produktname");
-		for (Artikel art : artikel) {
-			index++;
+		int len = Math.max((int) Math.ceil(Math.log10(artikel.length)), 2);
+		System.out.printf("%" + len + "s Artikel", "ID");
+		String format = "%" + len + "s %s\n";
+		for (int index = 0; index < artikel.length; index++) {
+			Artikel art = artikel[index];
 			if (verk && !art.istVerkaeuflich())
 				continue;
 			if (verl && !art.istVerleihbar())
 				continue;
 			if (verf && !art.istVerfuegbar())
 				continue;
-			System.out.printf("%5s  %-20s\n", index - 1, art.bestandString());
+			System.out.printf(format, index, art.bestandString());
 		}
 	}
 
@@ -156,40 +170,31 @@ public class Betrieb {
 	}
 
 	private void kundeWechseln() {
-		//fragt kunde nach ID , überprüft und setzt
-		if(kunden.isEmpty())
+		// fragt kunde nach ID , überprüft und setzt
+		if (kunden.isEmpty())
 			throw new Error("Es existiert kein Kunde");
-		
-			
+
 		System.out.println("Geben Sie ihre ID ein");
-		Scanner scannerID=new Scanner(System.in);
-		
+		Scanner scannerID = new Scanner(System.in);
+
 		int schluessel;
-		while(true)
-		{	
-			try
-			{
-				schluessel=scannerID.nextInt();
-			}
-			catch(InputMismatchException e)
-			{
+		while (true) {
+			try {
+				schluessel = scannerID.nextInt();
+			} catch (InputMismatchException e) {
 				System.out.println("Fehler in der Eingabe! Es war keine Zahl");
 				scannerID.nextLine();
 				continue;
 			}
-		
-		
-			if(schluessel>=1)
-			{
-				aktuellerKunde=kunden.get(schluessel);
+
+			if (schluessel >= 1) {
+				aktuellerKunde = kunden.get(schluessel);
 				break;
-			}
-			else
-			{
+			} else {
 				System.out.println("ID's beginnen bei 1");
 			}
 		}
-		
+
 	}
 
 	private void rueckgabe() {
@@ -248,15 +253,15 @@ public class Betrieb {
 	}
 
 	private void transaktionen() {
-		for (String str: aktuellerKunde.getTransaktionen()) {
+		for (String str : aktuellerKunde.getTransaktionen()) {
 			System.out.println(str);
 		}
 	}
 
 	private void umsatzBericht() {
-		for (Kunde kunde: kunden.values()) {
+		for (Kunde kunde : kunden.values()) {
 			System.out.println(kunde.getVorName() + ", " + kunde.getName()
-					+ ": "+ kunde.berechneUmsatz());
+					+ ": " + kunde.berechneUmsatz());
 		}
 	}
 
@@ -280,20 +285,12 @@ public class Betrieb {
 		// Gewünschte Anzahl erfragen
 		System.out.print("Aktuell sind " + gewaehltesProdukt.bestandString()
 				+ " in unserem Lager, wie viele davon möchten Sie erwerben? ");
-		int eingabeAnzahl;
-		int bestand = gewaehltesProdukt.getBestand();
-		do {
-			eingabeAnzahl = scanner.nextInt();
-			if (eingabeAnzahl > bestand)
-				System.out
-						.println("So viel haben wir nicht. Bitte neue Eingabe: ");
-			else
-				System.out.println("Sie kaufen " + eingabeAnzahl + " x "
-						+ gewaehltesProdukt.name + ".");
-		} while (eingabeAnzahl > bestand);
+		int eingabeAnzahl = scanner.nextInt();
 
 		// Kauf abwickeln
 		aktuellerKunde.kaufen(gewaehltesProdukt, eingabeAnzahl);
+		System.out.println("Es wurden " + eingabeAnzahl + " x "
+				+ gewaehltesProdukt.name + " an " + aktuellerKunde + " verkauft.");
 	}
 
 	private void verleih() { // TODO Exception-Handling
@@ -316,20 +313,10 @@ public class Betrieb {
 		} while (!gewaehltesProdukt.istVerleihbar());
 
 		// Gewünschte Anzahl erfragen
-		System.out.print("Aktuell sind " + gewaehltesProdukt.bestandString()
+		System.out.print("Aktuell sind " + gewaehltesProdukt.getBestand()
 				+ " in unserem Lager, wie viele davon möchten Sie ausleihen? ");
-		int eingabeAnzahl;
-		int bestand = gewaehltesProdukt.getBestand();
-		do {
-			eingabeAnzahl = scanner.nextInt();
-			if (eingabeAnzahl > bestand)
-				System.out
-						.print("So viel haben wir nicht. Bitte neue Eingabe: ");
-			else
-				System.out.println("Sie sind dabei sich " + eingabeAnzahl + " x "
-						+ gewaehltesProdukt.name + " auszuleihen.");
-		} while (eingabeAnzahl > bestand);
-		
+		int eingabeAnzahl = scanner.nextInt();
+
 		// Zeitdauer erfragen
 		System.out.print("Bitte geben Sie an für wie viel Tage Sie das Produkt ausleihen wollen: ");
 		int eingabeTage = 0;
@@ -339,11 +326,13 @@ public class Betrieb {
 				System.out
 						.print("Ungültige Zeitangabe, bitte erneut versuchen: ");
 		} while (eingabeTage <= 0);
-		
+
 		// Ausleihe abwickeln
-		Ausleihe neueAusleihe = new Ausleihe(zeit, zeit+eingabeTage*24, (LagerPosten)gewaehltesProdukt, eingabeAnzahl);
+		Ausleihe neueAusleihe = new Ausleihe(zeit, zeit + eingabeTage * 24,
+				(LagerPosten) gewaehltesProdukt, eingabeAnzahl);
 		aktuellerKunde.ausleihe(neueAusleihe);
-		System.out.println("Ausleihe erfolgreich abgeschlossen.");
+		System.out.println("Es wurden " + eingabeAnzahl
+				+ " x " + gewaehltesProdukt.name + " an " + aktuellerKunde + " ausgeliehen.");
 	}
 
 	private void verlust() {
@@ -358,7 +347,86 @@ public class Betrieb {
 		betr.bestandAuflisten(false, false, true);
 		System.out.println("Gesamtsortiment:");
 		betr.bestandAuflisten(false, false, false);
-		betr.verleih();
-		betr.rueckgabe();
+
+
+		String[] aktionen = new String[] {
+				"Auflistung der aktuell verfügbaren verkäuflichen Gegenstände",
+				"Auflistung der aktuell verfügbaren Leihgegenstände",
+				"Auflistung des gesamten verkäuflichen Bestands",
+				"Verkauf eines verfügbaren Objekts",
+				"Auflistung des gesamten verleihbaren Bestands",
+				"Ausleihe eines verfügbaren Objekts für eine prognostizierte Zeitdauer",
+				"Rückgabe eines entliehenen Objekts",
+				"Verlustmeldung eines entliehenen Objekts",
+				"Abrechnung eines Kunden",
+				"Auflistung aller Kunden mit ihren Umsätzen",
+				"Auflistung der mit einem Kunden durchgeführten Transaktionen",
+				"Neuen Kunden anlegen", "Ändern von Kundendaten",
+				"Aktuellen Kunden wechseln", "Beenden" };
+		int aktion;
+		boolean run = true;
+		String next = "";
+		Scanner scanner = new Scanner(System.in);
+		do {
+			System.out.println("Aktueller Kunde: " + betr.aktuellerKunde);
+			System.out.println("Bitte Aktion wählen:");
+			int aktionsID = 0;
+			for (String aktionsBeschreibung : aktionen) {
+				System.out.printf("%4s %s\n", "[" + (aktionsID + 1) + "]",
+						aktionen[aktionsID]);
+				aktionsID++;
+			}
+
+			do {
+				aktion = scanner.nextInt();
+			} while (aktion < 1 || aktion > 15);
+
+			System.out.println(aktionen[aktion-1]);
+			switch (aktion) {
+			case 1: betr.bestandAuflisten(true, false, true); break;
+			case 2: betr.bestandAuflisten(false, true, true); break;
+			case 3: betr.bestandAuflisten(true, false, false); break;
+			case 4: 
+				boolean retry = false;
+				do{
+					try {
+						betr.verkaufen();
+					}catch(MengenFehler e){
+						System.out.println(e);
+						retry = true;
+					}
+				}while(retry);
+				break;
+			case 5: betr.bestandAuflisten(false, true, false); break;
+			case 6:
+				boolean retryVerleih = false;
+				do{
+					try {
+						betr.verleih();
+					}catch(MengenFehler e){ // TODO wird noch nicht geworfen
+						System.out.println(e);
+						retryVerleih = true;
+					}
+				}while(retryVerleih);
+				break;
+			case 7: betr.rueckgabe(); break;
+			case 8: betr.verlust(); break;
+			case 9: betr.abrechnung(); break;
+			case 10: betr.umsatzBericht(); break;
+			case 11: betr.transaktionen(); break;
+			case 12: betr.kundeHinzufuegen(); break;
+			case 13: betr.datenAendern(); break;
+			case 14: betr.kundeWechseln(); break;
+			case 15: run = false; break;
+			default:
+			}
+			
+			System.out.println("Weiter mit [w]");
+			if(aktion != 15){
+				do {
+					next = scanner.nextLine();
+				}while(!next.equals("w"));
+			}
+		} while (run);
 	}
 }

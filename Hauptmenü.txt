@@ -1,0 +1,15 @@
+ [1] Auflistung der aktuell verfügbaren verkäuflichen Gegenstände
+ [2] Auflistung der aktuell verfügbaren Leihgegenstände
+ [3] Auflistung des gesamten verkäuflichen Bestands
+ [4] Verkauf eines verfügbaren Objekts
+ [5] Auflistung des gesamten verleihbaren Bestands
+ [6] Ausleihe eines verfügbaren Objekts für eine prognostizierte Zeitdauer
+ [7] Rückgabe eines entliehenen Objekts
+ [8] Verlustmeldung eines entliehenen Objekts
+ [9] Abrechnung eines Kunden
+[10] Auflistung aller Kunden mit ihren Umsätzen
+[11] Auflistung der mit einem Kunden durchgeführten Transaktionen
+[12] Neuen Kunden anlegen
+[13] Ändern von Kundendaten
+[14] Aktuellen Kunden wechseln
+[15] Beenden

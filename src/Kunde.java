@@ -7,6 +7,7 @@ public class Kunde {
 	LinkedList<Ausleihe> ausleihe = new LinkedList<Ausleihe>();
 	LinkedList<RechnungsPosten> offeneRechnungspunkte = new LinkedList<RechnungsPosten>();
 	LinkedList<RechnungsPosten> geschlosseneRechnungspunkte = new LinkedList<RechnungsPosten>();
+
 	public Kunde(String name, String vorName) {
 		this.name = name;
 		this.vorName = vorName;
@@ -22,7 +23,7 @@ public class Kunde {
 		if (hausnummer > 0) {
 			this.hausnummer = hausnummer;
 		} else {
-			throw new Error("Negative oder 0 Hausnummern gibt es nicht");
+			throw new AdressFehler("Negative oder 0 Hausnummern gibt es nicht");
 		}
 	}
 
@@ -30,7 +31,7 @@ public class Kunde {
 		if (plz >= 1000 && plz <= 99998) {
 			this.plz = plz;
 		} else {
-			throw new Error("Plz ist immer 5-stellig");//die überprüfung ist überflüssig
+			throw new AdressFehler("Plz ist immer 5-stellig");//die überprüfung ist überflüssig
 		}
 	}
 
@@ -87,7 +88,7 @@ public class Kunde {
 				tmp.addFirst(ausl);
 		}
 		if (menge > 0)
-			throw new Error("Verlustmenge übersteigt Ausleihmenge");
+			throw new MengenFehler(MengenFehler.Art.ZuvielRueckgeben, menge);
 		ausleihe = tmp;
 		Verleih verl = new Verleih(lagerPosten, gesamtMenge, betrag);
 		geschlosseneRechnungspunkte.addFirst(verl);
@@ -114,7 +115,7 @@ public class Kunde {
 				tmp.addFirst(ausl);
 		}
 		if (menge > 0)
-			throw new Error("Verlustmenge übersteigt Ausleihmenge");
+			throw new MengenFehler(MengenFehler.Art.ZuvielVerloren, menge);
 		ausleihe = tmp;
 		Verlust verl = new Verlust(lagerPosten, gesamtMenge, betrag);
 		geschlosseneRechnungspunkte.addFirst(verl);
@@ -156,12 +157,16 @@ public class Kunde {
 
 	public void kaufen(Artikel artikel, int menge) {
 		if (!artikel.istVerkaeuflich())
-			throw new Error("Artikel ist nicht verkäuflich");
+			throw new ArtikelFehler(artikel, ArtikelFehler.Art.NichtVerkaeuflich);
 		if (menge < 0)
-			throw new Error("Kann keine negative Menge kaufen");
+			throw new MengenFehler(MengenFehler.Art.NegativKaufen, menge);
 		if (artikel instanceof LagerPosten)
 			((LagerPosten)artikel).bestandAendern(-menge);
 		offeneRechnungspunkte.addFirst(new Verkauf(menge, artikel));
 	}
 	
+	@Override
+	public String toString(){
+		return this.name + ", " + this.vorName;
+	}
 }
