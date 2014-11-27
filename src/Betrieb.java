@@ -296,7 +296,7 @@ public class Betrieb {
 				+ " in unserem Lager, wie viele davon möchten Sie erwerben? ");
 		int eingabeAnzahl = scanner.nextInt();
 
-		System.out.println(eingabeAnzahl + " x " + gewaehltesProdukt.name + " an " + aktuellerKunde + " verkaufen? Bestätigen mit [j], sonst beliebige Taste drücken ");
+		System.out.println(eingabeAnzahl + " x " + gewaehltesProdukt.name + " an " + aktuellerKunde + " verkaufen? Die Kosten für den Kunden betragen €" + gewaehltesProdukt.kaufPreis(eingabeAnzahl) + ".\nBestätigen mit [j], sonst beliebige Taste drücken ");
 		String weiter = scanner.next();
 		if(weiter.equals("j")){
 		// Kauf abwickeln
