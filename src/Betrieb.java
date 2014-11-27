@@ -84,7 +84,7 @@ public class Betrieb {
 				+ artikel[eingabeProdukt].bestandString()
 				+ " in unserem Lager, wie viele davon möchten Sie erwerben? ");
 		int eingabeAnzahl;
-		int bestand = 10; // Kann noch nicht direkt abgerufen werden.
+		int bestand = artikel[eingabeProdukt].getBestand();
 		do {
 			eingabeAnzahl = scanner.nextInt();
 			if(eingabeAnzahl > bestand) System.out.println("So viel haben wir nicht. Bitte neue Eingabe: ");
