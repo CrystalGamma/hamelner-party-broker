@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Betrieb {
-	private long zeit;
+	private int zeit;
 	private Kunde aktuellerKunde;
 	private Artikel[] artikel;
 	private HashMap<Integer, Kunde> kunden = new HashMap<>();
@@ -58,8 +58,9 @@ public class Betrieb {
 
 	private void bestandAuflisten(boolean verk, boolean verl, boolean verf) {
 		int index = 0;
-		int laengeMaxID = new String(""+artikel.length).length();
-		System.out.printf("%"+laengeMaxID+"s  %-20s\n", "ID", "Produktname");
+		int laengeMaxID = new String("" + artikel.length).length();
+		System.out
+				.printf("%" + laengeMaxID + "s  %-20s\n", "ID", "Produktname");
 		for (Artikel art : artikel) {
 			index++;
 			if (verk && !art.istVerkaeuflich())
@@ -68,7 +69,8 @@ public class Betrieb {
 				continue;
 			if (verf && !art.istVerfuegbar())
 				continue;
-			System.out.printf("%"+laengeMaxID+"s  %-20s\n", index - 1, art.bestandString());
+			System.out.printf("%" + laengeMaxID + "s  %-20s\n", index - 1,
+					art.bestandString());
 		}
 	}
 
@@ -130,8 +132,44 @@ public class Betrieb {
 		aktuellerKunde.kaufen(gewaehltesProdukt, eingabeAnzahl);
 	}
 
-	private void verleih() {
+	private void verleih() { // TODO Exception-Handling
+		Scanner scanner = new Scanner(System.in);
 
+		// Gewünschtes Produkt erfragen
+		// TODO Bestand auflisten zeigt aktuell nur den Verkaufspreis, Unterscheidung notwendig.
+		System.out
+				.println("Zum Verleih stehen derzeit folgende Produkte zur Verfügung:");
+		this.bestandAuflisten(false, true, true);
+		int eingabeProdukt;
+		Artikel gewaehltesProdukt = null;
+		do {
+			System.out.print("Welches Produkt möchten Sie ausleihen? ");
+			eingabeProdukt = scanner.nextInt();
+			gewaehltesProdukt = artikel[eingabeProdukt];
+			if (!gewaehltesProdukt.istVerleihbar())
+				System.out
+						.println("Dieses Produkt steht aktuell leider nicht zum Ausleihen zur Verfügung.");
+		} while (!gewaehltesProdukt.istVerleihbar());
+
+		// Gewünschte Anzahl erfragen
+		System.out.print("Aktuell sind " + gewaehltesProdukt.bestandString()
+				+ " in unserem Lager, wie viele davon möchten Sie ausleihen? ");
+		int eingabeAnzahl;
+		int bestand = gewaehltesProdukt.getBestand();
+		do {
+			eingabeAnzahl = scanner.nextInt();
+			if (eingabeAnzahl > bestand)
+				System.out
+						.println("So viel haben wir nicht. Bitte neue Eingabe: ");
+			else
+				System.out.println("Sie leihen sich " + eingabeAnzahl + " x "
+						+ gewaehltesProdukt.name + ".");
+		} while (eingabeAnzahl > bestand);
+
+		// Ausleihe abwickeln
+		int gewuenschteZeitdauer = 24;
+		Ausleihe neueAusleihe = new Ausleihe(zeit, zeit+gewuenschteZeitdauer, (LagerPosten)gewaehltesProdukt, eingabeAnzahl);
+		aktuellerKunde.ausleihe(neueAusleihe);
 	}
 
 	private void verlust() {
@@ -147,7 +185,6 @@ public class Betrieb {
 		System.out.println("Gesamtsortiment:");
 		betr.bestandAuflisten(false, false, false);
 
-		betr.verkaufen();
-		betr.verkaufen();
+		betr.verleih();
 	}
 }
