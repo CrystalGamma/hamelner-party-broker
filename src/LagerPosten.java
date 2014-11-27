@@ -60,6 +60,7 @@ public class LagerPosten extends Artikel {
 
 	public String bestandString() {
 		return bestand + "x " + name + "(" + preis +"€)";
+		//toDo wert übergeben boolean um zu unterscheiden ob objetk verleih verkaufbar oder beides ist
 	}
 
 	public int kaufPreis(int menge) {

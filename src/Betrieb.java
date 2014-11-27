@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Betrieb {
@@ -70,8 +71,39 @@ public class Betrieb {
 
 	private void kundeWechseln() {
 		//fragt kunde nach ID , überprüft und setzt
-		//aktuellerKunde = kunde;
-		//System.out.println("Geben Sie ihre ID ein");
+		if(kunden.isEmpty())
+			throw new Error("Es existiert kein Kunde");
+		
+			
+		System.out.println("Geben Sie ihre ID ein");
+		Scanner scannerID=new Scanner(System.in);
+		
+		int schluessel;
+		while(true)
+		{	
+			try
+			{
+				schluessel=scannerID.nextInt();
+			}
+			catch(InputMismatchException e)
+			{
+				System.out.println("Fehler in der Eingabe! Es war keine Zahl");
+				scannerID.nextLine();
+				continue;
+			}
+		
+		
+			if(schluessel>=1)
+			{
+				aktuellerKunde=kunden.get(schluessel);
+				break;
+			}
+			else
+			{
+				System.out.println("ID's beginnen bei 1");
+			}
+		}
+		
 	}
 
 	private void rueckgabe() {
@@ -132,6 +164,7 @@ public class Betrieb {
 		System.out.println("Gesamtsortiment:");
 		betr.bestandAuflisten(false, false, false);
 
-		betr.verkaufen();
+		//betr.verkaufen();
+		betr.kundeWechseln();
 	}
 }
