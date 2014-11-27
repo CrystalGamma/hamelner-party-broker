@@ -159,7 +159,7 @@ public class Kunde {
 		if (!artikel.istVerkaeuflich())
 			throw new ArtikelFehler(artikel, ArtikelFehler.Art.NichtVerkaeuflich);
 		if (menge < 0)
-			throw new Error("Kann keine negative Menge kaufen");
+			throw new MengenFehler(MengenFehler.Art.NegativKaufen, menge);
 		if (artikel instanceof LagerPosten)
 			((LagerPosten)artikel).bestandAendern(-menge);
 		offeneRechnungspunkte.addFirst(new Verkauf(menge, artikel));
