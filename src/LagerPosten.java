@@ -64,7 +64,7 @@ public class LagerPosten extends Artikel {
 	}
 
 	public int kaufPreis(int menge) {
-		return preis;
+		return preis*menge;
 	}
 
 	public boolean istVerkaeuflich() {

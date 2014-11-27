@@ -61,7 +61,7 @@ public class Betrieb {
 
 	private void bestandAuflisten(boolean verk, boolean verl, boolean verf) {
 		int len = Math.max((int) Math.ceil(Math.log10(artikel.length)), 2);
-		System.out.printf("%" + len + "s Artikel", "ID");
+		System.out.printf("%" + len + "s Artikel\n", "ID");
 		String format = "%" + len + "s %s\n";
 		for (int index = 0; index < artikel.length; index++) {
 			Artikel art = artikel[index];
@@ -296,10 +296,14 @@ public class Betrieb {
 				+ " in unserem Lager, wie viele davon möchten Sie erwerben? ");
 		int eingabeAnzahl = scanner.nextInt();
 
+		System.out.println(eingabeAnzahl + " x " + gewaehltesProdukt.name + " an " + aktuellerKunde + " verkaufen? Die Kosten für den Kunden betragen €" + gewaehltesProdukt.kaufPreis(eingabeAnzahl) + ".\nBestätigen mit [j], sonst beliebige Taste drücken ");
+		String weiter = scanner.next();
+		if(weiter.equals("j")){
 		// Kauf abwickeln
 		aktuellerKunde.kaufen(gewaehltesProdukt, eingabeAnzahl);
 		System.out.println("Es wurden " + eingabeAnzahl + " x "
 				+ gewaehltesProdukt.name + " an " + aktuellerKunde + " verkauft.");
+		}else System.out.println("Verkauf abgebrochen.");
 	}
 
 	private void verleih() { // TODO Exception-Handling
@@ -426,70 +430,79 @@ public class Betrieb {
 				"Auflistung der mit einem Kunden durchgeführten Transaktionen",
 				"Neuen Kunden anlegen", "Ändern von Kundendaten",
 				"Aktuellen Kunden wechseln", "Beenden" };
-		int aktion;
 		boolean run = true;
-		String next = "";
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Für Befehlsliste 0 eingeben");
 		do {
+			System.out.print("Befehl >");
+			System.out.flush();
+			int aktion;
 			do {
 				aktion = scanner.nextInt();
 			} while (aktion < 0 || aktion > 15);
 
 			System.out.println(aktionen[aktion]);
-			switch (aktion) {
-			case 0:
-				System.out.println("Aktueller Kunde: " + betr.aktuellerKunde);
-				System.out.println("Bitte Aktion wählen:");
-				int aktionsID = 0;
-				for (String aktionsBeschreibung : aktionen) {
-					System.out.printf("%4s %s\n", "[" + aktionsID + "]",
-							aktionen[aktionsID]);
-					aktionsID++;
-				}
-				break;
-			case 1: betr.bestandAuflisten(true, false, true); break;
-			case 2: betr.bestandAuflisten(false, true, true); break;
-			case 3: betr.bestandAuflisten(true, false, false); break;
-			case 4: 
-				boolean retry = false;
-				do{
-					try {
+			try {
+				switch (aktion) {
+					case 0:
+						System.out.println("Aktueller Kunde: " + betr.aktuellerKunde);
+						System.out.println("Bitte Aktion wählen:");
+						int aktionsID = 0;
+						for (String aktionsBeschreibung : aktionen) {
+							System.out.printf("%4s %s\n", "[" + aktionsID + "]",
+									aktionen[aktionsID]);
+							aktionsID++;
+						}
+						break;
+					case 1:
+						betr.bestandAuflisten(true, false, true);
+						break;
+					case 2:
+						betr.bestandAuflisten(false, true, true);
+						break;
+					case 3:
+						betr.bestandAuflisten(true, false, false);
+						break;
+					case 4:
 						betr.verkaufen();
-					}catch(MengenFehler e){
-						System.out.println(e);
-						retry = true;
-					}catch(InputMismatchException e){
-						System.out.println("Fehlerhafte Eingabe, bitte erneut versuchen.");
-						retry = true;
-					}
-				}while(retry);
-				break;
-			case 5: betr.bestandAuflisten(false, true, false); break;
-			case 6:
-				boolean retryVerleih = false;
-				do{
-					try {
+						break;
+					case 5:
+						betr.bestandAuflisten(false, true, false);
+						break;
+					case 6:
 						betr.verleih();
-					}catch(MengenFehler e){ // TODO wird noch nicht geworfen
-						System.out.println(e);
-						retryVerleih = true;
-					}catch(InputMismatchException e){
-						System.out.println("Fehlerhafte Eingabe, bitte erneut versuchen.");
-						retryVerleih = true;
-					}
-				}while(retryVerleih);
-				break;
-			case 7: betr.rueckgabe(); break;
-			case 8: betr.verlust(); break;
-			case 9: betr.abrechnung(); break;
-			case 10: betr.umsatzBericht(); break;
-			case 11: betr.transaktionen(); break;
-			case 12: betr.kundeHinzufuegen(); break;
-			case 13: betr.datenAendern(); break;
-			case 14: betr.kundeWechseln(); break;
-			case 15: run = false; break;
-			default:
+						break;
+					case 7:
+						betr.rueckgabe();
+						break;
+					case 8:
+						betr.verlust();
+						break;
+					case 9:
+						betr.abrechnung();
+						break;
+					case 10:
+						betr.umsatzBericht();
+						break;
+					case 11:
+						betr.transaktionen();
+						break;
+					case 12:
+						betr.kundeHinzufuegen();
+						break;
+					case 13:
+						betr.datenAendern();
+						break;
+					case 14:
+						betr.kundeWechseln();
+						break;
+					case 15:
+						run = false;
+						break;
+					default:
+				}
+			} catch(Exception e) {
+				System.out.println("FEHLER: " + e);
 			}
 		} while (run);
 	}
