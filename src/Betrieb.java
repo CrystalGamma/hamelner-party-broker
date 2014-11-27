@@ -156,19 +156,12 @@ public class Betrieb {
 		System.out.print("Aktuell sind " + gewaehltesProdukt.bestandString()
 				+ " in unserem Lager, wie viele davon möchten Sie erwerben? ");
 		int eingabeAnzahl;
-		int bestand = gewaehltesProdukt.getBestand();
-		do {
-			eingabeAnzahl = scanner.nextInt();
-			if (eingabeAnzahl > bestand)
-				System.out
-						.println("So viel haben wir nicht. Bitte neue Eingabe: ");
-			else
-				System.out.println("Sie kaufen " + eingabeAnzahl + " x "
-						+ gewaehltesProdukt.name + ".");
-		} while (eingabeAnzahl > bestand);
+		eingabeAnzahl = scanner.nextInt();
 
 		// Kauf abwickeln
 		aktuellerKunde.kaufen(gewaehltesProdukt, eingabeAnzahl);
+		System.out.println("Es wurden " + eingabeAnzahl + " x "
+				+ gewaehltesProdukt.name + " an " + aktuellerKunde + " verkauft.");
 	}
 
 	private void verleih() { // TODO Exception-Handling
@@ -274,7 +267,17 @@ public class Betrieb {
 			case 1: betr.bestandAuflisten(true, false, true); break;
 			case 2: betr.bestandAuflisten(false, true, true); break;
 			case 3: betr.bestandAuflisten(true, false, false); break;
-			case 4: betr.verkaufen(); break;
+			case 4: 
+				boolean retry = false;
+				do{
+					try {
+						betr.verkaufen();
+					}catch(MengenFehler e){
+						System.out.println(e);
+						retry = true;
+					}
+				}while(retry);
+				break;
 			case 5: betr.bestandAuflisten(false, true, false); break;
 			case 6: betr.verleih(); break;
 			case 7: betr.rueckgabe(); break;
