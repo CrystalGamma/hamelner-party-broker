@@ -225,7 +225,7 @@ public class Betrieb {
 				scannerID.nextLine();
 				continue;
 			}
-			if(schluesselID>0&&schluesselID<=8)
+			if(schluesselID>=-1&&schluesselID<=7)
 			{
 				break;
 			}
@@ -249,7 +249,7 @@ public class Betrieb {
 				continue;
 			}
 		}
-		aktuellerKunde.rueckgabe((LagerPosten)artikel[schluesselID],this.zeit , menge).toString();
+		System.out.println(aktuellerKunde.rueckgabe((LagerPosten)artikel[schluesselID],this.zeit , menge).toString());
 		
 	}
 
@@ -376,7 +376,7 @@ public class Betrieb {
 				scannerID.nextLine();
 				continue;
 			}
-			if(schluesselID>0&&schluesselID<=8)
+			if(schluesselID>-1&&schluesselID<=8)
 			{
 				break;
 			}
@@ -401,7 +401,7 @@ public class Betrieb {
 			}
 		}
 		//noch überprüfen ob verlust die menge von bestand schon abzieht
-		aktuellerKunde.verlustMelden((LagerPosten)artikel[schluesselID],this.zeit , menge).toString();
+		System.out.println(aktuellerKunde.verlustMelden((LagerPosten)artikel[schluesselID],this.zeit , menge).toString());
 		
 	}
 
