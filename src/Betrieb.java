@@ -56,7 +56,6 @@ public class Betrieb {
 		String format = "%" + len + "s %s\n";
 		for (int index = 0; index < artikel.length; index++) {
 			Artikel art = artikel[index];
-			index++;
 			if (verk && !art.istVerkaeuflich())
 				continue;
 			if (verl && !art.istVerleihbar())
