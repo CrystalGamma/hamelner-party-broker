@@ -274,14 +274,22 @@ public class Betrieb {
 		this.bestandAuflisten(true, false, true);
 		int eingabeProdukt;
 		Artikel gewaehltesProdukt = null;
-		do {
-			System.out.print("Welches Produkt möchten Sie kaufen? ");
-			eingabeProdukt = scanner.nextInt();
-			gewaehltesProdukt = artikel[eingabeProdukt];
-			if (!gewaehltesProdukt.istVerkaeuflich())
-				System.out.println("Dieses Produkt ist leider nicht käuflich.");
-		} while (!gewaehltesProdukt.istVerkaeuflich());
-
+		try {
+			do {
+				System.out.print("Welches Produkt möchten Sie kaufen? ");
+				eingabeProdukt = scanner.nextInt();
+				if(eingabeProdukt < artikel.length) {
+					gewaehltesProdukt = artikel[eingabeProdukt];
+					if (!gewaehltesProdukt.istVerkaeuflich())
+						System.out.println("Dieses Produkt ist leider nicht käuflich.");
+				}else{
+					System.out.println("Bitte erneut versuchen.");
+				}
+			} while (gewaehltesProdukt == null || !gewaehltesProdukt.istVerkaeuflich());
+		}catch(ArrayIndexOutOfBoundsException e){
+			System.out.println("Bitte erneut versuchen.");
+		}
+		
 		// Gewünschte Anzahl erfragen
 		System.out.print("Aktuell sind " + gewaehltesProdukt.bestandString()
 				+ " in unserem Lager, wie viele davon möchten Sie erwerben? ");
@@ -397,29 +405,13 @@ public class Betrieb {
 						betr.bestandAuflisten(true, false, false);
 						break;
 					case 4:
-						boolean retry = false;
-						do {
-							try {
-								betr.verkaufen();
-							} catch (MengenFehler e) {
-								System.out.println(e);
-								retry = true;
-							}
-						} while (retry);
+						betr.verkaufen();
 						break;
 					case 5:
 						betr.bestandAuflisten(false, true, false);
 						break;
 					case 6:
-						boolean retryVerleih = false;
-						do {
-							try {
-								betr.verleih();
-							} catch (MengenFehler e) { // TODO wird noch nicht geworfen
-								System.out.println(e);
-								retryVerleih = true;
-							}
-						} while (retryVerleih);
+						betr.verleih();
 						break;
 					case 7:
 						betr.rueckgabe();
