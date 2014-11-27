@@ -284,18 +284,21 @@ public class Betrieb {
 					if (!gewaehltesProdukt.istVerkaeuflich())
 						System.out.println("Dieses Produkt ist leider nicht käuflich.");
 				}else{
-					System.out.println("Bitte erneut versuchen.");
+					System.out.println("Produktnummer ungültig.");
 				}
 			} while (gewaehltesProdukt == null || !gewaehltesProdukt.istVerkaeuflich());
 		}catch(ArrayIndexOutOfBoundsException e){
-			System.out.println("Bitte erneut versuchen.");
+			System.out.println("Produktnummer ungültig.");
+		}catch(InputMismatchException e){
+			System.out.println("Ungültige Eingabe. Bitte erneut versuchen.");
 		}
 		
 		// Gewünschte Anzahl erfragen
 		System.out.print("Aktuell sind " + gewaehltesProdukt.bestandString()
 				+ " in unserem Lager, wie viele davon möchten Sie erwerben? ");
 		int eingabeAnzahl = scanner.nextInt();
-
+		
+		
 		System.out.println(eingabeAnzahl + " x " + gewaehltesProdukt.name + " an " + aktuellerKunde + " verkaufen? Die Kosten für den Kunden betragen €" + gewaehltesProdukt.kaufPreis(eingabeAnzahl) + ".\nBestätigen mit [j], sonst beliebige Taste drücken ");
 		String weiter = scanner.next();
 		if(weiter.equals("j")){
