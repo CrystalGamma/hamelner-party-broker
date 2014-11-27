@@ -7,6 +7,7 @@ public class Kunde {
 	LinkedList<Ausleihe> ausleihe = new LinkedList<Ausleihe>();
 	LinkedList<RechnungsPosten> offeneRechnungspunkte = new LinkedList<RechnungsPosten>();
 	LinkedList<RechnungsPosten> geschlosseneRechnungspunkte = new LinkedList<RechnungsPosten>();
+
 	public Kunde(String name, String vorName) {
 		this.name = name;
 		this.vorName = vorName;
@@ -156,7 +157,7 @@ public class Kunde {
 
 	public void kaufen(Artikel artikel, int menge) {
 		if (!artikel.istVerkaeuflich())
-			throw new Error("Artikel ist nicht verkäuflich");
+			throw new ArtikelFehler(artikel, ArtikelFehler.Art.NichtVerkaeuflich);
 		if (menge < 0)
 			throw new Error("Kann keine negative Menge kaufen");
 		if (artikel instanceof LagerPosten)
