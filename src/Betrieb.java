@@ -400,7 +400,6 @@ public class Betrieb {
 				continue;
 			}
 		}
-		//noch überprüfen ob verlust die menge von bestand schon abzieht
 		System.out.println(aktuellerKunde.verlustMelden((LagerPosten)artikel[schluesselID],this.zeit , menge).toString());
 		
 	}
