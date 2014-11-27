@@ -32,9 +32,22 @@ public class Betrieb {
 		kundeHinzufuegen(new Kunde("Mertens", "Robert"));
 	}
 
+	private void kundeHinzufuegen() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Bitte machen Sie folgende Angaben");
+		System.out.print("Nachname: ");
+		String nachname = scanner.nextLine();
+		System.out.print("Vorname: ");
+		String vorname = scanner.nextLine();
+		
+		Kunde kunde = new Kunde(nachname, vorname);
+		kundeHinzufuegen(kunde);
+	}
+	
 	private void kundeHinzufuegen(Kunde kunde) {
 		kunden.put(naechsteKundenID++, kunde);
 		aktuellerKunde = kunde;
+		System.out.println("Kunde " + kunde + " erfolgreich erstellt.");
 	}
 
 	private void abrechnung() {
@@ -226,19 +239,12 @@ public class Betrieb {
 		System.out.print("Aktuell sind " + gewaehltesProdukt.bestandString()
 				+ " in unserem Lager, wie viele davon möchten Sie erwerben? ");
 		int eingabeAnzahl;
-		int bestand = gewaehltesProdukt.getBestand();
-		do {
-			eingabeAnzahl = scanner.nextInt();
-			if (eingabeAnzahl > bestand)
-				System.out
-						.println("So viel haben wir nicht. Bitte neue Eingabe: ");
-			else
-				System.out.println("Sie kaufen " + eingabeAnzahl + " x "
-						+ gewaehltesProdukt.name + ".");
-		} while (eingabeAnzahl > bestand);
+		eingabeAnzahl = scanner.nextInt();
 
 		// Kauf abwickeln
 		aktuellerKunde.kaufen(gewaehltesProdukt, eingabeAnzahl);
+		System.out.println("Es wurden " + eingabeAnzahl + " x "
+				+ gewaehltesProdukt.name + " an " + aktuellerKunde + " verkauft.");
 	}
 
 	private void verleih() { // TODO Exception-Handling
@@ -342,7 +348,17 @@ public class Betrieb {
 			case 1: betr.bestandAuflisten(true, false, true); break;
 			case 2: betr.bestandAuflisten(false, true, true); break;
 			case 3: betr.bestandAuflisten(true, false, false); break;
-			case 4: betr.verkaufen(); break;
+			case 4: 
+				boolean retry = false;
+				do{
+					try {
+						betr.verkaufen();
+					}catch(MengenFehler e){
+						System.out.println(e);
+						retry = true;
+					}
+				}while(retry);
+				break;
 			case 5: betr.bestandAuflisten(false, true, false); break;
 			case 6: betr.verleih(); break;
 			case 7: betr.rueckgabe(); break;
@@ -350,20 +366,19 @@ public class Betrieb {
 			case 9: betr.abrechnung(); break;
 			case 10: betr.umsatzBericht(); break;
 			case 11: betr.transaktionen(); break;
-			case 12:
-				Kunde kunde = new Kunde("Nachname", "Vorname"); // TODO
-				betr.kundeHinzufuegen(kunde);
-				break;
-			case 13: betr.datenAendern(); break;
+			case 12: betr.kundeHinzufuegen(); break;
+			case 13: betr.datenAendern(0); break;
 			case 14: betr.kundeWechseln(); break;
 			case 15: run = false; break;
 			default:
 			}
 			
 			System.out.println("Weiter mit [w]");
-			do {
-				next = scanner.nextLine();
-			}while(!next.equals("w"));
+			if(aktion != 15){
+				do {
+					next = scanner.nextLine();
+				}while(!next.equals("w"));
+			}
 		} while (run);
 
 	}
