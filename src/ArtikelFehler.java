@@ -19,6 +19,6 @@ public class ArtikelFehler extends RuntimeException {
             case NichtVerleihbar:
                 return "'" + artikel.toString() + "' ist nicht verleihbar";
         }
-        return "sollte nie erreicht werden";
+        throw new Error("sollte nie erreicht werden");
     }
 }
