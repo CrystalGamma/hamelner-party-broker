@@ -77,7 +77,7 @@ public class LagerPosten extends Artikel {
 
 	public void bestandAendern(int menge) {
 		if (bestand < -menge)
-			throw new MengenFehler(MengenFehler.Art.Zuviel, -menge);
+			throw new MengenFehler(MengenFehler.Art.ZuvielAusgeben, -menge);
 		bestand += menge;
 	}
 
