@@ -5,7 +5,8 @@ public class Betrieb {
 	private long zeit;
 	private Kunde aktuellerKunde;
 	private Artikel[] artikel;
-	private HashMap<Integer, Kunde> kunden;
+	private HashMap<Integer, Kunde> kunden=new HashMap<>();
+	private int naechsteKundenID=1;
 
 	public Betrieb() {
 		artikel = new Artikel[] {
@@ -27,8 +28,12 @@ public class Betrieb {
 			new LagerPosten("Toilettenwagen",0,8900,29900,0, false, true, 6),
 			new DienstLeistung("Frischwasserinstallation",18500)
 		};
-		kunden = new Kunde[] { new Kunde("Mertens", "Robert") };
-		aktuellerKunde = kunden[0];
+		kundeHinzufuegen(new Kunde("Mertens", "Robert"));
+	}
+	private void kundeHinzufuegen(Kunde kunde)
+	{
+		kunden.put(naechsteKundenID++, kunde);
+		aktuellerKunde=kunde;
 	}
 
 	private void abrechnung() {
@@ -63,8 +68,10 @@ public class Betrieb {
 		
 	}
 
-	private void kundeWechseln(Kunde kunde) {
-		aktuellerKunde = kunde;
+	private void kundeWechseln() {
+		//fragt kunde nach ID , überprüft und setzt
+		//aktuellerKunde = kunde;
+		//System.out.println("Geben Sie ihre ID ein");
 	}
 
 	private void rueckgabe() {
