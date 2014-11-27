@@ -39,9 +39,22 @@ public class Betrieb {
 		kundeHinzufuegen(new Kunde("Mertens", "Robert"));
 	}
 
+	private void kundeHinzufuegen() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Bitte machen Sie folgende Angaben");
+		System.out.print("Nachname: ");
+		String nachname = scanner.nextLine();
+		System.out.print("Vorname: ");
+		String vorname = scanner.nextLine();
+		
+		Kunde kunde = new Kunde(nachname, vorname);
+		kundeHinzufuegen(kunde);
+	}
+	
 	private void kundeHinzufuegen(Kunde kunde) {
 		kunden.put(naechsteKundenID++, kunde);
 		aktuellerKunde = kunde;
+		System.out.println("Kunde " + kunde + " erfolgreich erstellt.");
 	}
 
 	private void abrechnung() {
@@ -269,10 +282,7 @@ public class Betrieb {
 			case 9: betr.abrechnung(); break;
 			case 10: betr.umsatzBericht(); break;
 			case 11: betr.transaktionen(); break;
-			case 12:
-				Kunde kunde = new Kunde("Nachname", "Vorname"); // TODO
-				betr.kundeHinzufuegen(kunde);
-				break;
+			case 12: betr.kundeHinzufuegen(); break;
 			case 13: betr.datenAendern(0); break;
 			case 14: betr.kundeWechseln(); break;
 			case 15: run = false; break;
@@ -280,9 +290,11 @@ public class Betrieb {
 			}
 			
 			System.out.println("Weiter mit [w]");
-			do {
-				next = scanner.nextLine();
-			}while(!next.equals("w"));
+			if(aktion != 15){
+				do {
+					next = scanner.nextLine();
+				}while(!next.equals("w"));
+			}
 		} while (run);
 
 	}
