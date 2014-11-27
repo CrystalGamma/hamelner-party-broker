@@ -164,16 +164,26 @@ public class Betrieb {
 			eingabeAnzahl = scanner.nextInt();
 			if (eingabeAnzahl > bestand)
 				System.out
-						.println("So viel haben wir nicht. Bitte neue Eingabe: ");
+						.print("So viel haben wir nicht. Bitte neue Eingabe: ");
 			else
-				System.out.println("Sie leihen sich " + eingabeAnzahl + " x "
-						+ gewaehltesProdukt.name + ".");
+				System.out.println("Sie sind dabei sich " + eingabeAnzahl + " x "
+						+ gewaehltesProdukt.name + " auszuleihen.");
 		} while (eingabeAnzahl > bestand);
-
+		
+		// Zeitdauer erfragen
+		System.out.print("Bitte geben Sie an für wie viel Tage Sie das Produkt ausleihen wollen: ");
+		int eingabeTage = 0;
+		do {
+			eingabeTage = scanner.nextInt();
+			if (eingabeTage <= 0)
+				System.out
+						.print("Ungültige Zeitangabe, bitte erneut versuchen: ");
+		} while (eingabeTage <= 0);
+		
 		// Ausleihe abwickeln
-		int gewuenschteZeitdauer = 24;
-		Ausleihe neueAusleihe = new Ausleihe(zeit, zeit+gewuenschteZeitdauer, (LagerPosten)gewaehltesProdukt, eingabeAnzahl);
+		Ausleihe neueAusleihe = new Ausleihe(zeit, zeit+eingabeTage*24, (LagerPosten)gewaehltesProdukt, eingabeAnzahl);
 		aktuellerKunde.ausleihe(neueAusleihe);
+		System.out.println("Ausleihe erfolgreich abgeschlossen.");
 	}
 
 	private void verlust() {
