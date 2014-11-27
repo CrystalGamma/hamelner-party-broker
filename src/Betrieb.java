@@ -11,11 +11,7 @@ public class Betrieb {
 
 	public Betrieb() {
 		artikel = new Artikel[] {
-			new LagerPosten("Test1", 1000, true, false, 100),
-			new LagerPosten("Test2", 200, true, true, 300),
-			new LagerPosten("Test3", 10000, false, true, 50),
-			new LagerPosten("Test4", 3000, true, true, 42),
-			new LagerPosten("Test5", 159900, false, false, 3),
+			
 			/*LagerPosten(String name,int verkaufspreis, int leihGebuehr, int handlingPauschale,
 			int verlustGebuehr, boolean verkaeuflich, boolean verleihbar,
 			int bestand)*/
@@ -197,7 +193,58 @@ public class Betrieb {
 	}
 
 	private void rueckgabe() {
-
+		System.out.println("Welche der folgenden Objekte möchten Sie zurückgeben");
+		//bestandAuflisten(false, true, false);//to do ändern, brauche die anzahl verfügbarer oder den preis nicht wissen
+		int index = 0;
+		System.out.printf("%5s  %-20s\n", "ID", "Produktname");
+		for (Artikel art : artikel) {
+			index++;	
+			if (!art.istVerleihbar())
+				continue;
+			System.out.printf("%5s  %-20s\n", index-1 , art.bestandString());	
+		}
+		int schluesselID=0;
+		int menge=0;
+		Scanner scannerID=new Scanner(System.in);
+		while(true)
+		{
+			System.out.println("Bitte eine Rueckgabe-ID eingeben");
+			try
+			{
+				schluesselID=scannerID.nextInt();
+				
+			}
+			catch(InputMismatchException e)
+			{
+				System.out.println("Fehler in der Eingabe! Es war keine Zahl");
+				scannerID.nextLine();
+				continue;
+			}
+			if(schluesselID>0&&schluesselID<=8)
+			{
+				break;
+			}
+			else
+			{
+				System.out.println("Diese Option ist nicht verfügbar");
+			}
+		}
+		System.out.println("Bitte eine Menge eingeben");
+		while(true)	
+		{
+			try
+			{
+				menge=scannerID.nextInt();
+				break;
+			}
+			catch(InputMismatchException e)
+			{
+				System.out.println("Fehler in der Eingabe! Es war keine Zahl");
+				scannerID.nextLine();
+				continue;
+			}
+		}
+		aktuellerKunde.rueckgabe((LagerPosten)artikel[schluesselID],this.zeit , menge);
 	}
 
 	private void transaktionen() {
@@ -311,6 +358,7 @@ public class Betrieb {
 		betr.bestandAuflisten(false, false, true);
 		System.out.println("Gesamtsortiment:");
 		betr.bestandAuflisten(false, false, false);
-		betr.datenAendern();
+		betr.verleih();
+		betr.rueckgabe();
 	}
 }
