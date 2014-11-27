@@ -367,7 +367,7 @@ public class Betrieb {
 			case 10: betr.umsatzBericht(); break;
 			case 11: betr.transaktionen(); break;
 			case 12: betr.kundeHinzufuegen(); break;
-			case 13: betr.datenAendern(0); break;
+			case 13: betr.datenAendern(); break;
 			case 14: betr.kundeWechseln(); break;
 			case 15: run = false; break;
 			default:
