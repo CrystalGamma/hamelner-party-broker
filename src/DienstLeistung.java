@@ -24,4 +24,9 @@ public class DienstLeistung extends Artikel {
 	public boolean istVerfuegbar() {
 		return false;
 	}
+
+	@Override
+	public int getBestand() {
+		return 0; // unendlich
+	}
 }

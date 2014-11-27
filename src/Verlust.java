@@ -1,17 +1,12 @@
 public class Verlust extends RechnungsPosten {
-	public Verlust(Ausleihe pAusleihe, int pMenge) {
+	public Verlust(LagerPosten posten, int pMenge, int betrag) {
 		this.menge = pMenge;
-		this.artikel = pAusleihe.getPosten();
-		
-		long startZeit = pAusleihe.getStartZeit();
-		long endZeit = pAusleihe.getEndZeit();
-		long zeitDelta = endZeit-startZeit;
-		this.betrag = ((LagerPosten) this.artikel).verlustGebuehr(0, pMenge, (int)zeitDelta);
+		this.artikel = posten;
+		this.betrag = betrag;
 	}
 
 	@Override
 	public String toString() {
-		return "Rechnungspunkt für den Verlust von " + this.menge + "x"
-				+ this.artikel + " in Höhe von " + this.betrag + "€.";
+		return "Verlust von " + this.menge + "x" + this.artikel + " zu einer Gebühr von " + this.betrag + "€.";
 	}
 }

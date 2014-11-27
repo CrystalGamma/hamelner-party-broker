@@ -4,3 +4,5 @@
 zwei listen für Rechungspunkte in Kunde
 
 toString und bestandString in Artikel
+
+verlust und rueckgabe geben RechnungsPunkte (bzw unterklassen) zurück

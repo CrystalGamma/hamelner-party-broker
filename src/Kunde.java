@@ -4,11 +4,9 @@ public class Kunde {
 	int id, hausnummer, plz, umsatz;// id muss noch gesetzt werden mit static
 									// als global
 	LinkedList<Ausleihe> ausleihe = new LinkedList<Ausleihe>();
-	int ausleihNummer, posRechnungspunkte;
 	LinkedList<RechnungsPosten> offeneRechnungspunkte = new LinkedList<RechnungsPosten>();
 	LinkedList<RechnungsPosten> geschlosseneRechnungspunkte = new LinkedList<RechnungsPosten>();
 	public Kunde(String name, String vorName) {
-		ausleihNummer = 0;
 		this.name = name;
 		this.vorName = vorName;
 	}
@@ -28,7 +26,7 @@ public class Kunde {
 	}
 
 	public void setPlz(int plz) {
-		if (plz >= 10000 && plz >= 99999) {
+		if (plz >= 1000 && plz <= 99998) {
 			this.plz = plz;
 		} else {
 			throw new Error("Plz ist immer 5-stellig");
@@ -68,117 +66,65 @@ public class Kunde {
 		return ort;
 	}
 
-	/*public void rueckgabe(LagerPosten lagerPosten, int zeit, int menge) {
-		//Ändern in geht durch wenn funktioniert wird es angenommen wenn nicht ber temp array wiedr zurückgeschrieben
-		if (menge > 0) {
-			int gesamtMenge = 0;
-			for (int i = 0; i < ausleihe.length; i++) {
-				if (ausleihe[i].getPosten().name == lagerPosten.name)// ausgeliehe
-																		// Menge
-																		// von
-																		// diesem
-																		// posten
-																		// errechnen
-				{
-					gesamtMenge = gesamtMenge + ausleihe[i].getMenge();
-				}
-
+	public Verleih rueckgabe(LagerPosten lagerPosten, int zeit, int menge) {
+		int pos = ausleihe.size();
+		Ausleihe[] rev = new Ausleihe[pos];
+		for (Ausleihe ausl: ausleihe)
+			rev[--pos] = ausl;
+		LinkedList<Ausleihe> tmp = new LinkedList<Ausleihe>();
+		int gesamtMenge = menge;
+		int betrag = 0;
+		for (Ausleihe ausl: rev) {
+			if (ausl.getPosten() == lagerPosten) {
+				int vorher = menge;
+				menge = ausl.verlust(menge);
+				betrag += lagerPosten.ausleihePreis(ausl.getEndZeit() - ausl.getStartZeit(),
+					vorher - menge,
+					zeit - ausl.getEndZeit());
 			}
-			// bis hierhin wurde die gesammt menge des ausgeliehenen gutes
-			// bestimmt
-			if (gesamtMenge >= menge) {
-				int restMenge = menge;
-				int alteRestmenge;
-				for (int i = 0; restMenge > 0; i++) {
-					alteRestmenge = restMenge;
-					restMenge = ausleihe[i].rueckgabe(restMenge);
-					// ausleihe[i].setEndZeit(zeit);///endzeit setzten//
-					// geplante endzeit wurde gesetzt nun muss ich noch die
-					// reale endzeit eingeben und florian die kosten berechnen
-					offeneRechnungspunkte[posRechnungspunkte] = new Verleih(
-							ausleihe[i], (alteRestmenge - restMenge));
-					if (restMenge != 0) {
-						for (int k = i; k < (ausleihe.length - 1); k++)//
-						{
-							ausleihe[k] = ausleihe[k + 1];
-						}
-					}
-
-					lagerPosten.bestandAendern(alteRestmenge - restMenge);// hier
-																			// muss
-																			// die
-																			// verfügbare
-																			// stehen
-
-				}
-
-			} else {
-				throw new Error("Diese Menge hast du nicht ausgeliehen");
-			}
-		} else {
-			throw new Error("Negative Mengen");
+			if (!ausl.istLeer())
+				tmp.addFirst(ausl);
 		}
+		if (menge > 0)
+			throw new Error("Verlustmenge übersteigt Ausleihmenge");
+		ausleihe = tmp;
+		Verleih verl = new Verleih(lagerPosten, gesamtMenge, betrag);
+		geschlosseneRechnungspunkte.addFirst(verl);
+		return verl;
 	}
 
-	public void verlustMelden(LagerPosten lagerPosten, int zeit, int menge) {
-		if (menge > 0) {
-			int gesamtMenge = 0;
-			for (int i = 0; i < ausleihe.length; i++) {
-				if (ausleihe[i].getPosten().name == lagerPosten.name)// ausgeliehe
-																		// Menge
-																		// von
-																		// diesem
-																		// posten
-																		// errechnen
-				{
-					gesamtMenge = gesamtMenge + ausleihe[i].getMenge();
-				}
-
+	public Verlust verlustMelden(LagerPosten lagerPosten, int zeit, int menge) {
+		int pos = ausleihe.size();
+		Ausleihe[] rev = new Ausleihe[pos];
+		for (Ausleihe ausl: ausleihe)
+			rev[--pos] = ausl;
+		LinkedList<Ausleihe> tmp = new LinkedList<Ausleihe>();
+		int gesamtMenge = menge;
+		int betrag = 0;
+		for (Ausleihe ausl: rev) {
+			if (ausl.getPosten() == lagerPosten) {
+				int vorher = menge;
+				menge = ausl.verlust(menge);
+				betrag += lagerPosten.verlustGebuehr(ausl.getEndZeit() - ausl.getStartZeit(),
+					vorher - menge,
+					zeit - ausl.getEndZeit());
 			}
-			// bis hierhin wurde die gesammt menge des ausgeliehenen gutes
-			// bestimmt
-			if (gesamtMenge >= menge) {
-				int restMenge = menge;
-				int alteRestmenge;
-				for (int i = 0; restMenge > 0; i++) {
-					alteRestmenge = restMenge;
-					restMenge = ausleihe[i].rueckgabe(restMenge);
-					// ausleihe[i].setEndZeit(zeit);///endzeit setzten//
-					// geplante endzeit wurde gesetzt nun muss ich noch die
-					// reale endzeit eingeben und florian die kosten berechnen
-					offeneRechnungspunkte[posRechnungspunkte] = new Verlust(
-							ausleihe[i], (alteRestmenge - restMenge));
-					if (restMenge != 0) {
-						for (int k = i; k < (ausleihe.length - 1); k++)//
-						{
-							ausleihe[k] = ausleihe[k + 1];
-						}
-					}
-
-					lagerPosten.bestandAendern(alteRestmenge - restMenge);// hier
-																			// muss
-																			// die
-																			// gesammtmenge
-																			// stehen
-
-				}
-
-			} else {
-				throw new Error("Diese Menge hast du nicht ausgeliehen");
-			}
-		} else {
-			throw new Error("Negative Mengen");
+			if (!ausl.istLeer())
+				tmp.addFirst(ausl);
 		}
+		if (menge > 0)
+			throw new Error("Verlustmenge übersteigt Ausleihmenge");
+		ausleihe = tmp;
+		Verlust verl = new Verlust(lagerPosten, gesamtMenge, betrag);
+		geschlosseneRechnungspunkte.addFirst(verl);
+		return verl;
 	}
 
-	public void ausleihe(Ausleihe ausleihe) {
-
-//		if (lagerPosten.istVerleihbar()) {
-			this.ausleihe[ausleihNummer] = ausleihe;
-			ausleihe.buchen();
-			ausleihNummer++;
-	//	} würde das ändern das hier ein Lagerposten übergeben wird und keine ausleihe
-	}*/
+	public void ausleihe(Ausleihe ausl) {
+		ausleihe.addFirst(ausl);
+		// TODO: sortiert nach startzeit einfügen
+		ausl.buchen();
+	}
 
 	public RechnungsPosten[] abrechnung() {
 		LinkedList<RechnungsPosten> tmp = offeneRechnungspunkte;

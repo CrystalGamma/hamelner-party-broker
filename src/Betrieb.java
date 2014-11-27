@@ -1,4 +1,6 @@
 import java.util.HashMap;
+import java.util.Scanner;
+
 public class Betrieb {
 	private long zeit;
 	private Kunde aktuellerKunde;
@@ -25,6 +27,8 @@ public class Betrieb {
 			new LagerPosten("Toilettenwagen",0,8900,29900,0, false, true, 6),
 			new DienstLeistung("Frischwasserinstallation",18500)
 		};
+		kunden = new Kunde[] { new Kunde("Mertens", "Robert") };
+		aktuellerKunde = kunden[0];
 	}
 
 	private void abrechnung() {
@@ -33,38 +37,41 @@ public class Betrieb {
 			System.out.println(p);
 		}
 	}
-	
-	private void anDerUhrDrehen(int zeit){
-		if(zeit < 0)
+
+	private void anDerUhrDrehen(int zeit) {
+		if (zeit < 0)
 			throw new Error("Zeit kann nicht rückwärts gehen");
 		this.zeit += zeit;
 	}
 
 	private void bestandAuflisten(boolean verk, boolean verl, boolean verf) {
+		int index = 0;
+		System.out.printf("%5s  %-20s\n", "ID", "Produktname");
 		for (Artikel art : artikel) {
+			index++;
 			if (verk && !art.istVerkaeuflich())
 				continue;
 			if (verl && !art.istVerleihbar())
 				continue;
 			if (verf && !art.istVerfuegbar())
 				continue;
-			System.out.println("Produkt " + art.bestandString());
+			System.out.printf("%5s  %-20s\n", index - 1, art.bestandString());
 		}
 	}
 
 	private void datenAendern(int pKundenID) {
 		
 	}
-	
-	private void kundeWechseln(Kunde kunde){
+
+	private void kundeWechseln(Kunde kunde) {
 		aktuellerKunde = kunde;
 	}
 
 	private void rueckgabe() {
 
 	}
-	
-	private String transaktionen(int pKundenID){
+
+	private String transaktionen(int pKundenID) {
 		return "";
 	}
 
@@ -73,7 +80,32 @@ public class Betrieb {
 	}
 
 	private void verkaufen() {
-
+		Scanner scanner = new Scanner(System.in);
+		System.out
+				.println("Zum Verkauf stehen derzeit folgende Produkte zur Verfügung:");
+		this.bestandAuflisten(true, false, true);
+		int eingabeProdukt;
+		do {
+			System.out.print("Welches Produkt möchten Sie kaufen? "); // Index
+																		// bei
+																		// Bestandaufslistung
+																		// fehlt.
+			eingabeProdukt = scanner.nextInt();
+			if (!artikel[eingabeProdukt].istVerkaeuflich())
+				System.out.println("Dieses Produkt ist leider nicht käuflich.");
+		} while (!artikel[eingabeProdukt].istVerkaeuflich());
+		System.out.print("Aktuell sind "
+				+ artikel[eingabeProdukt].bestandString()
+				+ " in unserem Lager, wie viele davon möchten Sie erwerben? ");
+		int eingabeAnzahl;
+		int bestand = artikel[eingabeProdukt].getBestand();
+		do {
+			eingabeAnzahl = scanner.nextInt();
+			if(eingabeAnzahl > bestand) System.out.println("So viel haben wir nicht. Bitte neue Eingabe: ");
+			else System.out.println("Sie kaufen " + eingabeAnzahl + " x "
+					+ artikel[eingabeProdukt].name + ".");
+		} while (eingabeAnzahl > bestand);
+		aktuellerKunde.kaufen(artikel[eingabeProdukt], eingabeAnzahl);
 	}
 
 	private void verleih() {
@@ -92,5 +124,7 @@ public class Betrieb {
 		betr.bestandAuflisten(false, false, true);
 		System.out.println("Gesamtsortiment:");
 		betr.bestandAuflisten(false, false, false);
+
+		betr.verkaufen();
 	}
 }

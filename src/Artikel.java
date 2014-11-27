@@ -5,6 +5,7 @@ public abstract class Artikel {
 	public String toString() {
 		return name;
 	}
+	public abstract int getBestand();
 	public abstract String bestandString();
 	public abstract boolean istVerkaeuflich();
 	public abstract boolean istVerleihbar();
