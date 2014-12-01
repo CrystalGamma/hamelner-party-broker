@@ -210,8 +210,9 @@ public class Betrieb {
 				scannerID.nextLine();
 			}
 		}
-		System.out.println(aktuellerKunde.rueckgabe((LagerPosten) artikel[schluesselID], this.zeit, menge).toString());
-		
+		System.out.println("Bitte bezahlen: " +
+				aktuellerKunde.rueckgabe((LagerPosten) artikel[schluesselID],
+						this.zeit, menge).toString());
 	}
 
 	private void transaktionen() {

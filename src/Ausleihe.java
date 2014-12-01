@@ -65,4 +65,9 @@ public class Ausleihe {
 	public int getEndZeit() {
 		return endZeit;
 	}
+
+	public String toString() {
+		return "Ausleihe von " + menge + "x " + lagerPosten + " von "
+				+ startZeit + "h bis " + endZeit + "h";
+	}
 }
