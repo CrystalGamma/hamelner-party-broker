@@ -24,9 +24,9 @@ public class MengenFehler extends RuntimeException {
             case ZuvielAusgeben:
                 return "Nicht genug Bestand verfügbar um " + menge + "auszugeben";
             case ZuvielRueckgeben:
-                return "Rückgabemenge übersteigt Ausleihmenge";
+                return "Rückgabemenge übersteigt Ausleihmenge um " + menge;
             case ZuvielVerloren:
-                return "Verlustmenge übersteigt Ausleihmenge";
+                return "Verlustmenge übersteigt Ausleihmenge um " + menge;
         }
         throw new Error("sollte nie erreicht werden");
     }

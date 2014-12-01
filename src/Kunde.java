@@ -128,11 +128,11 @@ public class Kunde {
 		ausl.buchen();
 	}
 
-	public RechnungsPosten[] abrechnung() {
+	public LinkedList<RechnungsPosten> abrechnung() {
 		LinkedList<RechnungsPosten> tmp = offeneRechnungspunkte;
 		geschlosseneRechnungspunkte.addAll(0, tmp);
 		offeneRechnungspunkte = new LinkedList<>();
-		return Arrays.copyOf(tmp.toArray(), tmp.size(), RechnungsPosten[].class);
+		return tmp;
 	}
 
 	public int berechneUmsatz() {
