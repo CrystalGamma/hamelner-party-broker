@@ -18,15 +18,15 @@ public class MengenFehler extends RuntimeException {
     public String toString() {
         switch (art) {
             case NegativKaufen:
-                return "Negative Menge " + menge + " kann nicht gekauft werden";
+                return "Negative Menge " + menge + " kann nicht gekauft werden.";
             case NegativLeihen:
-                return "Negative Menge " + menge + " kann nicht verliehen werden";
+                return "Negative Menge " + menge + " kann nicht verliehen werden.";
             case ZuvielAusgeben:
-                return "Nicht genug Bestand verfügbar um " + menge + "auszugeben";
+                return "Nicht genug Bestand verfügbar um " + menge + " auszugeben.";
             case ZuvielRueckgeben:
-                return "Rückgabemenge übersteigt Ausleihmenge um " + menge;
+                return "Rückgabemenge übersteigt Ausleihmenge um " + menge + ".";
             case ZuvielVerloren:
-                return "Verlustmenge übersteigt Ausleihmenge um " + menge;
+                return "Verlustmenge übersteigt Ausleihmenge um " + menge + ".";
         }
         throw new Error("sollte nie erreicht werden");
     }

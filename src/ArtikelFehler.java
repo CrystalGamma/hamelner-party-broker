@@ -15,9 +15,9 @@ public class ArtikelFehler extends RuntimeException {
     public String toString() {
         switch (art) {
             case NichtVerkaeuflich:
-                return "'" + artikel.toString() + "' ist nicht verkäuflich";
+                return "'" + artikel.toString() + "' ist nicht verkäuflich.";
             case NichtVerleihbar:
-                return "'" + artikel.toString() + "' ist nicht verleihbar";
+                return "'" + artikel.toString() + "' ist nicht verleihbar.";
         }
         throw new Error("sollte nie erreicht werden");
     }
