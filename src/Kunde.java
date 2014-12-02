@@ -94,7 +94,7 @@ public class Kunde {
 		}
 		if (menge > 0)
 			throw new MengenFehler(MengenFehler.Art.ZuvielRueckgeben, menge);
-		lagerPosten.bestandAendern(-gesamtMenge);
+		lagerPosten.bestandAendern(gesamtMenge);
 		ausleihe = tmp;
 		Verleih verl = new Verleih(lagerPosten, gesamtMenge, betrag);
 		geschlosseneRechnungspunkte.addFirst(verl);

@@ -41,6 +41,7 @@ public class Betrieb {
 		System.out.print("Postleitzahl: ");
 		int plz = scanner.nextInt();
 		System.out.print("Ort: ");
+		scanner.nextLine();
 		String ort = scanner.nextLine();
 
 		nachname = nachname.trim();
@@ -50,7 +51,7 @@ public class Betrieb {
 
 		if (nachname.isEmpty() || vorname.isEmpty() || strasse.isEmpty()
 				|| ort.isEmpty())
-			throw new Error("Kann keinen Kunden mit leerem Namen erstellen");
+			throw new Error("Eins der Felder ist leer");
 		
 		Kunde kunde = new Kunde(nachname, vorname, strasse, hausnummer, plz, ort);
 		kundeHinzufuegen(kunde);
@@ -271,8 +272,11 @@ public class Betrieb {
 		}
 		
 		// Gewünschte Anzahl erfragen
-		System.out.print("Aktuell sind " + gewaehltesProdukt.bestandString()
+		if (gewaehltesProdukt instanceof LagerPosten)
+			System.out.print("Aktuell sind " + gewaehltesProdukt.bestandString()
 				+ " in unserem Lager, wie viele davon möchten Sie an den Kunden verkaufen? ");
+		else
+			System.out.println("Wieviele wollen Sie buchen?");
 		int eingabeAnzahl = scanner.nextInt();
 		
 		System.out.println(eingabeAnzahl + " x " + gewaehltesProdukt.name + " an " + aktuellerKunde + " verkaufen? Die Kosten für den Kunden betragen " + Services.geldString(gewaehltesProdukt.kaufPreis(eingabeAnzahl)) + ".\nBestätigen mit [j], sonst beliebige Taste drücken ");
@@ -321,7 +325,7 @@ public class Betrieb {
 
 		// Gewünschte Anzahl erfragen
 		System.out.print("Aktuell sind " + gewaehltesProdukt.getBestand()
-				+ " in unserem Lager, wie viele davon möchten Sie an den Kudnen verleihen? ");
+				+ " in unserem Lager, wie viele davon möchten Sie an den Kunden verleihen? ");
 		int eingabeAnzahl = scanner.nextInt();
 		// Zeitdauer erfragen
 		System.out.print("Bitte geben Sie die prognostizierte Zeitdauer an, für die Sie das Produkt verleihen wollen: ");
@@ -332,13 +336,14 @@ public class Betrieb {
 				System.out
 						.print("Ungültige Zeitangabe, bitte erneut versuchen: ");
 		} while (eingabeTage <= 0);
+		Ausleihe neueAusleihe = new Ausleihe(zeit, zeit + eingabeTage * 24,
+				(LagerPosten) gewaehltesProdukt, eingabeAnzahl);
 
-		System.out.println(eingabeAnzahl + " x " + gewaehltesProdukt.name + " an " + aktuellerKunde + " verleihen?\nBestätigen mit [j], sonst beliebige Taste drücken ");
+		System.out.println(neueAusleihe
+				+ " buchen?\nBestätigen mit [j], sonst beliebige Taste drücken ");
 		String weiter = scanner.next();
 		if (weiter.equals("j")) {
 			// Ausleihe abwickeln
-			Ausleihe neueAusleihe = new Ausleihe(zeit, zeit + eingabeTage * 24,
-					(LagerPosten) gewaehltesProdukt, eingabeAnzahl);
 			aktuellerKunde.ausleihe(neueAusleihe);
 			System.out.println("Es wurden " + eingabeAnzahl + " x "
 					+ gewaehltesProdukt.name + " an " + aktuellerKunde + " ausgeliehen.");
