@@ -9,4 +9,8 @@ public abstract class RechnungsPosten {
 	{
 		return betrag;
 	}
+	public boolean sofortFaellig()
+	{
+		return artikel instanceof DienstLeistung;
+	}
 }
