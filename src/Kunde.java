@@ -40,7 +40,6 @@ public class Kunde {
 	}
 
 	public void setOrt(String ort) {
-
 		this.ort = ort;
 	}
 

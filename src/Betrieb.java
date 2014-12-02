@@ -34,7 +34,6 @@ public class Betrieb {
 		String nachname = scanner.nextLine();
 		System.out.print("Vorname: ");
 		String vorname = scanner.nextLine();
-<<<<<<< HEAD
 		System.out.print("Straße: ");
 		String strasse = scanner.nextLine();
 		System.out.print("Hausnummer: ");
@@ -43,14 +42,15 @@ public class Betrieb {
 		int plz = scanner.nextInt();
 		System.out.print("Ort: ");
 		String ort = scanner.nextLine();
-=======
 
 		nachname = nachname.trim();
 		vorname = vorname.trim();
+		strasse = strasse.trim();
+		ort = ort.trim();
 
-		if (nachname.isEmpty() || vorname.isEmpty())
+		if (nachname.isEmpty() || vorname.isEmpty() || strasse.isEmpty()
+				|| ort.isEmpty())
 			throw new Error("Kann keinen Kunden mit leerem Namen erstellen");
->>>>>>> e753f0636d82f993d3a8d9852c781815f31b4129
 		
 		Kunde kunde = new Kunde(nachname, vorname, strasse, hausnummer, plz, ort);
 		kundeHinzufuegen(kunde);
