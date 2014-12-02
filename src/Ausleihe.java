@@ -1,4 +1,4 @@
-public class Ausleihe {
+public class Ausleihe implements Cloneable {
 	private int startZeit, endZeit;
 	private int menge;
 	private LagerPosten lagerPosten;
@@ -12,6 +12,10 @@ public class Ausleihe {
 			throw new ArtikelFehler(posten, ArtikelFehler.Art.NichtVerleihbar);
 		if (menge < 0)
 			throw new MengenFehler(MengenFehler.Art.NegativLeihen, menge);
+	}
+
+	public Ausleihe clone() {
+		return new Ausleihe(startZeit, endZeit, lagerPosten, menge);
 	}
 
 	public void buchen() {
@@ -38,30 +42,13 @@ public class Ausleihe {
 		this.endZeit = endZeit;
 	}
 
-	public int verlust(int menge) {
-		if (menge > this.menge) {
-			menge -= this.menge;
-			this.menge = 0;
-		} else {
-			this.menge = this.menge - menge;
-			menge = 0;
-		}
-		return menge;
-	}
-
-	public int rueckgabe(int menge) {
-		if (menge > this.menge) {
-			this.lagerPosten.bestand += this.menge;
-			menge -= this.menge;
-			this.menge = 0;
-			//rechnungspunkt erzeugen
-		} else {
-			this.menge = this.menge - menge;
-			this.lagerPosten.bestand += menge;
-			menge = 0;
-			//rechnungspunkt erzeugen
-		}
-		return menge;//gibt den Parameter zurück der Angibt welche Menge von der Rückgabe noch übrig ist, bei ungleich null kann ausleihe in rechnungspunkt umgewandelt werden
+	public Ausleihe reduzieren(int menge) {
+		Ausleihe cpy = clone();
+		if (menge > this.menge)
+			cpy.menge = 0;
+		else
+			cpy.menge = this.menge - menge;
+		return cpy;
 	}
 
 	public int getEndZeit() {
