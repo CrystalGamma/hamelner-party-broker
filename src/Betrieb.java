@@ -35,8 +35,16 @@ public class Betrieb {
 		String nachname = scanner.nextLine();
 		System.out.print("Vorname: ");
 		String vorname = scanner.nextLine();
+		System.out.print("Straße: ");
+		String strasse = scanner.nextLine();
+		System.out.print("Hausnummer: ");
+		int hausnummer = scanner.nextInt();
+		System.out.print("Postleitzahl: ");
+		int plz = scanner.nextInt();
+		System.out.print("Ort: ");
+		String ort = scanner.nextLine();
 		
-		Kunde kunde = new Kunde(nachname, vorname);
+		Kunde kunde = new Kunde(nachname, vorname, strasse, hausnummer, plz, ort);
 		kundeHinzufuegen(kunde);
 	}
 	
