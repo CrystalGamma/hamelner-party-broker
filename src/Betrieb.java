@@ -23,7 +23,14 @@ public class Betrieb {
 			new LagerPosten("große Zapfanlage",0,22000,2900,80000, false, true, 3),
 			new LagerPosten("10er Bierdeckel",15,0,0,0, true, false, 3900),
 			new LagerPosten("Toilettenwagen",0,8900,29900,0, false, true, 6),
-			new DienstLeistung("Frischwasserinstallation",18500)
+			new LagerPosten("Lautsprecher",0,3000,1000,30000,false,true,30),
+			new LagerPosten("Monitor",0,1500,1000,15000,false,true,25),
+			new LagerPosten("Mixpult",0,4000,1500,400000,false,true,10),
+			new LagerPosten("Verstärker",0,3000,1250,3500,false,true,10),
+			new LagerPosten("Nebelmaschiene",0,2000,1200,25000,false, true, 15),
+			new DienstLeistung("Frischwasserinstallation",18500),
+			new DienstLeistung("Verkabelung",15000),
+			new DienstLeistung("Hallenreinigung bis 100 qm",450000),
 		};
 	}
 
