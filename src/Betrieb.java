@@ -160,11 +160,11 @@ public class Betrieb {
 				continue;
 			}
 
-			if (schluessel >= 1) {
+			if (schluessel > 0 && schluessel < naechsteKundenID) {
 				aktuellerKunde = kunden.get(schluessel);
 				break;
 			} else {
-				System.out.println("IDs beginnen bei 1");
+				System.out.println("Kunden-ID ist ungültig. Bitte um erneute Eingabe: ");
 			}
 		}
 
