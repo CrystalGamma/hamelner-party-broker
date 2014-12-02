@@ -8,9 +8,13 @@ public class Kunde {
 	LinkedList<RechnungsPosten> offeneRechnungspunkte = new LinkedList<RechnungsPosten>();
 	LinkedList<RechnungsPosten> geschlosseneRechnungspunkte = new LinkedList<RechnungsPosten>();
 
-	public Kunde(String name, String vorName) {
+	public Kunde(String name, String vorName, String straße, int hausnummer, int plz,String ort) {
 		this.name = name;
 		this.vorName = vorName;
+		setStrasse(straße);
+		setHausnummer(hausnummer);
+		setPlz(plz);
+		setOrt(ort);
 	}
 
 	public void setStrasse(String strasse) {
