@@ -379,9 +379,9 @@ public class Betrieb {
 				"Ausleihe eines verfügbaren Objekts für eine prognostizierte Zeitdauer",
 				"Rückgabe eines entliehenen Objekts",
 				"Verlustmeldung eines entliehenen Objekts",
-				"Abrechnung eines Kunden",
+				"Abrechnung des aktuellen Kunden",
 				"Auflistung aller Kunden mit ihren Umsätzen",
-				"Auflistung der mit einem Kunden durchgeführten Transaktionen",
+				"Auflistung der mit dem aktuellen Kunden durchgeführten Transaktionen",
 				"Neuen Kunden anlegen",
 				"Ändern von Kundendaten",
 				"Aktuellen Kunden wechseln",
@@ -400,7 +400,7 @@ public class Betrieb {
 				} catch(InputMismatchException e) {
 					scanner.nextLine();
 				}
-				if (aktion < 0)
+				if (aktion < 0 || aktion >= aktionen.length)
 					aktion = 0;	// wenn der nutzer schwachsinn eingibt, liste anzeigen
 				if (aktion >= 0 && aktion < aktionen.length)
 					break;
