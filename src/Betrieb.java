@@ -293,8 +293,8 @@ public class Betrieb {
 			eingabeProdukt = scanner.nextInt();
 			gewaehltesProdukt = artikel[eingabeProdukt];
 			if (!gewaehltesProdukt.istVerleihbar())
-				System.out
-						.println("Dieses Produkt steht aktuell leider nicht zum Ausleihen zur Verfügung.");
+				System.out.println(
+						"Dieses Produkt steht aktuell leider nicht zum Ausleihen zur Verfügung.");
 		} while (!gewaehltesProdukt.istVerleihbar());
 
 		// Gewünschte Anzahl erfragen
@@ -324,11 +324,9 @@ public class Betrieb {
 		int schluesselID;
 		int menge;
 		Scanner scannerID=new Scanner(System.in);
-		while(true)
-		{
+		while (true) {
 			System.out.println("Bitte ID des verlorenen Artikels eingeben");
-			try
-			{
+			try {
 				schluesselID=scannerID.nextInt();
 				
 			} catch(InputMismatchException e) {
@@ -343,10 +341,8 @@ public class Betrieb {
 				System.out.println("Diese Option ist nicht verfügbar");
 		}
 		System.out.println("Bitte eine Menge eingeben");
-		while(true)	
-		{
-			try
-			{
+		while(true)	{
+			try {
 				menge=scannerID.nextInt();
 				break;
 			} catch(InputMismatchException e) {

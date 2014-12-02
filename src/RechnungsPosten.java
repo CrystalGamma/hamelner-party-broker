@@ -1,6 +1,5 @@
 public abstract class RechnungsPosten {
-	// TODO: int
-	private long zeit;
+	private int zeit;
 	protected int menge;
 	protected int betrag;
 	protected Artikel artikel;
