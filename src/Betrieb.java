@@ -277,6 +277,7 @@ public class Betrieb {
 		
 		System.out.println(eingabeAnzahl + " x " + gewaehltesProdukt.name + " an " + aktuellerKunde + " verkaufen? Die Kosten für den Kunden betragen " + Services.geldString(gewaehltesProdukt.kaufPreis(eingabeAnzahl)) + ".\nBestätigen mit [j], sonst beliebige Taste drücken ");
 		String weiter = scanner.next();
+		
 		if (weiter.equals("j")) {
 			// Kauf abwickeln
 			aktuellerKunde.kaufen(gewaehltesProdukt, eingabeAnzahl);
