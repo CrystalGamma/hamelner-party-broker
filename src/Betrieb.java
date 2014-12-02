@@ -248,9 +248,8 @@ public class Betrieb {
 				}
 			} while (gewaehltesProdukt == null || !gewaehltesProdukt.istVerkaeuflich());
 		} catch(ArrayIndexOutOfBoundsException e) {
-			System.out.println("Produktnummer ungültig.");
-		} catch(InputMismatchException e) {
-			System.out.println("Ungültige Eingabe. Bitte erneut versuchen.");
+			scanner.nextLine();
+			throw new Error("Produktnummer ungültig. ");
 		}
 		
 		// Gewünschte Anzahl erfragen
