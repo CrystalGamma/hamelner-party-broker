@@ -92,7 +92,7 @@ public class Betrieb {
 					System.out.println("Die Option gab es nicht");
 					
 			} catch (InputMismatchException e) {
-				System.out.println("Fehler in der Eingabe! Es war keine Zahl");
+				System.out.println("Fehler in der Eingabe! Es war keine akzeptable Zahl");
 				scanner.nextLine();
 			}
 		}
@@ -110,7 +110,7 @@ public class Betrieb {
 				try {
 					eingabeInt=scanner.nextInt();
 				} catch (InputMismatchException e) {
-					System.out.println("Fehler in der Eingabe! Es war keine Zahl");
+					System.out.println("Fehler in der Eingabe! Es war keine akzeptable Zahl");
 					scanner.nextLine();
 					continue;
 				}
@@ -131,7 +131,7 @@ public class Betrieb {
 					aktuellerKunde.setHausnummer(eingabeInt);
 					break;
 				} catch(InputMismatchException e) {
-					System.out.println("Fehler in der Eingabe! Es war keine Zahl");
+					System.out.println("Fehler in der Eingabe! Es war keine akzeptable Zahl");
 					scanner.nextLine();
 				}
 			} else {
@@ -154,7 +154,7 @@ public class Betrieb {
 			try {
 				schluessel = scannerID.nextInt();
 			} catch (InputMismatchException e) {
-				System.out.println("Fehler in der Eingabe! Es war keine Zahl");
+				System.out.println("Fehler in der Eingabe! Es war keine akzeptable Zahl");
 				scannerID.nextLine();
 				continue;
 			}
@@ -188,7 +188,7 @@ public class Betrieb {
 			try {
 				schluesselID = scannerID.nextInt();
 			} catch(InputMismatchException e) {
-				System.out.println("Fehler in der Eingabe! Es war keine Zahl");
+				System.out.println("Fehler in der Eingabe! Es war keine akzeptable Zahl");
 				scannerID.nextLine();
 				continue;
 			}
@@ -204,7 +204,7 @@ public class Betrieb {
 				menge=scannerID.nextInt();
 				break;
 			} catch(InputMismatchException e) {
-				System.out.println("Fehler in der Eingabe! Es war keine Zahl");
+				System.out.println("Fehler in der Eingabe! Es war keine akzeptable Zahl");
 				scannerID.nextLine();
 			}
 		}
@@ -296,7 +296,7 @@ public class Betrieb {
 					break;
 				}
 			} catch(InputMismatchException e) {
-				System.out.println("Fehler in der Eingabe! Es war keine Zahl");
+				System.out.println("Fehler in der Eingabe! Es war keine akzeptable Zahl");
 				scanner.nextLine();
 			}
 		}
@@ -332,7 +332,7 @@ public class Betrieb {
 			try {
 				schluesselID=scannerID.nextInt();
 			} catch(InputMismatchException e) {
-				System.out.println("Fehler in der Eingabe! Es war keine Zahl");
+				System.out.println("Fehler in der Eingabe! Es war keine akzeptable Zahl");
 				scannerID.nextLine();
 				continue;
 			}
@@ -350,7 +350,7 @@ public class Betrieb {
 				menge=scannerID.nextInt();
 				break;
 			} catch(InputMismatchException e) {
-				System.out.println("Fehler in der Eingabe! Es war keine Zahl");
+				System.out.println("Fehler in der Eingabe! Es war keine akzeptable Zahl");
 				scannerID.nextLine();
 			}
 		}
