@@ -222,8 +222,7 @@ public class Betrieb {
 
 	private void umsatzBericht() {
 		for (Kunde kunde : kunden.values()) {
-			System.out.println(kunde.getVorName() + ", " + kunde.getName()
-					+ ": " + kunde.berechneUmsatz());
+			System.out.println(kunde + ": " + kunde.berechneUmsatz());
 		}
 	}
 
