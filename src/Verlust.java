@@ -7,6 +7,6 @@ public class Verlust extends RechnungsPosten {
 
 	@Override
 	public String toString() {
-		return "Verlust von " + this.menge + "x" + this.artikel + " zu einer Gebühr von " + this.betrag + "€.";
+		return "Verlust von " + this.menge + "x" + this.artikel + " zu einer Gebühr von " + Services.geldString(this.betrag) + ".";
 	}
 }
