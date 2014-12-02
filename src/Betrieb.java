@@ -43,7 +43,7 @@ public class Betrieb {
 	private void kundeHinzufuegen(Kunde kunde) {
 		kunden.put(naechsteKundenID++, kunde);
 		aktuellerKunde = kunde;
-		System.out.println("Kunde " + kunde + " erfolgreich erstellt.");
+		System.out.println("Kunde " + kunde + " erfolgreich erstellt. Seine ID ist " + (naechsteKundenID-1) + ".");
 	}
 
 	private void abrechnung() {
