@@ -286,20 +286,27 @@ public class Betrieb {
 		}
 		int eingabeProdukt;
 		Artikel gewaehltesProdukt = null;
-		do {
+		while(true) {
 			System.out.print("Welches Produkt möchten Sie ausleihen? ");
-			eingabeProdukt = scanner.nextInt();
-			gewaehltesProdukt = artikel[eingabeProdukt];
-			if (!gewaehltesProdukt.istVerleihbar())
-				System.out.println(
-						"Dieses Produkt steht aktuell leider nicht zum Ausleihen zur Verfügung.");
-		} while (!gewaehltesProdukt.istVerleihbar());
+			try {
+				eingabeProdukt = scanner.nextInt();
+				gewaehltesProdukt = artikel[eingabeProdukt];
+				if (!gewaehltesProdukt.istVerleihbar())
+					System.out.println(
+							"Dieses Produkt steht aktuell leider nicht zum Ausleihen zur Verfügung.");
+				else{
+					break;
+				}
+			} catch(InputMismatchException e) {
+				System.out.println("Fehler in der Eingabe! Es war keine Zahl");
+				scanner.nextLine();
+			}
+		}
 
 		// Gewünschte Anzahl erfragen
 		System.out.print("Aktuell sind " + gewaehltesProdukt.getBestand()
 				+ " in unserem Lager, wie viele davon möchten Sie ausleihen? ");
 		int eingabeAnzahl = scanner.nextInt();
-
 		// Zeitdauer erfragen
 		System.out.print("Bitte geben Sie an für wie viel Tage Sie das Produkt ausleihen wollen: ");
 		int eingabeTage = 0;
