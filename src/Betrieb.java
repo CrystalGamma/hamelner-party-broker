@@ -388,9 +388,15 @@ public class Betrieb {
 			System.out.print("Befehl> ");
 			System.out.flush();
 			int aktion;
-			do {
-				aktion = scanner.nextInt();
-			} while (aktion < 0 || aktion > 15);
+			while (true) {
+				try{
+					aktion = scanner.nextInt();
+					break;
+				} catch(InputMismatchException e) {
+					System.out.println("Fehler in der Eingabe! Es war keine Zahl");
+					scanner.nextLine();
+				}
+			}
 
 			System.out.println(aktionen[aktion]);
 			try {
