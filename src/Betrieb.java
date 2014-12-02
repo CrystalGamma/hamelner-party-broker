@@ -35,6 +35,12 @@ public class Betrieb {
 		String nachname = scanner.nextLine();
 		System.out.print("Vorname: ");
 		String vorname = scanner.nextLine();
+
+		nachname = nachname.trim();
+		vorname = vorname.trim();
+
+		if (nachname.isEmpty() || vorname.isEmpty())
+			throw new Error("Kann keinen Kunden mit leerem Namen erstellen");
 		
 		Kunde kunde = new Kunde(nachname, vorname);
 		kundeHinzufuegen(kunde);
