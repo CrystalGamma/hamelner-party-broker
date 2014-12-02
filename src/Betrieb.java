@@ -458,7 +458,7 @@ public class Betrieb {
 					default:
 				}
 			} catch (InputMismatchException e) {
-				System.out.println("FEHLER: unerwartete Eingabe: " + e.getMessage());
+				System.out.println("FEHLER: unerwartete Eingabe");
 			} catch(Exception e) {
 				System.out.println("FEHLER: " + e);
 			}
