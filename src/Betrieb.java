@@ -97,7 +97,7 @@ public class Betrieb {
 					System.out.println("Die Option gab es nicht");
 					
 			} catch (InputMismatchException e) {
-				System.out.println("Fehler in der Eingabe! Es war keine Zahl");
+				System.out.println("Fehler in der Eingabe! Es war keine akzeptable Zahl");
 				scanner.nextLine();
 			}
 		}
@@ -115,7 +115,7 @@ public class Betrieb {
 				try {
 					eingabeInt=scanner.nextInt();
 				} catch (InputMismatchException e) {
-					System.out.println("Fehler in der Eingabe! Es war keine Zahl");
+					System.out.println("Fehler in der Eingabe! Es war keine akzeptable Zahl");
 					scanner.nextLine();
 					continue;
 				}
@@ -136,7 +136,7 @@ public class Betrieb {
 					aktuellerKunde.setHausnummer(eingabeInt);
 					break;
 				} catch(InputMismatchException e) {
-					System.out.println("Fehler in der Eingabe! Es war keine Zahl");
+					System.out.println("Fehler in der Eingabe! Es war keine akzeptable Zahl");
 					scanner.nextLine();
 				}
 			} else {
@@ -159,7 +159,7 @@ public class Betrieb {
 			try {
 				schluessel = scannerID.nextInt();
 			} catch (InputMismatchException e) {
-				System.out.println("Fehler in der Eingabe! Es war keine Zahl");
+				System.out.println("Fehler in der Eingabe! Es war keine akzeptable Zahl");
 				scannerID.nextLine();
 				continue;
 			}
@@ -193,7 +193,7 @@ public class Betrieb {
 			try {
 				schluesselID = scannerID.nextInt();
 			} catch(InputMismatchException e) {
-				System.out.println("Fehler in der Eingabe! Es war keine Zahl");
+				System.out.println("Fehler in der Eingabe! Es war keine akzeptable Zahl");
 				scannerID.nextLine();
 				continue;
 			}
@@ -209,7 +209,7 @@ public class Betrieb {
 				menge=scannerID.nextInt();
 				break;
 			} catch(InputMismatchException e) {
-				System.out.println("Fehler in der Eingabe! Es war keine Zahl");
+				System.out.println("Fehler in der Eingabe! Es war keine akzeptable Zahl");
 				scannerID.nextLine();
 			}
 		}
@@ -244,12 +244,12 @@ public class Betrieb {
 		Artikel gewaehltesProdukt = null;
 		try {
 			do {
-				System.out.print("Welches Produkt möchten Sie kaufen? ");
+				System.out.print("Welches Produkt möchten Sie verkaufen? ");
 				eingabeProdukt = scanner.nextInt();
 				if(eingabeProdukt < artikel.length) {
 					gewaehltesProdukt = artikel[eingabeProdukt];
 					if (!gewaehltesProdukt.istVerkaeuflich())
-						System.out.println("Dieses Produkt ist leider nicht käuflich.");
+						System.out.println("Das gewünschte Produkt ist leider nicht käuflich.");
 				} else {
 					System.out.println("Produktnummer ungültig.");
 				}
@@ -261,9 +261,8 @@ public class Betrieb {
 		
 		// Gewünschte Anzahl erfragen
 		System.out.print("Aktuell sind " + gewaehltesProdukt.bestandString()
-				+ " in unserem Lager, wie viele davon möchten Sie erwerben? ");
+				+ " in unserem Lager, wie viele davon möchten Sie an den Kunden verkaufen? ");
 		int eingabeAnzahl = scanner.nextInt();
-		
 		
 		System.out.println(eingabeAnzahl + " x " + gewaehltesProdukt.name + " an " + aktuellerKunde + " verkaufen? Die Kosten für den Kunden betragen " + Services.geldString(gewaehltesProdukt.kaufPreis(eingabeAnzahl)) + ".\nBestätigen mit [j], sonst beliebige Taste drücken ");
 		String weiter = scanner.next();
@@ -293,28 +292,28 @@ public class Betrieb {
 		int eingabeProdukt;
 		Artikel gewaehltesProdukt = null;
 		while(true) {
-			System.out.print("Welches Produkt möchten Sie ausleihen? ");
+			System.out.print("Welches Produkt möchten Sie verleihen? ");
 			try {
 				eingabeProdukt = scanner.nextInt();
 				gewaehltesProdukt = artikel[eingabeProdukt];
 				if (!gewaehltesProdukt.istVerleihbar())
 					System.out.println(
-							"Dieses Produkt steht aktuell leider nicht zum Ausleihen zur Verfügung.");
+							"Das gewünschte Produkt ist leider nicht verleihbar.");
 				else{
 					break;
 				}
 			} catch(InputMismatchException e) {
-				System.out.println("Fehler in der Eingabe! Es war keine Zahl");
+				System.out.println("Fehler in der Eingabe! Es war keine akzeptable Zahl");
 				scanner.nextLine();
 			}
 		}
 
 		// Gewünschte Anzahl erfragen
 		System.out.print("Aktuell sind " + gewaehltesProdukt.getBestand()
-				+ " in unserem Lager, wie viele davon möchten Sie ausleihen? ");
+				+ " in unserem Lager, wie viele davon möchten Sie an den Kudnen verleihen? ");
 		int eingabeAnzahl = scanner.nextInt();
 		// Zeitdauer erfragen
-		System.out.print("Bitte geben Sie an für wie viel Tage Sie das Produkt ausleihen wollen: ");
+		System.out.print("Bitte geben Sie die prognostizierte Zeitdauer an, für die Sie das Produkt verleihen wollen: ");
 		int eingabeTage = 0;
 		do {
 			eingabeTage = scanner.nextInt();
@@ -323,12 +322,18 @@ public class Betrieb {
 						.print("Ungültige Zeitangabe, bitte erneut versuchen: ");
 		} while (eingabeTage <= 0);
 
-		// Ausleihe abwickeln
-		Ausleihe neueAusleihe = new Ausleihe(zeit, zeit + eingabeTage * 24,
-				(LagerPosten) gewaehltesProdukt, eingabeAnzahl);
-		aktuellerKunde.ausleihe(neueAusleihe);
-		System.out.println("Es wurden " + eingabeAnzahl + " x "
-				+ gewaehltesProdukt.name + " an " + aktuellerKunde + " ausgeliehen.");
+		System.out.println(eingabeAnzahl + " x " + gewaehltesProdukt.name + " an " + aktuellerKunde + " verleihen?\nBestätigen mit [j], sonst beliebige Taste drücken ");
+		String weiter = scanner.next();
+		if (weiter.equals("j")) {
+			// Ausleihe abwickeln
+			Ausleihe neueAusleihe = new Ausleihe(zeit, zeit + eingabeTage * 24,
+					(LagerPosten) gewaehltesProdukt, eingabeAnzahl);
+			aktuellerKunde.ausleihe(neueAusleihe);
+			System.out.println("Es wurden " + eingabeAnzahl + " x "
+					+ gewaehltesProdukt.name + " an " + aktuellerKunde + " ausgeliehen.");
+		} else {
+			System.out.println("Verleih abgebrochen.");
+		}
 	}
 
 	private void verlust() {
@@ -348,7 +353,7 @@ public class Betrieb {
 			try {
 				schluesselID=scannerID.nextInt();
 			} catch(InputMismatchException e) {
-				System.out.println("Fehler in der Eingabe! Es war keine Zahl");
+				System.out.println("Fehler in der Eingabe! Es war keine akzeptable Zahl");
 				scannerID.nextLine();
 				continue;
 			}
@@ -366,7 +371,7 @@ public class Betrieb {
 				menge=scannerID.nextInt();
 				break;
 			} catch(InputMismatchException e) {
-				System.out.println("Fehler in der Eingabe! Es war keine Zahl");
+				System.out.println("Fehler in der Eingabe! Es war keine akzeptable Zahl");
 				scannerID.nextLine();
 			}
 		}
@@ -388,9 +393,9 @@ public class Betrieb {
 				"Ausleihe eines verfügbaren Objekts für eine prognostizierte Zeitdauer",
 				"Rückgabe eines entliehenen Objekts",
 				"Verlustmeldung eines entliehenen Objekts",
-				"Abrechnung eines Kunden",
+				"Abrechnung des aktuellen Kunden",
 				"Auflistung aller Kunden mit ihren Umsätzen",
-				"Auflistung der mit einem Kunden durchgeführten Transaktionen",
+				"Auflistung der mit dem aktuellen Kunden durchgeführten Transaktionen",
 				"Neuen Kunden anlegen",
 				"Ändern von Kundendaten",
 				"Aktuellen Kunden wechseln",
@@ -409,7 +414,7 @@ public class Betrieb {
 				} catch(InputMismatchException e) {
 					scanner.nextLine();
 				}
-				if (aktion < 0)
+				if (aktion < 0 || aktion >= aktionen.length)
 					aktion = 0;	// wenn der nutzer schwachsinn eingibt, liste anzeigen
 				if (aktion >= 0 && aktion < aktionen.length)
 					break;
