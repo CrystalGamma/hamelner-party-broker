@@ -81,10 +81,12 @@ public class Kunde {
 		int betrag = 0;
 		for (Ausleihe ausl: rev) {
 			if (ausl.getPosten() == lagerPosten) {
-				int vorher = menge;
-				menge = ausl.rueckgabe(menge);
+				int alt = ausl.getMenge();
+				ausl = ausl.reduzieren(menge);
+				int diff = alt - ausl.getMenge();
+				menge -= diff;
 				betrag += lagerPosten.ausleihePreis(ausl.getEndZeit() - ausl.getStartZeit(),
-					vorher - menge,
+					diff,
 					zeit - ausl.getEndZeit());
 			}
 			if (!ausl.istLeer())
@@ -92,6 +94,7 @@ public class Kunde {
 		}
 		if (menge > 0)
 			throw new MengenFehler(MengenFehler.Art.ZuvielRueckgeben, menge);
+		lagerPosten.bestandAendern(-gesamtMenge);
 		ausleihe = tmp;
 		Verleih verl = new Verleih(lagerPosten, gesamtMenge, betrag);
 		geschlosseneRechnungspunkte.addFirst(verl);
@@ -108,10 +111,12 @@ public class Kunde {
 		int betrag = 0;
 		for (Ausleihe ausl: rev) {
 			if (ausl.getPosten() == lagerPosten) {
-				int vorher = menge;
-				menge = ausl.verlust(menge);
+				int alt = ausl.getMenge();
+				ausl = ausl.reduzieren(menge);
+				int diff = alt - ausl.getMenge();
+				menge -= diff;
 				betrag += lagerPosten.verlustGebuehr(ausl.getEndZeit() - ausl.getStartZeit(),
-					vorher - menge,
+					diff,
 					zeit - ausl.getEndZeit());
 			}
 			if (!ausl.istLeer())
