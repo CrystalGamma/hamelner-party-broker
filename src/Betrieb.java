@@ -381,7 +381,8 @@ public class Betrieb {
 
 	public static void main(String[] args) {
 		Betrieb betr = new Betrieb();
-		betr.kundeHinzufuegen(new Kunde("Mertens", "Robert"));
+		betr.kundeHinzufuegen(new Kunde("Mertens", "Robert",
+				"Musterstraße", 1234, 12345, "Musterhausen"));
 
 		String[] aktionen = new String[] {
 				"Status / mögliche Befehle",
