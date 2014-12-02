@@ -21,4 +21,8 @@ public class ArtikelFehler extends RuntimeException {
         }
         throw new Error("sollte nie erreicht werden");
     }
+
+    public String getMessage() {
+        return toString();
+    }
 }
