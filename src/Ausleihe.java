@@ -51,6 +51,7 @@ public class Ausleihe {
 
 	public int rueckgabe(int menge) {
 		if (menge > this.menge) {
+			this.lagerPosten.bestand += this.menge;
 			menge -= this.menge;
 			this.menge = 0;
 			//rechnungspunkt erzeugen
