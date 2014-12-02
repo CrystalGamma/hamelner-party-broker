@@ -107,7 +107,7 @@ public class LagerPosten extends Artikel {
 	}
 
 	public int verlustGebuehr(int zeitGeplant, int menge, int zeitDelta) {
-		return ausleihePreis(zeitGeplant, menge, zeitDelta) + (verlustGebuehr*menge);
+		return ausleihePreis(zeitGeplant, menge, zeitDelta) + ((-handlingPauschale+verlustGebuehr)*menge);
 	}
 
 	@Override
