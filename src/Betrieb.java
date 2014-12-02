@@ -221,7 +221,7 @@ public class Betrieb {
 
 	private void umsatzBericht() {
 		for (Kunde kunde : kunden.values()) {
-			System.out.println(kunde + ": " + kunde.berechneUmsatz());
+			System.out.println(kunde + ": " + Services.geldString(kunde.berechneUmsatz()));
 		}
 	}
 

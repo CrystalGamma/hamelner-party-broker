@@ -7,6 +7,6 @@ public class Verleih extends RechnungsPosten {
 
 	@Override
 	public String toString() {
-		return "Verleih von " + this.menge + "x" + this.artikel + " zu einer Gebühr von " + this.betrag + "€.";
+		return "Verleih von " + this.menge + "x" + this.artikel + " zu einer Gebühr von " + Services.geldString(this.betrag) + ".";
 	}
 }
