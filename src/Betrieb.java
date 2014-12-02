@@ -43,7 +43,7 @@ public class Betrieb {
 	private void kundeHinzufuegen(Kunde kunde) {
 		kunden.put(naechsteKundenID++, kunde);
 		aktuellerKunde = kunde;
-		System.out.println("Kunde " + kunde + " erfolgreich erstellt.");
+		System.out.println("Kunde " + kunde + " erfolgreich erstellt. Seine ID ist " + (naechsteKundenID-1) + ".");
 	}
 
 	private void abrechnung() {
@@ -160,11 +160,11 @@ public class Betrieb {
 				continue;
 			}
 
-			if (schluessel >= 1) {
+			if (schluessel > 0 && schluessel < naechsteKundenID) {
 				aktuellerKunde = kunden.get(schluessel);
 				break;
 			} else {
-				System.out.println("IDs beginnen bei 1");
+				System.out.println("Kunden-ID ist ungültig. Bitte um erneute Eingabe: ");
 			}
 		}
 
@@ -385,17 +385,19 @@ public class Betrieb {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Für Befehlsliste 0 eingeben");
 		do {
-			System.out.print("Befehl> ");
-			System.out.flush();
-			int aktion;
+			int aktion = 0;
 			while (true) {
+				System.out.print("Befehl> ");
+				System.out.flush();
 				try{
 					aktion = scanner.nextInt();
-					break;
 				} catch(InputMismatchException e) {
-					System.out.println("Fehler in der Eingabe! Es war keine Zahl");
 					scanner.nextLine();
 				}
+				if (aktion < 0)
+					aktion = 0;	// wenn der nutzer schwachsinn eingibt, liste anzeigen
+				if (aktion >= 0 && aktion < aktionen.length)
+					break;
 			}
 
 			System.out.println(aktionen[aktion]);
@@ -462,6 +464,8 @@ public class Betrieb {
 						break;
 					default:
 				}
+			} catch (InputMismatchException e) {
+				System.out.println("FEHLER: unerwartete Eingabe: " + e.getMessage());
 			} catch(Exception e) {
 				System.out.println("FEHLER: " + e);
 			}
