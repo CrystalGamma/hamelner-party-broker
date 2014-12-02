@@ -326,6 +326,14 @@ public class Betrieb {
 	private void verlust() {
 		int schluesselID;
 		int menge;
+		int index = 0;
+		System.out.printf("%5s  %-20s\n", "ID", "Produktname");
+		for (Artikel art : artikel) {
+			index++;
+			if (!art.istVerleihbar())
+				continue;
+			System.out.printf("%5s  %-20s\n", index-1 , art.bestandString());
+		}
 		Scanner scannerID=new Scanner(System.in);
 		while (true) {
 			System.out.println("Bitte ID des verlorenen Artikels eingeben");

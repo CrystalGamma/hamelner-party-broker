@@ -9,7 +9,7 @@ public class DienstLeistung extends Artikel {
 	}
 	
 	public boolean istVerkaeuflich() {
-		return false;
+		return true;
 	}
 	
 	public boolean istVerleihbar() {
@@ -22,7 +22,7 @@ public class DienstLeistung extends Artikel {
 
 	@Override
 	public boolean istVerfuegbar() {
-		return false;
+		return true;
 	}
 
 	@Override
