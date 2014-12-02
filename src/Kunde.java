@@ -99,6 +99,7 @@ public class Kunde {
 	}
 
 	public Verlust verlustMelden(LagerPosten lagerPosten, int zeit, int menge) {
+		if(lagerPosten.verlustGebuehr == 0) throw new Error("Verlust dieses Produktes ist nicht möglich.");
 		int pos = ausleihe.size();
 		Ausleihe[] rev = new Ausleihe[pos];
 		for (Ausleihe ausl: ausleihe)
