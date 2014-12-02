@@ -12,7 +12,6 @@ public class Betrieb {
 
 	public Betrieb() {
 		artikel = new Artikel[] {
-			
 			/*LagerPosten(String name,int verkaufspreis, int leihGebuehr, int handlingPauschale,
 			int verlustGebuehr, boolean verkaeuflich, boolean verleihbar,
 			int bestand)*/
@@ -88,7 +87,7 @@ public class Betrieb {
 			try {
 				eingabeID=scanner.nextInt();
 
-				if(eingabeID==1||eingabeID==2||eingabeID==3)
+				if(eingabeID == 1 || eingabeID == 2 || eingabeID == 3)
 					break;
 				else
 					System.out.println("Die Option gab es nicht");
@@ -195,14 +194,13 @@ public class Betrieb {
 				continue;
 			}
 			if (schluesselID < 0 || schluesselID >= artikel.length
-					|| artikel[schluesselID].istVerleihbar())
+					|| !artikel[schluesselID].istVerleihbar())
 				System.out.println("Diese Option ist nicht verfügbar");
 			else
 				break;
 		}
 		System.out.println("Bitte eine Menge eingeben");
-		while (true)
-		{
+		while (true) {
 			try {
 				menge=scannerID.nextInt();
 				break;
@@ -317,8 +315,8 @@ public class Betrieb {
 		Ausleihe neueAusleihe = new Ausleihe(zeit, zeit + eingabeTage * 24,
 				(LagerPosten) gewaehltesProdukt, eingabeAnzahl);
 		aktuellerKunde.ausleihe(neueAusleihe);
-		System.out.println("Es wurden " + eingabeAnzahl
-				+ " x " + gewaehltesProdukt.name + " an " + aktuellerKunde + " ausgeliehen.");
+		System.out.println("Es wurden " + eingabeAnzahl + " x "
+				+ gewaehltesProdukt.name + " an " + aktuellerKunde + " ausgeliehen.");
 	}
 
 	private void verlust() {
@@ -337,7 +335,7 @@ public class Betrieb {
 
 
 			if (schluesselID < 0 || schluesselID >= artikel.length
-					|| artikel[schluesselID].istVerleihbar())
+					|| !artikel[schluesselID].istVerleihbar())
 				System.out.println("Diese Option ist nicht verfügbar");
 			else
 				break;
