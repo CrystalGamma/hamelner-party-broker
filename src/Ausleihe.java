@@ -56,6 +56,7 @@ public class Ausleihe {
 			//rechnungspunkt erzeugen
 		} else {
 			this.menge = this.menge - menge;
+			this.lagerPosten.bestand += menge;
 			menge = 0;
 			//rechnungspunkt erzeugen
 		}

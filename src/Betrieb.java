@@ -355,13 +355,6 @@ public class Betrieb {
 
 	public static void main(String[] args) {
 		Betrieb betr = new Betrieb();
-		System.out.println("verfügbar, verleihbar:");
-		betr.bestandAuflisten(false, true, true);
-		System.out.println("gesamt verfügbar:");
-		betr.bestandAuflisten(false, false, true);
-		System.out.println("Gesamtsortiment:");
-		betr.bestandAuflisten(false, false, false);
-
 
 		String[] aktionen = new String[] {
 				"Status / mögliche Befehle",

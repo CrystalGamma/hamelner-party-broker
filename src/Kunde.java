@@ -79,7 +79,7 @@ public class Kunde {
 		for (Ausleihe ausl: rev) {
 			if (ausl.getPosten() == lagerPosten) {
 				int vorher = menge;
-				menge = ausl.verlust(menge);
+				menge = ausl.rueckgabe(menge);
 				betrag += lagerPosten.ausleihePreis(ausl.getEndZeit() - ausl.getStartZeit(),
 					vorher - menge,
 					zeit - ausl.getEndZeit());
