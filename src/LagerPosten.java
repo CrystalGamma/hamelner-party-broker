@@ -59,8 +59,17 @@ public class LagerPosten extends Artikel {
 	}
 
 	public String bestandString() {
-		return bestand + "x " + name + "(" + preis +"€)";
-		//toDo wert übergeben boolean um zu unterscheiden ob objetk verleih verkaufbar oder beides ist
+		if (verkaeuflich && verleihbar) {
+			return bestand + "x " + name + "(Kaufpreis " + Services.geldString(preis)
+					+ ", Handling " + Services.geldString(handlingPauschale)
+					+ ", Leihgebühr " + Services.geldString(leihGebuehr) + "/d)";
+		}
+		if (verkaeuflich)
+			return bestand + "x " + name + "(Kaufpreis " + Services.geldString(preis) + ")";
+		if (verleihbar)
+			return bestand + "x " + name + "(Handling " + Services.geldString(handlingPauschale)
+					+ ", Leihgebühr " + Services.geldString(leihGebuehr) + "/d)";
+		return "";
 	}
 
 	public int kaufPreis(int menge) {

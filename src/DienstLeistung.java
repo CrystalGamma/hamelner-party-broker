@@ -17,7 +17,7 @@ public class DienstLeistung extends Artikel {
 	}
 	
 	public String bestandString() {
-		return this.name + ": " + this.handlingPauschale + "€";
+		return this.name + ": " + Services.geldString(this.handlingPauschale) + "€";
 	}
 
 	@Override

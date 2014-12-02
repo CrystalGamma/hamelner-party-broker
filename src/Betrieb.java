@@ -378,17 +378,19 @@ public class Betrieb {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Für Befehlsliste 0 eingeben");
 		do {
-			System.out.print("Befehl> ");
-			System.out.flush();
-			int aktion;
+			int aktion = 0;
 			while (true) {
+				System.out.print("Befehl> ");
+				System.out.flush();
 				try{
 					aktion = scanner.nextInt();
-					break;
 				} catch(InputMismatchException e) {
-					System.out.println("Fehler in der Eingabe! Es war keine Zahl");
 					scanner.nextLine();
 				}
+				if (aktion < 0)
+					aktion = 0;	// wenn der nutzer schwachsinn eingibt, liste anzeigen
+				if (aktion >= 0 && aktion < aktionen.length)
+					break;
 			}
 
 			System.out.println(aktionen[aktion]);
