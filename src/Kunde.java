@@ -102,6 +102,8 @@ public class Kunde {
 	}
 
 	public Verlust verlustMelden(LagerPosten lagerPosten, int zeit, int menge) {
+		if(lagerPosten.verlustGebuehr == 0)
+			throw new Error("Verlust dieses Produktes ist nicht möglich.");
 		int pos = ausleihe.size();
 		Ausleihe[] rev = new Ausleihe[pos];
 		for (Ausleihe ausl: ausleihe)
@@ -163,14 +165,21 @@ public class Kunde {
 							String[].class);
 	}
 
-	public void kaufen(Artikel artikel, int menge) {
+	public RechnungsPosten kaufen(Artikel artikel, int menge) {
 		if (!artikel.istVerkaeuflich())
 			throw new ArtikelFehler(artikel, ArtikelFehler.Art.NichtVerkaeuflich);
 		if (menge < 0)
 			throw new MengenFehler(MengenFehler.Art.NegativKaufen, menge);
-		if (artikel instanceof LagerPosten)
+		RechnungsPosten posten;
+		if (artikel instanceof LagerPosten) {
 			((LagerPosten)artikel).bestandAendern(-menge);
-		offeneRechnungspunkte.addFirst(new Verkauf(menge, artikel));
+			posten = new Verkauf(menge, artikel);
+			offeneRechnungspunkte.addFirst(posten);
+		} else {
+			posten = new Verkauf(menge, artikel);
+			geschlosseneRechnungspunkte.addFirst(posten);
+		}
+		return posten;
 	}
 
 	public String getAnschrift() {
