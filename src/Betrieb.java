@@ -45,8 +45,11 @@ public class Betrieb {
 
 		nachname = nachname.trim();
 		vorname = vorname.trim();
+		strasse = strasse.trim();
+		ort = ort.trim();
 
-		if (nachname.isEmpty() || vorname.isEmpty())
+		if (nachname.isEmpty() || vorname.isEmpty() || strasse.isEmpty()
+				|| ort.isEmpty())
 			throw new Error("Kann keinen Kunden mit leerem Namen erstellen");
 		
 		Kunde kunde = new Kunde(nachname, vorname, strasse, hausnummer, plz, ort);
@@ -274,6 +277,7 @@ public class Betrieb {
 		
 		System.out.println(eingabeAnzahl + " x " + gewaehltesProdukt.name + " an " + aktuellerKunde + " verkaufen? Die Kosten für den Kunden betragen " + Services.geldString(gewaehltesProdukt.kaufPreis(eingabeAnzahl)) + ".\nBestätigen mit [j], sonst beliebige Taste drücken ");
 		String weiter = scanner.next();
+		
 		if (weiter.equals("j")) {
 			// Kauf abwickeln
 			RechnungsPosten posten = aktuellerKunde.kaufen(gewaehltesProdukt, eingabeAnzahl);
