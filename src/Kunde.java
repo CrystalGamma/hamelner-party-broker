@@ -168,6 +168,10 @@ public class Kunde {
 			((LagerPosten)artikel).bestandAendern(-menge);
 		offeneRechnungspunkte.addFirst(new Verkauf(menge, artikel));
 	}
+
+	public String getAnschrift() {
+		return strasse + " " + hausnummer + "\n" + plz + " " + ort;
+	}
 	
 	@Override
 	public String toString(){

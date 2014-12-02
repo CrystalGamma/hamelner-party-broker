@@ -25,7 +25,6 @@ public class Betrieb {
 			new LagerPosten("Toilettenwagen",0,8900,29900,0, false, true, 6),
 			new DienstLeistung("Frischwasserinstallation",18500)
 		};
-		kundeHinzufuegen(new Kunde("Mertens", "Robert"));
 	}
 
 	private void kundeHinzufuegen() {
@@ -35,6 +34,7 @@ public class Betrieb {
 		String nachname = scanner.nextLine();
 		System.out.print("Vorname: ");
 		String vorname = scanner.nextLine();
+<<<<<<< HEAD
 		System.out.print("Straße: ");
 		String strasse = scanner.nextLine();
 		System.out.print("Hausnummer: ");
@@ -43,6 +43,14 @@ public class Betrieb {
 		int plz = scanner.nextInt();
 		System.out.print("Ort: ");
 		String ort = scanner.nextLine();
+=======
+
+		nachname = nachname.trim();
+		vorname = vorname.trim();
+
+		if (nachname.isEmpty() || vorname.isEmpty())
+			throw new Error("Kann keinen Kunden mit leerem Namen erstellen");
+>>>>>>> e753f0636d82f993d3a8d9852c781815f31b4129
 		
 		Kunde kunde = new Kunde(nachname, vorname, strasse, hausnummer, plz, ort);
 		kundeHinzufuegen(kunde);
@@ -228,8 +236,11 @@ public class Betrieb {
 	}
 
 	private void umsatzBericht() {
+		int id = 1;
 		for (Kunde kunde : kunden.values()) {
-			System.out.println(kunde + ": " + Services.geldString(kunde.berechneUmsatz()));
+			System.out.println(id + ": " + kunde + ": "
+					+ Services.geldString(kunde.berechneUmsatz()));
+			id++;
 		}
 	}
 
@@ -381,6 +392,8 @@ public class Betrieb {
 
 	public static void main(String[] args) {
 		Betrieb betr = new Betrieb();
+		betr.kundeHinzufuegen(new Kunde("Mertens", "Robert",
+				"Musterstraße", 1234, 12345, "Musterhausen"));
 
 		String[] aktionen = new String[] {
 				"Status / mögliche Befehle",
@@ -424,6 +437,7 @@ public class Betrieb {
 				switch (aktion) {
 					case 0:
 						System.out.println("Aktueller Kunde: " + betr.aktuellerKunde);
+						System.out.println(betr.aktuellerKunde.getAnschrift());
 						System.out.println("Bitte Aktion wählen:");
 						int aktionsID = 0;
 						for (String aktionsBeschreibung : aktionen) {
