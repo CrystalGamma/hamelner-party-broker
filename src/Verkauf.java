@@ -8,6 +8,6 @@ public class Verkauf extends RechnungsPosten {
 	@Override
 	public String toString() {
 		return "Verkauf von " + this.menge + "x" + this.artikel
-				+ " zu einem Preis von " + this.betrag + "€.";
+				+ " zu einem Preis von " + Services.geldString(this.betrag) + ".";
 	}
 }

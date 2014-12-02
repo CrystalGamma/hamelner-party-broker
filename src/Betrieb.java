@@ -54,9 +54,8 @@ public class Betrieb {
 	}
 
 	private void anDerUhrDrehen(int zeit) {
-		if (zeit < 0)
-			throw new Error("Zeit kann nicht rückwärts gehen");
-		this.zeit += zeit;
+		if(zeit < 0) System.err.println("Zeit kann nicht rückwärts gehen.");
+		else this.zeit += zeit;
 	}
 
 	private void bestandAuflisten(boolean verk, boolean verl, boolean verf) {
@@ -222,7 +221,7 @@ public class Betrieb {
 
 	private void umsatzBericht() {
 		for (Kunde kunde : kunden.values()) {
-			System.out.println(kunde + ": " + kunde.berechneUmsatz());
+			System.out.println(kunde + ": " + Services.geldString(kunde.berechneUmsatz()));
 		}
 	}
 
@@ -258,7 +257,7 @@ public class Betrieb {
 		int eingabeAnzahl = scanner.nextInt();
 		
 		
-		System.out.println(eingabeAnzahl + " x " + gewaehltesProdukt.name + " an " + aktuellerKunde + " verkaufen? Die Kosten für den Kunden betragen €" + gewaehltesProdukt.kaufPreis(eingabeAnzahl) + ".\nBestätigen mit [j], sonst beliebige Taste drücken ");
+		System.out.println(eingabeAnzahl + " x " + gewaehltesProdukt.name + " an " + aktuellerKunde + " verkaufen? Die Kosten für den Kunden betragen " + Services.geldString(gewaehltesProdukt.kaufPreis(eingabeAnzahl)) + ".\nBestätigen mit [j], sonst beliebige Taste drücken ");
 		String weiter = scanner.next();
 		if (weiter.equals("j")) {
 			// Kauf abwickeln
@@ -455,8 +454,12 @@ public class Betrieb {
 						betr.kundeWechseln();
 						break;
 					case 15:
-						System.out.println("Wie lange (Stunden)?");
-						betr.anDerUhrDrehen(scanner.nextInt());
+						int eingabe;
+						do {
+							System.out.println("Wie lange (Stunden)?");
+							eingabe = scanner.nextInt();
+							betr.anDerUhrDrehen(eingabe);
+						}while(eingabe < 0);
 						break;
 					case 16:
 						run = false;
