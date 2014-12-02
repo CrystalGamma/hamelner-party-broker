@@ -194,10 +194,11 @@ public class Betrieb {
 				scannerID.nextLine();
 				continue;
 			}
-			if(schluesselID>=-1&&schluesselID<=7)	// FIXME: was tut dies?
-				break;
-			else
+			if (schluesselID < 0 || schluesselID >= artikel.length
+					|| artikel[schluesselID].istVerleihbar())
 				System.out.println("Diese Option ist nicht verfügbar");
+			else
+				break;
 		}
 		System.out.println("Bitte eine Menge eingeben");
 		while (true)
@@ -275,8 +276,8 @@ public class Betrieb {
 
 	private void verleih() {
 		Scanner scanner = new Scanner(System.in);
-		System.out
-				.println("Zum Verleih stehen derzeit folgende Produkte zur Verfügung:");
+		System.out.println(
+				"Zum Verleih stehen derzeit folgende Produkte zur Verfügung:");
 		// TODO: deduplizieren
 		int index = 0;
 		System.out.printf("%5s  %-20s\n", "ID", "Produktname");
@@ -328,17 +329,18 @@ public class Betrieb {
 			System.out.println("Bitte ID des verlorenen Artikels eingeben");
 			try {
 				schluesselID=scannerID.nextInt();
-				
 			} catch(InputMismatchException e) {
 				System.out.println("Fehler in der Eingabe! Es war keine Zahl");
 				scannerID.nextLine();
 				continue;
 			}
 
-			if(schluesselID>-1&&schluesselID<=8)
-				break;
-			else
+
+			if (schluesselID < 0 || schluesselID >= artikel.length
+					|| artikel[schluesselID].istVerleihbar())
 				System.out.println("Diese Option ist nicht verfügbar");
+			else
+				break;
 		}
 		System.out.println("Bitte eine Menge eingeben");
 		while(true)	{
