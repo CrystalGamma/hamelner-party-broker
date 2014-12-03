@@ -11,3 +11,7 @@ funktionen in Betrieb auf global-zustand von kunde umstellen
 
 
 verliust und rückgabe=> reduzieren
+
+preisberechnungs überprüfen
+
+zahlen bei gesammtbestand entfernene
