@@ -159,7 +159,7 @@ public class Betrieb {
 					scanner.nextLine();
 				}
 			} else {
-				System.out.println("Nur 1 oder 2 stehen zur Verfügung");
+				System.out.println("Fehler in der Eingabe!");
 			}
 		}
 		
