@@ -260,6 +260,11 @@ public class Betrieb {
 		}
 	}
 
+	/**
+	 * Eingabeführung zum Abschluss eines Verkaufs eines verfügbaren Objekts.
+	 * 
+	 * Florian Bussmann
+	 */
 	private void verkaufen() {
 		Scanner scanner = new Scanner(System.in);
 
@@ -309,6 +314,11 @@ public class Betrieb {
 		}
 	}
 
+	/**
+	 * Eingabeführung zum Abschluss einer Ausleihe eines verfügbaren Objekts.
+	 * 
+	 * Florian Bussmann
+	 */
 	private void verleih() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println(
@@ -434,6 +444,14 @@ public class Betrieb {
 		}
 	}
 
+	/**
+	 * Initialisiert einen Betrieb und bietet ein Hauptmenü
+	 * für die gängigen Aktionen in diesem Betrieb an.
+	 * 
+	 * @param args nicht verwendet.
+	 * 
+	 * Florian Bussmann
+	 */
 	public static void main(String[] args) {
 		Betrieb betr = new Betrieb();
 		betr.kundeHinzufuegen(new Kunde("Mertens", "Robert",
