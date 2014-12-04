@@ -1,3 +1,7 @@
+package Rechnung;
+
+import Rechnung.RechnungsPosten;
+
 public class Verleih extends RechnungsPosten {
 	public Verleih(LagerPosten posten, int pMenge, int betrag) {
 		this.menge = pMenge;

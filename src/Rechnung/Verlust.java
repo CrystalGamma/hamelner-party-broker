@@ -1,3 +1,7 @@
+package Rechnung;
+
+import Rechnung.RechnungsPosten;
+
 public class Verlust extends RechnungsPosten {
 	public Verlust(LagerPosten posten, int pMenge, int betrag) {
 		this.menge = pMenge;
