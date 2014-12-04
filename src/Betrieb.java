@@ -155,12 +155,8 @@ public class Betrieb {
 					scanner.nextLine();
 					continue;
 				}
-				if (eingabeInt >= 1000 && eingabeInt <= 99998) {
-					aktuellerKunde.setPlz(eingabeInt);
-					eingabeID=2;
-				} else {
-					System.out.println("Plz sind immer 5-Stellig");
-				}
+				aktuellerKunde.setPlz(eingabeInt);
+				eingabeID=2;
 			}
 			if (eingabeID==2) {
 				System.out.println("Geben Sie ihre Straße ein");
