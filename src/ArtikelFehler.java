@@ -1,3 +1,6 @@
+/**
+ * @author Jona Stubbe
+ */
 public class ArtikelFehler extends RuntimeException {
     enum Art {
         NichtVerkaeuflich,

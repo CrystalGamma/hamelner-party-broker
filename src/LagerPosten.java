@@ -47,6 +47,10 @@ public class LagerPosten extends Artikel {
 		verlustGebuehr = p;
 	}
 
+	/**
+	 * Jona Stubbe
+	 * @return eine Menschenlesbare Formatierung von Bestand, Name und Preisen, soweit zutreffend
+	 */
 	public String bestandString() {
 		if (verkaeuflich && verleihbar) {
 			return bestand + "x " + name + "(Kaufpreis " + Services.geldString(preis)
@@ -73,6 +77,13 @@ public class LagerPosten extends Artikel {
 		return verleihbar;
 	}
 
+	/**
+	 * Verändert die Lagermenge des Postens.
+	 * Überprüft ob genug vorhanden ist.
+	 * @throws MengenFehler: wenn der Bestand negativ werden würde
+	 * Jona Stubbe
+	 * @param menge: Änderungswert (+/-)
+	 */
 	public void bestandAendern(int menge) {
 		if (bestand < -menge)
 			throw new MengenFehler(MengenFehler.Art.ZuvielAusgeben, -menge);
@@ -87,6 +98,13 @@ public class LagerPosten extends Artikel {
 		return (stunden + 23) / 24;
 	}
 
+	/**
+	 * berechnet die gesamte Leihgebühr für eine Ausleihe
+	 * Jona Stubbe
+	 * @param zeitGeplant: bei der Ausleihe angegebene Ausleihzeit
+	 * @param menge
+	 * @param zeitDelta: Differenz zwischen tatsächlicher und geplanter Zeit
+	 */
 	public int ausleihePreis(int zeitGeplant, int menge, int zeitDelta) {
 		if (zeitDelta > 0)
 			return menge * (handlingPauschale + leihGebuehr * inTagen(zeitGeplant)
@@ -95,6 +113,13 @@ public class LagerPosten extends Artikel {
 			return menge * (handlingPauschale + leihGebuehr * inTagen(zeitGeplant));
 	}
 
+	/**
+	 * berechnet die Gebühr, die bei Verlust gezahlt werden muss
+	 * Jona Stubbe
+	 * @param zeitGeplant: bei Ausleihe angegebene Ausleihdauer
+	 * @param menge
+	 * @param zeitDelta: Differenz zwischen geplanter Leihdauer und Verlustmeldungszeit
+	 */
 	public int verlustGebuehr(int zeitGeplant, int menge, int zeitDelta) {
 		return ausleihePreis(zeitGeplant, menge, zeitDelta) + ((-handlingPauschale+verlustGebuehr)*menge);
 	}

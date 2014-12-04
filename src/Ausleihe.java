@@ -1,8 +1,19 @@
+/**
+ * @author Jona Stubbe
+ * Immutable Objekte die eine Ausleihe beschreiben
+ */
 public class Ausleihe implements Cloneable {
 	private int startZeit, endZeit;
 	private int menge;
 	private LagerPosten lagerPosten;
 
+	/**
+	 * Jona Stubbe
+	 * @param startZeit: Ausleihezeitpunkt
+	 * @param endZeit: Rückgabefrist
+	 * @param posten: LagerPosten der ausgelihen wird
+	 * @param menge: auszuleihende Menge
+	 */
 	public Ausleihe(int startZeit, int endZeit, LagerPosten posten, int menge) {
 		this.startZeit = startZeit;
 		this.endZeit = endZeit;
@@ -42,6 +53,11 @@ public class Ausleihe implements Cloneable {
 		this.endZeit = endZeit;
 	}
 
+	/**
+	 * Jona Stubbe
+	 * @param menge: Menge um die die Ausleihe zu reduzieren ist
+	 * @return eine um bis zu menge reduzierte Version von sich selbst
+	 */
 	public Ausleihe reduzieren(int menge) {
 		Ausleihe cpy = clone();
 		if (menge > this.menge)
