@@ -423,6 +423,7 @@ public class Betrieb {
 
 	public void gesamtBestand(boolean verk, boolean verl) {
 		int index = 0;
+		System.out.printf("%s\t %s\n", "ID", "Artikel");
 		for (Artikel art : artikel) {
 			index++;
 			if (verl && !art.istVerleihbar())
