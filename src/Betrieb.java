@@ -178,7 +178,8 @@ public class Betrieb {
 		
 	}
 	/**
-	 * @author Leon Westhof
+	 * Diese Methode bietet die Möglichkeit den Kunden mit Hilfe
+	 * Leon Westhof
 	 *  */
 	private void kundeWechseln() {
 		// fragt kunde nach ID , überprüft und setzt
