@@ -159,7 +159,7 @@ public class Betrieb {
 					scanner.nextLine();
 				}
 			} else {
-				System.out.println("Fehler in der Eingabe!");
+				System.out.println("Durch die fehlerhafte Eingabe bitten wir erneut um Ihre Eingabe.");
 			}
 		}
 		
