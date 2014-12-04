@@ -196,7 +196,7 @@ public class Betrieb {
 	private void rueckgabe() {
 		// TODO: deduplizieren
 		int index = 0;
-		System.out.printf("%5s  %-20s\n", "ID", "Produktname");
+		System.out.printf("%5s  %-20s\n", "ID", "Artikel");
 		for (Artikel art : artikel) {
 			index++;	
 			if (!art.istVerleihbar())
@@ -315,7 +315,7 @@ public class Betrieb {
 				"Zum Verleih stehen derzeit folgende Produkte zur Verfügung:");
 		// TODO: deduplizieren
 		int index = 0;
-		System.out.printf("%5s  %-20s\n", "ID", "Produktname");
+		System.out.printf("%5s  %-20s\n", "ID", "Artikel");
 		for (Artikel art : artikel) {
 			index++;
 			if (!art.istVerleihbar() || !art.istVerfuegbar())
@@ -374,7 +374,7 @@ public class Betrieb {
 		int schluesselID;
 		int menge;
 		int index = 0;
-		System.out.printf("%5s  %-20s\n", "ID", "Produktname");
+		System.out.printf("%5s  %-20s\n", "ID", "Artikel");
 		for (Artikel art : artikel) {
 			index++;
 			if (!art.istVerleihbar())
