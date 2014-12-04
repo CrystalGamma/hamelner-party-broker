@@ -215,7 +215,7 @@ public class Betrieb {
 	private void rueckgabe() {
 		// TODO: deduplizieren
 		int index = 0;
-		System.out.printf("%5s  %-20s\n", "ID", "Produktname");
+		System.out.printf("%5s  %-20s\n", "ID", "Artikel");
 		for (Artikel art : artikel) {
 			index++;	
 			if (!art.istVerleihbar())
@@ -279,6 +279,11 @@ public class Betrieb {
 		}
 	}
 
+	/**
+	 * Eingabeführung zum Abschluss eines Verkaufs eines verfügbaren Objekts.
+	 * 
+	 * Florian Bussmann
+	 */
 	private void verkaufen() {
 		Scanner scanner = new Scanner(System.in);
 
@@ -328,13 +333,18 @@ public class Betrieb {
 		}
 	}
 
+	/**
+	 * Eingabeführung zum Abschluss einer Ausleihe eines verfügbaren Objekts.
+	 * 
+	 * Florian Bussmann
+	 */
 	private void verleih() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println(
 				"Zum Verleih stehen derzeit folgende Produkte zur Verfügung:");
 		// TODO: deduplizieren
 		int index = 0;
-		System.out.printf("%5s  %-20s\n", "ID", "Produktname");
+		System.out.printf("%5s  %-20s\n", "ID", "Artikel");
 		for (Artikel art : artikel) {
 			index++;
 			if (!art.istVerleihbar() || !art.istVerfuegbar())
@@ -365,7 +375,7 @@ public class Betrieb {
 				+ " in unserem Lager, wie viele davon möchten Sie an den Kunden verleihen? ");
 		int eingabeAnzahl = scanner.nextInt();
 		// Zeitdauer erfragen
-		System.out.print("Bitte geben Sie die prognostizierte Zeitdauer an, für die Sie das Produkt verleihen wollen: ");
+		System.out.print("Wie lange soll der Artikel ausgeliehen werden? ");
 		int eingabeTage = 0;
 		do {
 			eingabeTage = scanner.nextInt();
@@ -395,7 +405,7 @@ public class Betrieb {
 		int schluesselID;
 		int menge;
 		int index = 0;
-		System.out.printf("%5s  %-20s\n", "ID", "Produktname");
+		System.out.printf("%5s  %-20s\n", "ID", "Artikel");
 		for (Artikel art : artikel) {
 			index++;
 			if (!art.istVerleihbar())
@@ -430,7 +440,7 @@ public class Betrieb {
 				scannerID.nextLine();
 			}
 		}
-		System.out.println("Sind Sie sicher?\nBestätigen Sie mit [j],verneinen Siemit einer beliebigen Taste");
+		System.out.println("Sind Sie sicher?\nBestätigen Sie mit [j], verneinen Siemit einer beliebigen Taste");
 		String weiter = scannerID.next();
 		if (weiter.equals("j")) {
 			System.out.println("Bitte bezahlen: " + aktuellerKunde.verlustMelden(
@@ -455,6 +465,14 @@ public class Betrieb {
 		}
 	}
 
+	/**
+	 * Initialisiert einen Betrieb und bietet ein Hauptmenü
+	 * für die gängigen Aktionen in diesem Betrieb an.
+	 * 
+	 * @param args nicht verwendet.
+	 * 
+	 * Florian Bussmann
+	 */
 	public static void main(String[] args) {
 		Betrieb betr = new Betrieb();
 		betr.kundeHinzufuegen(new Kunde("Mertens", "Robert",
