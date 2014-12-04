@@ -33,7 +33,11 @@ public class Betrieb {
 			new DienstLeistung("Hallenreinigung bis 100 qm",450000),
 		};
 	}
-
+	/**
+	 * Diese Methode fügt der  HashMap einen weiteren Kunden hinzu
+	 * 
+	 *  Leon Westhof
+	 *  */
 	private void kundeHinzufuegen() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Bitte machen Sie folgende Angaben");
@@ -97,12 +101,17 @@ public class Betrieb {
 			System.out.printf(format, index, art.bestandString());
 		}
 	}
-
+	/**
+	 * Diese Methode diehnt dazu die Addresse des Kunden zu ändern.
+	 * Man hat die Möglichlichkeit 
+	 * Leon Westhof
+	 *  */
 	private void datenAendern() {
 		System.out.println("Was möchten Sie ändern");
 		System.out.println("1 :komplette Anschrift ändern");
 		System.out.println("2 :Straße und Hausnummer ändern");
-		System.out.println("3 :Abbrechen");
+		System.out.println("3 :Name ändern");
+		System.out.println("4 :Abbrechen");
 		int eingabeID;
 		
 		Scanner scanner=new Scanner(System.in);
@@ -110,7 +119,7 @@ public class Betrieb {
 			try {
 				eingabeID=scanner.nextInt();
 
-				if(eingabeID == 1 || eingabeID == 2 || eingabeID == 3)
+				if(eingabeID == 1 || eingabeID == 2 || eingabeID == 3|| eingabeID == 4)
 					break;
 				else
 					System.out.println("Die Option gab es nicht");
@@ -124,8 +133,14 @@ public class Betrieb {
 		int eingabeInt;
 		String eingabe;
 		while (true) {
-			if (eingabeID==3)
+			if (eingabeID==4)
 				break;
+			if(eingabeID==3){
+				System.out.println("Geben Sie ihren Nachnamen ein");
+				eingabe = scanner.next();
+				aktuellerKunde.setName(eingabe);
+				break;
+			}
 			if (eingabeID==1) {
 				System.out.println("Geben Sie ihren Ort ein");
 				eingabe = scanner.next();
@@ -164,7 +179,9 @@ public class Betrieb {
 		}
 		
 	}
-
+	/**
+	 * @author Leon Westhof
+	 *  */
 	private void kundeWechseln() {
 		// fragt kunde nach ID , überprüft und setzt
 		if (kunden.isEmpty())
@@ -192,7 +209,9 @@ public class Betrieb {
 		}
 
 	}
-
+	/**
+	 * @author Leon Westhof
+	 *  */
 	private void rueckgabe() {
 		// TODO: deduplizieren
 		int index = 0;
@@ -369,7 +388,9 @@ public class Betrieb {
 			System.out.println("Verleih abgebrochen.");
 		}
 	}
-
+	/**
+	 * @author Leon Westhof
+	 *  */
 	private void verlust() {
 		int schluesselID;
 		int menge;

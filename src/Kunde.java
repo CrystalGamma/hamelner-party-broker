@@ -1,4 +1,5 @@
 import java.util.Arrays;
+
 import java.util.LinkedList;
 public class Kunde {
 	String name, vorName, strasse, ort;
@@ -7,7 +8,9 @@ public class Kunde {
 	LinkedList<Ausleihe> ausleihe = new LinkedList<Ausleihe>();
 	LinkedList<RechnungsPosten> offeneRechnungspunkte = new LinkedList<RechnungsPosten>();
 	LinkedList<RechnungsPosten> geschlosseneRechnungspunkte = new LinkedList<RechnungsPosten>();
-
+	/**
+	 * @author Leon Westhof
+	 *  */
 	public Kunde(String name, String vorName, String straße, int hausnummer, int plz,String ort) {
 		this.name = name;
 		this.vorName = vorName;
@@ -21,7 +24,9 @@ public class Kunde {
 
 		this.strasse = strasse;
 	}
-
+	/**
+	 * @author Leon Westhof
+	 *  */
 	public void setHausnummer(int hausnummer) {
 		// b oder a zusatz muss abgefangen werden
 		if (hausnummer > 0) {
@@ -30,13 +35,18 @@ public class Kunde {
 			throw new AdressFehler("Negative oder 0 Hausnummern gibt es nicht");
 		}
 	}
-
+	/**
+	 * @author Leon Westhof
+	 *  */
 	public void setPlz(int plz) {
 		if (plz >= 1000 && plz <= 99998) {
 			this.plz = plz;
 		} else {
 			throw new AdressFehler("Plz ist immer 5-stellig");//die überprüfung ist überflüssig
 		}
+	}
+	public void setName(String name){
+		this.name=name;
 	}
 
 	public void setOrt(String ort) {
