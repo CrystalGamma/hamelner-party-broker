@@ -1,5 +1,3 @@
-import Rechnung.RechnungsPosten;
-
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.LinkedList;

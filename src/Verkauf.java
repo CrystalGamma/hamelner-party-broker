@@ -1,7 +1,3 @@
-package Rechnung;
-
-import Rechnung.RechnungsPosten;
-
 public class Verkauf extends RechnungsPosten {
 	public Verkauf(int pMenge, Artikel pArtikel) {
 		this.menge = pMenge;

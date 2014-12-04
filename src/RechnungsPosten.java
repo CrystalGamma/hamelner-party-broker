@@ -1,5 +1,3 @@
-package Rechnung;
-
 public abstract class RechnungsPosten {
 	protected int menge;
 	protected int betrag;

@@ -1,8 +1,3 @@
-import Rechnung.RechnungsPosten;
-import Rechnung.Verkauf;
-import Rechnung.Verleih;
-import Rechnung.Verlust;
-
 import java.util.Arrays;
 
 import java.util.LinkedList;
