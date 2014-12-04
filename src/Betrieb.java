@@ -421,6 +421,18 @@ public class Betrieb {
 		
 	}
 
+	public void gesamtBestand(boolean verk, boolean verl) {
+		int index = 0;
+		for (Artikel art : artikel) {
+			index++;
+			if (verl && !art.istVerleihbar())
+				continue;
+			if (verk && !art.istVerkaeuflich())
+				continue;
+			System.out.printf("%d\t %s", index-1,  art.toString());
+		}
+	}
+
 	public static void main(String[] args) {
 		Betrieb betr = new Betrieb();
 		betr.kundeHinzufuegen(new Kunde("Mertens", "Robert",
@@ -484,13 +496,13 @@ public class Betrieb {
 						betr.bestandAuflisten(false, true, true);
 						break;
 					case 3:
-						betr.bestandAuflisten(true, false, false);
+						betr.gesamtBestand(true, false);
 						break;
 					case 4:
 						betr.verkaufen();
 						break;
 					case 5:
-						betr.bestandAuflisten(false, true, false);
+						betr.gesamtBestand(false, true);
 						break;
 					case 6:
 						betr.verleih();
