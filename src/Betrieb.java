@@ -232,9 +232,17 @@ public class Betrieb {
 				scannerID.nextLine();
 			}
 		}
-		System.out.println("Bitte bezahlen: " +
-				aktuellerKunde.rueckgabe((LagerPosten) artikel[schluesselID],
-						this.zeit, menge).toString());
+		System.out.println("Sind Sie sicher?\nBestätigen Sie mit [j],verneinen Sie mit einer beliebigen Taste");
+		String weiter = scannerID.next();
+		if (weiter.equals("j")) {
+			System.out.println("Bitte bezahlen: " +
+					aktuellerKunde.rueckgabe((LagerPosten) artikel[schluesselID],
+							this.zeit, menge).toString());
+			
+		} else {
+			System.out.println("Abgebrochen.");
+		}
+		
 	}
 
 	private void transaktionen() {
@@ -401,8 +409,16 @@ public class Betrieb {
 				scannerID.nextLine();
 			}
 		}
-		System.out.println("Bitte bezahlen: " + aktuellerKunde.verlustMelden(
-				(LagerPosten) artikel[schluesselID], this.zeit, menge).toString());
+		System.out.println("Sind Sie sicher?\nBestätigen Sie mit [j],verneinen Siemit einer beliebigen Taste");
+		String weiter = scannerID.next();
+		if (weiter.equals("j")) {
+			System.out.println("Bitte bezahlen: " + aktuellerKunde.verlustMelden(
+					(LagerPosten) artikel[schluesselID], this.zeit, menge).toString());
+			
+		} else {
+			System.out.println("Abgebrochen.");
+		}
+		
 	}
 
 	public static void main(String[] args) {
