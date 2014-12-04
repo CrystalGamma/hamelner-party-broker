@@ -346,7 +346,7 @@ public class Betrieb {
 				+ " in unserem Lager, wie viele davon möchten Sie an den Kunden verleihen? ");
 		int eingabeAnzahl = scanner.nextInt();
 		// Zeitdauer erfragen
-		System.out.print("Bitte geben Sie die prognostizierte Zeitdauer an, für die Sie das Produkt verleihen wollen: ");
+		System.out.print("Wie lange soll der Artikel ausgeliehen werden? ");
 		int eingabeTage = 0;
 		do {
 			eingabeTage = scanner.nextInt();
@@ -409,7 +409,7 @@ public class Betrieb {
 				scannerID.nextLine();
 			}
 		}
-		System.out.println("Sind Sie sicher?\nBestätigen Sie mit [j],verneinen Siemit einer beliebigen Taste");
+		System.out.println("Sind Sie sicher?\nBestätigen Sie mit [j], verneinen Siemit einer beliebigen Taste");
 		String weiter = scannerID.next();
 		if (weiter.equals("j")) {
 			System.out.println("Bitte bezahlen: " + aktuellerKunde.verlustMelden(
