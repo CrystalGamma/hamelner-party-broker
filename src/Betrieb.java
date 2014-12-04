@@ -429,7 +429,7 @@ public class Betrieb {
 				continue;
 			if (verk && !art.istVerkaeuflich())
 				continue;
-			System.out.printf("%d\t %s", index-1,  art.toString());
+			System.out.printf("%d\t %s\n", index-1,  art.toString());
 		}
 	}
 
