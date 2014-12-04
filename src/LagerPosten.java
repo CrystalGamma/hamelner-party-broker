@@ -21,7 +21,7 @@ public class LagerPosten extends Artikel {
 		this.ueberzugsGebuehr = leihGebuehr / 5 + 1;
 	}
 
-	public LagerPosten(String name, int wert, boolean verk, boolean verl,
+	/*public LagerPosten(String name, int wert, boolean verk, boolean verl,
 			int best) {
 		this.name = name;
 		verleihbar = verl;
@@ -32,7 +32,7 @@ public class LagerPosten extends Artikel {
 		ueberzugsGebuehr = leihGebuehr / 5 + 1;
 		verlustGebuehr = wert - (wert / 2);
 		bestand = best;
-	}
+	}*/
 
 	public void setVerkaeuflich(boolean b) {
 		verkaeuflich = b;
