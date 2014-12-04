@@ -82,7 +82,7 @@ public class Betrieb {
 		else this.zeit += zeit;
 	}
 
-	private void bestandAuflisten(boolean verk, boolean verl, boolean verf) {
+	private void bestandAuflisten(boolean verk, boolean verl) {
 		int len = Math.max((int) Math.ceil(Math.log10(artikel.length)), 2);
 		System.out.printf("%" + len + "s Artikel\n", "ID");
 		String format = "%" + len + "s %s\n";
@@ -92,7 +92,7 @@ public class Betrieb {
 				continue;
 			if (verl && !art.istVerleihbar())
 				continue;
-			if (verf && !art.istVerfuegbar())
+			if (!art.istVerfuegbar())
 				continue;
 			System.out.printf(format, index, art.bestandString());
 		}
@@ -266,7 +266,7 @@ public class Betrieb {
 		// Gewünschtes Produkt erfragen
 		System.out.println(
 				"Zum Verkauf stehen derzeit folgende Produkte zur Verfügung:");
-		this.bestandAuflisten(true, false, true);
+		this.bestandAuflisten(true, false);
 		int eingabeProdukt;
 		Artikel gewaehltesProdukt = null;
 		try {
@@ -490,10 +490,10 @@ public class Betrieb {
 						}
 						break;
 					case 1:
-						betr.bestandAuflisten(true, false, true);
+						betr.bestandAuflisten(true, false);
 						break;
 					case 2:
-						betr.bestandAuflisten(false, true, true);
+						betr.bestandAuflisten(false, true);
 						break;
 					case 3:
 						betr.gesamtBestand(true, false);
