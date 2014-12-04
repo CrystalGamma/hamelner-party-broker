@@ -74,7 +74,9 @@ Bucht eine bestimmte Menge zurück, gibt ggf. die Menge, die von anderen Ausleih
 \section{Artikel (abstract)}
 \begin{description}
 \item[toString() $\rightarrow$ String]
-gibt die Daten des Postens, zB in der Form \enquote{<Bestand> x <ID> <Name> (<Einheit>)} als String zurück
+gibt den Namen des Artikels zurück
+\item[bestandString() $\rightarrow$ String]
+die Daten des Postens, zB in der Form \enquote{<Bestand> x <ID> <Name> (<Einheit>)} als String zurück
 \item[istVerkaeuflich() $\rightarrow$ boolean]
 Bestimmt ob der Artikel verkäuflich ist.
 \item[istVerleihbar() $\rightarrow$ boolean]

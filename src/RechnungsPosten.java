@@ -1,5 +1,4 @@
 public abstract class RechnungsPosten {
-	private int zeit;
 	protected int menge;
 	protected int betrag;
 	protected Artikel artikel;
