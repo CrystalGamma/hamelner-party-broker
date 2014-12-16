@@ -25,7 +25,7 @@ public class ArtikelFehler extends RuntimeException {
     }
 
     /**
-     *  Gibt eine lesbare Formatierung der Instanz der Klasse ArtikelFehler zurück.
+     * Gibt eine lesbare Formatierung der Instanz der Klasse ArtikelFehler zurück.
 	 * 
 	 * @return String aus Name des Artikels sowie Fehlerbeschreibung
      */

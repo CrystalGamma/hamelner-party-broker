@@ -1,12 +1,35 @@
+/**
+ * Die Klasse LagerPosten basiert auf einem Artikel, wird vom Funktionsumfang her jedoch
+ * deutlich erweitert. So werden unter Anderem Gebühren für das Leihen, Überziehen und den
+ * Verlust von LagerPosten eingeführt sowie die Methoden zur Berechnung der sich daraus
+ * ergebenden Preise im Falle einer Ausleihe.
+ */
 public class LagerPosten extends Artikel {
 	int bestand;
 	boolean verkaeuflich, verleihbar;
 	int preis, leihGebuehr, ueberzugsGebuehr, verlustGebuehr;
 
+	/**
+	 * Erzeugt eine Instanz der Klasse LagerPosten.
+	 * 
+	 * @param name Produktname
+	 */
 	public LagerPosten(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * Erzeugt eine Instanz der Klasse LagerPosten.
+	 * 
+	 * @param name Produktname
+	 * @param verkaufspreis Verkaufspreis
+	 * @param leihGebuehr Leihgebühr
+	 * @param handlingPauschale Handling-Pauschale
+	 * @param verlustGebuehr Verlustgebühr
+	 * @param verkaeuflich Ist das Produkt verkäuflich?
+	 * @param verleihbar Ist das Produkt verleihbar?
+	 * @param bestand Bestand des Produkts
+	 */
 	public LagerPosten(String name,int verkaufspreis, int leihGebuehr, int handlingPauschale,
 			int verlustGebuehr, boolean verkaeuflich, boolean verleihbar,
 			int bestand) {
@@ -21,28 +44,56 @@ public class LagerPosten extends Artikel {
 		this.ueberzugsGebuehr = leihGebuehr / 5 + 1;
 	}
 
-	
-
+	/**
+	 * Ändert, ob es möglich sein soll, den LagerPosten käuflich zu erwerben.
+	 * 
+	 * @param b Soll das Produkt verkäuflich sein?
+	 */
 	public void setVerkaeuflich(boolean b) {
 		verkaeuflich = b;
 	}
 
+	/**
+	 * Ändert, ob es möglich sein soll, den LagerPosten auszuleihen.
+	 * 
+	 * @param b Soll das Produkt verleihbar sein?
+	 */
 	public void setVerleihbar(boolean b) {
 		verleihbar = b;
 	}
 
+	/**
+	 * Ändert den Preis der Instanz.
+	 * 
+	 * @param p Neuer Preis des LagerPosten
+	 */
 	public void setPreis(int p) {
 		preis = p;
 	}
 
+	/**
+	 * Ändert die Leihgebühr der Instanz.
+	 * 
+	 * @param p Neue Leihgebühr des LagerPosten
+	 */
 	public void setLeihGebuehr(int p) {
 		leihGebuehr = p;
 	}
 
+	/**
+	 * Ändert die Überzugsgebühr der Instanz.
+	 * 
+	 * @param p Neue Überzugsgebühr des LagerPosten
+	 */
 	public void setUeberzugsGebuehr(int p) {
 		ueberzugsGebuehr = p;
 	}
 
+	/**
+	 * Ändert die Verlustgebühr der Instanz.
+	 * 
+	 * @param p Neue Verlustgebühr des LagerPosten
+	 */
 	public void setVerlustGebuehr(int p) {
 		verlustGebuehr = p;
 	}
@@ -65,14 +116,29 @@ public class LagerPosten extends Artikel {
 		return "";
 	}
 
+	/**
+	 * Ermittelt den Kaufpreis des LagerPosten unter Berücksichtung einer angegebenen Menge.
+	 * 
+	 * @param menge Menge zu der der Kaufpreis ermittelt werden soll
+	 */
 	public int kaufPreis(int menge) {
 		return preis*menge;
 	}
 
+	/**
+	 * Ermittelt, ob der LagerPosten verkäuflich ist.
+	 * 
+	 * @return LagerPosten verkäuflich?
+	 */
 	public boolean istVerkaeuflich() {
 		return verkaeuflich;
 	}
 
+	/**
+	 * Ermittelt, ob der LagerPosten verleihbar ist.
+	 * 
+	 * @return LagerPosten verleihbar?
+	 */
 	public boolean istVerleihbar() {
 		return verleihbar;
 	}
@@ -90,10 +156,21 @@ public class LagerPosten extends Artikel {
 		bestand += menge;
 	}
 
+	/**
+	 * Ermittelt den Bestand der Instanz.
+	 * 
+	 * @return Aktueller Bestand des LagerPosten
+	 */
 	public int getBestand() {
 		return bestand;
 	}
 
+	/**
+	 * Rechnet Stunden in Tage um.
+	 * 
+	 * @param stunden Anzahl Stunden
+	 * @return Anzahl der Stunden in Tage
+	 */
 	private static int inTagen(int stunden) {
 		return (stunden + 23) / 24;
 	}
@@ -128,6 +205,11 @@ public class LagerPosten extends Artikel {
 		return ausleihePreis(zeitGeplant, menge, zeitDelta) + ((-handlingPauschale+verlustGebuehr)*menge);
 	}
 
+	/**
+	 * Ermittelt ob der Bestand der Instanz größer als 0 ist.
+	 * 
+	 * @return Lagerposten verfügbar?
+	 */
 	@Override
 	public boolean istVerfuegbar() {
 		return bestand > 0;

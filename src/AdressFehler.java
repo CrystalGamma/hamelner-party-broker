@@ -4,7 +4,7 @@
  */
 public class AdressFehler extends Error {
 	/**
-	 * Erzeugt eine Instanz der Klasse AdressFehler mit einer Fehlermeldung
+	 * Erzeugt eine Instanz der Klasse AdressFehler mit einer Fehlermeldung.
 	 * 
 	 * @param str Gewünschte Fehlermeldung
 	 */
