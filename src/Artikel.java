@@ -1,3 +1,7 @@
+/**
+ * Die Klasse Artikel liefert das abstrakte Gerüst für einen Artikel,
+ * die später spezialisiert werden können.
+ */
 public abstract class Artikel {
 	protected String name;
 	protected int handlingPauschale;
