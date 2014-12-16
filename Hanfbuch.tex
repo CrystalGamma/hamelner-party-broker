@@ -1,0 +1,112 @@
+﻿\documentclass[a4paper,12pt,titlepage]{article}
+\usepackage[a4paper]{geometry}
+\usepackage[ngerman]{babel}
+\usepackage{fontspec}
+\setmainfont[Ligatures=TeX]{Linux Libertine O}
+\usepackage{csquotes}
+\usepackage{hyperref}
+% \usepackage{graphicx}
+\title{Benutzerhandbuch}
+\author{Florian Bussmann \and Leon Westhof \and Jona Stubbe}
+\begin{document}
+\maketitle
+\tableofcontents
+
+\part{der Startbildschirm}
+\section
+Nach dem Programmstart sehen Sie in der Ausgabe \enquote{Kunde Mertens, Robert erfolgreich erstellt. Seine ID ist 1.}.
+Diese Standartmeldung sagt Ihnen, dass ein Kunde erstellt wurde mit der Kunden ID 1 und dem Namen Robert Mertens.
+
+In der zweiten Zeile steht \enquote{Für Befehlsliste 0 eingeben}.
+Dieser Hinweis sagt Ihnen, dass Sie in der Befehlszeile die 0 für die Liste aller möglichen Befehle eingeben können.
+Sie können als vorgebildeter nutzter aber auch jede andere Nummer, die sich von anderen Nutzungen her kennen eingeben.
+
+Nachdem Sie die 0 eingegeben haben, sehen Sie in den ersten 3 Zeilen den aktuellen Kunden mit dem Sie nun arbeiten.
+Sollte dieser nicht neben Ihnen am Arbeitstisch sitzten oder sie jemand anderen Bearbeiten wollen, lesen Sie im kapitel Kunden wechseln nach wie das geht.
+
+\part{Die Befehle}
+Jeden eingegebenen Befehl müssen Sie mit Enter bestätigen.
+
+\section{Der Status}
+Mit dem Befehl 0 erhalten Sie einige Zeilen, die den aktuell ausgewählten Kunden beschreiben,
+gefolgt von der Befehlsliste.
+
+\section{Liste aller zur Zeit verkäuflichen Objekte}
+Mit 1 können Sie im ersten Teil alle Objekte sehen,
+ die einerseits verkäuflich sind und andererseits zur Zeit verfügabr also im Lager sind und im zweiten Teil der Liste sehen Sie alle Dienstleistungen.
+
+In der ersten Zeile sehen sie die Meldung \enquote{Auflistung der aktuell verfügbaren verkäuflichen Gegenstände}
+ und in der Zweiten die Überschriften der folgenden Tabelle: ID und Artikel.
+Vor den Objekten sehen Sie die ID der Objekte, welche immer gleich ist
+ und auf dieses Objekt kennzeichnet.
+Damit können Sie in weiteren Funktionen diese Objektgruppe auswählen,
+ jedoch erhalten Sie immer auch eine Liste mit den Objekten auf welche Sie diese Funktionen anwenden können.
+
+Dahinter sehen Sie die aktuelle verfügbare Menge an Objekten und dahinter den Namen des Objektes.
+Hinter den Namen sehen Sie in Klammern die entsprechenden Kosten für das Objekte.
+Bei Objekten sehen Sie zuerst den Kaufpreis, dann die Handlinggebühr und die tägliche Leihgebühr.
+Dienstleistungen können Sie an dem unterschiedlichen Formatierungsstil erkennen:
+Bei diesen stehen einfach die Kosten für eine Nutzung der Dienstleistung dahinter.
+
+\section{Liste aller zur Zeit verleihbaren Gegenstände}
+Mit 2 in der Eingabezeile können Sie im alle Objekte sehen,
+ die einerseits verleihbar sind und andererseits zur zeit verfügbar, also im Lager sind.
+
+In der ersten Zeile sehen sie die Meldung \enquote{Auflistung der aktuell verfügbaren verkäuflichen Gegenstände}
+ und in der Zweiten die Überschriften der folgenden Tabelle: ID und Artikel.
+Vor den Objekten sehen Sie die ID der Objekte, welche immer gleich ist und auf dieses Objekt kennzeichnet.
+Damit können Sie in weiteren Funktionen diese Objektgruppe auswählen,
+ jedoch erhalten Sie immer auch eine Liste mit den Objekten auf welche Sie diese Funktionen anwenden können.
+
+Dahinter sehen Sie die aktuelle verfügbare Menge an Objekten und dahinter den Namen des Objektes.
+Hinter den Namen sehen Sie in Klammern, die entsprechenden Kosten für das Objekte.
+Bei Objekten, die sowohl verleihbar als auch verkäufliche sind sehen sie zuerst den Kaufpreis.
+Diese ist hier nicht von Bedeutung.
+Danach -- oder bei Objekten, die nur die nur verleihbar sind, am Anfang --
+steht die Handlinggebühr und die tägliche Leihgebühr.
+
+\section{Auflistung des verkäuflichen Gesamtbestandes}
+Mit dieser Option, welche Sie mit 3 aufrufen, sehen Sie den Bestand an Objekten, die verkäuflich sind.
+In der ersten Zeile sehen sie die Meldung \enquote{Auflistung des gesamten verkäuflichen Bestands}
+ und in der Zweiten die Überschriften der folgenden Tabelle: ID und Artikel.
+
+Folgend sehen Sie nun die schon bekannte Objekt-ID und den entsprechenden Artikel.
+
+\section{Verkauf eines Objektes}
+Mit 4 öffnen Sie ein Menüpunkt zum Verkaufen eines Objektes bzw. zum buchen einer Dienstleistung.
+Seien Sie noch mal daraufhin gewiesen, dass alle Aktionen mit dem ausgewählten Konto durchgeführt werden.
+
+In der ersten Zeile sehen sie die Meldung" Verkauf eines verfügbaren Objekts"
+ und in der Zweiten die Meldung \enquote{Zum Verkauf stehen derzeit folgende Produkte zur Verfügung:}.
+Danach folgen die Überschriften der folgenden Tabelle: ID und Artikel.
+
+Vor den Objekten sehen Sie die ID der Objekte, welche immer gleich ist und auf dieses Objekt kennzeichnet.
+Damit können Sie in weiteren Funktionen diese Objektgruppe auswählen,
+ jedoch erhalten Sie immer auch eine Liste mit den Objekten auf welche Sie diese Funktionen anwenden können.
+
+Dahinter sehen Sie die aktuelle verfügbare Menge an Objekten und dahinter den Namen des Objektes.
+Hinter den Namen sehen Sie in Klammern, die entsprechenden Kosten für das Objekte.
+Bei Objekten, die sowohl verleihbar als auch verkäufliche sind sehen sie zuerst den Kaufpreis.
+Danach -- oder bei Objekten, die nur die nur verleihbar sind, am Anfang --
+steht die Handlinggebühr und die tägliche Leihgebühr.
+
+In der letzten Zeile sehen sie die Meldung \enquote{Welches Produkt möchten Sie verkaufen?}.
+Dahinter schrieben Sie einfach die Produkt-ID. Bei einer Falscheingabe erhalten Sie die Meldung \enquote{Produktnummer ungültig.}.
+Nachdem Sie nun ein Objekt gewählt haben,
+ erhalten Sie bei Objekten eine Auskunft über die verfügbare Menge und in Klammer die Kosten.
+
+Danach werden Sie nach der Menge gefragt, die Sie ausleihen möchten.
+Bei Dienstleistungen werden Sie gefragt wie viele Sie benötigen.
+Nach dieser Eingabe erhalten Sie eine Zusammenfassung des Gewählten mit Kosten. 
+Diese können Sie nun mit j bestätigen, wobei Sie eine Bestätigung der Buchung erhalten oder Abbrechen,
+ wobei die Meldung \enquote{Verkauf abgebrochen.} ausgegeben wird.
+
+\section{verleihbarer Gesamtbestand}
+Mit dieser Option, welche Sie mit 5 aufrufen, sehen Sie den Bestand an Objekten,
+ die verkäuflich sind und alle angebotenen Dienstleistungen.
+
+In der ersten Zeile sehen sie die Meldung \enquote{Auflistung des gesamten verkäuflichen Bestands}
+ und in der Zweiten die Überschriften der folgenden Tabelle: ID und Artikel.
+Folgend sehen Sie nun die schon bekannte Objekt-ID und den entsprechenden Artikel.
+
+\end{document}
