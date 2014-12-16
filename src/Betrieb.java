@@ -518,9 +518,9 @@ public class Betrieb {
 	 * Initialisiert einen Betrieb und bietet ein Hauptmenü
 	 * für die gängigen Aktionen in diesem Betrieb an.
 	 * 
-	 * @param args nicht verwendet.
-	 * 
 	 * Florian Bussmann
+	 * 
+	 * @param args nicht verwendet.
 	 */
 	public static void main(String[] args) {
 		Betrieb betr = new Betrieb();
