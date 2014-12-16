@@ -77,9 +77,12 @@ public class Betrieb {
 	private void abrechnung() {
 		LinkedList<RechnungsPosten> posten = aktuellerKunde.abrechnung();
 		if(posten.size() > 0){
+			int zuZahlen = 0;
 			for (RechnungsPosten p : posten) {
+				zuZahlen += p.betrag;
 				System.out.println(p);
 			}
+			System.out.println("Bitte bezahlen: " + Services.geldString(zuZahlen) + ".");
 		}else{
 			System.out.println("Der aktuelle Kunde " + aktuellerKunde + " hat keine offenen Transaktionen.");
 		}
