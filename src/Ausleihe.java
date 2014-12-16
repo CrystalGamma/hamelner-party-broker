@@ -25,30 +25,62 @@ public class Ausleihe implements Cloneable {
 			throw new MengenFehler(MengenFehler.Art.NegativLeihen, menge);
 	}
 
+	/**
+	 * Klont die Instanz der Klasse Ausleihe
+	 * @return Kopie der Instanz
+	 */
 	public Ausleihe clone() {
 		return new Ausleihe(startZeit, endZeit, lagerPosten, menge);
 	}
 
+	/**
+	 * Finalisiert eine Ausleihe und ändert dazu den verfügbaren Bestand des Artikels.
+	 */
 	public void buchen() {
 		lagerPosten.bestandAendern(-menge);
 	}
 
+	/**
+	 * Ruft den ausgeliehenen LagerPosten ab.
+	 * 
+	 * @return LagerPosten der ausgeliehen wurde.
+	 */
 	public LagerPosten getPosten() {
 		return lagerPosten;
 	}
 
+	/**
+	 * Ruft die ausgeliehene Menge ab.
+	 * 
+	 * @return Menge die ausgeliehen wurde.
+	 */
 	public int getMenge() {
 		return menge;
 	}
 
+	/**
+	 * Prüft ob die Ausleihe wieder leer ist.
+	 * 
+	 * @return Wahrheitswert ob Ausleihe leer ist.
+	 */
 	public boolean istLeer() {
 		return menge == 0;
 	}
 
+	/**
+	 * Ruft die Startzeit der Ausleihe ab.
+	 * 
+	 * @return Startzeit der Ausleihe
+	 */
 	public int getStartZeit() {
 		return startZeit;
 	}
 
+	/**
+	 * Verändert die prognostizierte Endzeit der Ausleihe.
+	 * 
+	 * @param endZeit Neue prognostizierte Endzeit der Ausleihe
+	 */
 	public void setEndZeit(int endZeit) {
 		this.endZeit = endZeit;
 	}
@@ -67,10 +99,20 @@ public class Ausleihe implements Cloneable {
 		return cpy;
 	}
 
+	/**
+	 * Ruft die prognostizierte Endzeit der Ausleihe ab.
+	 * 
+	 * @return Prognostizierte Endzeit der Ausleihe
+	 */
 	public int getEndZeit() {
 		return endZeit;
 	}
 
+	/**
+	 * Gibt eine lesbare Formatierung der Instanz der Klasse Ausleihe zurück.
+	 * 
+	 * @return String aus Menge, LagerPosten sowie Start- und Endzeit der Ausleihe
+	 */
 	public String toString() {
 		return "Ausleihe von " + menge + "x " + lagerPosten + " von "
 				+ startZeit + "h bis " + endZeit + "h";
