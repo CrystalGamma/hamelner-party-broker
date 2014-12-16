@@ -37,11 +37,11 @@ Befehle zur / zum:
 \begin{description}
 \item[\{set, get\}\{Name, VorName, ID, Straße, Hausnummer, PLZ, Ort\}]
 Holt oder ändert die entsprechenden Werte.
-\item[rueckgabe(posten, zeit, menge)]
+\item[rueckgabe(posten, zeit, menge) -> Verleih]
 Bucht eine gegebene Menge eines gegebenen Postens von den Ausleihen des Kunden zurück ins Lager
 und stellt die Kosten der Ausleihe dem Kunden in Rechnung.\\
 Exception wenn der Posten nicht ausgeliehen war oder die angegebene Menge die Leihmenge übersteigt.
-\item[verlustMelden(posten, zeit, menge)]
+\item[verlustMelden(posten, zeit, menge) -> Verlust]
 Streicht eine gegebene Menge eines gegebenen Postens von den Ausleihen des Kunden\\
 Exception wenn der Posten nicht ausgeliehen war oder die angegebene Menge die Leihmenge übersteigt.
 und stellt dem Kunden die Verlustgebühr in Rechnung.
