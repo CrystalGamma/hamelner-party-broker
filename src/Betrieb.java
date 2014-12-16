@@ -268,8 +268,12 @@ public class Betrieb {
 	}
 
 	private void transaktionen() {
-		for (String str : aktuellerKunde.getTransaktionen()) {
-			System.out.println(str);
+		if(aktuellerKunde.getTransaktionen().length > 0){
+			for (String str : aktuellerKunde.getTransaktionen()) {
+				System.out.println(str);
+			}
+		}else{
+			System.out.println("Der aktuelle Kunde " + aktuellerKunde + " hat noch keine Transaktionen abgeschlossen.");
 		}
 	}
 
