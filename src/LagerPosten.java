@@ -80,9 +80,9 @@ public class LagerPosten extends Artikel {
 	/**
 	 * Verändert die Lagermenge des Postens.
 	 * Überprüft ob genug vorhanden ist.
-	 * @throws MengenFehler: wenn der Bestand negativ werden würde
+	 * @throws MengenFehler wenn der Bestand negativ werden würde
 	 * Jona Stubbe
-	 * @param menge: Änderungswert (+/-)
+	 * @param menge Änderungswert (+/-)
 	 */
 	public void bestandAendern(int menge) {
 		if (bestand < -menge)
@@ -101,9 +101,11 @@ public class LagerPosten extends Artikel {
 	/**
 	 * berechnet die gesamte Leihgebühr für eine Ausleihe
 	 * Jona Stubbe
-	 * @param zeitGeplant: bei der Ausleihe angegebene Ausleihzeit
-	 * @param menge
-	 * @param zeitDelta: Differenz zwischen tatsächlicher und geplanter Zeit
+	 * @param zeitGeplant bei der Ausleihe angegebene Ausleihzeit
+	 * @param menge Menge für die ein Preis ermittelt werden soll
+	 * @param zeitDelta Differenz zwischen tatsächlicher und geplanter Zeit
+	 * 
+	 * @return Berechneter Ausleihepreis unter Berücksichtung der Zeit und der Menge.
 	 */
 	public int ausleihePreis(int zeitGeplant, int menge, int zeitDelta) {
 		if (zeitDelta > 0)
@@ -116,9 +118,11 @@ public class LagerPosten extends Artikel {
 	/**
 	 * berechnet die Gebühr, die bei Verlust gezahlt werden muss
 	 * Jona Stubbe
-	 * @param zeitGeplant: bei Ausleihe angegebene Ausleihdauer
-	 * @param menge
-	 * @param zeitDelta: Differenz zwischen geplanter Leihdauer und Verlustmeldungszeit
+	 * @param zeitGeplant bei Ausleihe angegebene Ausleihdauer
+	 * @param menge Menge für die eine Verlustgebühr ermittelt werden soll
+	 * @param zeitDelta Differenz zwischen geplanter Leihdauer und Verlustmeldungszeit
+	 * 
+	 * @return Berechnete Verlustgebühr unter Berücksichtigung der Zeit und der Menge.
 	 */
 	public int verlustGebuehr(int zeitGeplant, int menge, int zeitDelta) {
 		return ausleihePreis(zeitGeplant, menge, zeitDelta) + ((-handlingPauschale+verlustGebuehr)*menge);

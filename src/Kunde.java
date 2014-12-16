@@ -198,6 +198,8 @@ public class Kunde {
 	 * Erstellt ein Array aus den Stringdarstellungen aller Transaktionen
 	 * (offene/geschlossene Rechungspunkte, ausstehende Ausleihen)
 	 * Jona Stubbe
+	 * 
+	 * @return String-Array mit allen offenen und geschlossenen RechnungsPosten des Kunden.
 	 */
 	public String[] getTransaktionen() {
 		LinkedList<String> transaktionen = new LinkedList<String>();
