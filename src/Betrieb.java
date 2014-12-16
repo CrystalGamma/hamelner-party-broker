@@ -84,7 +84,7 @@ public class Betrieb {
 			}
 			System.out.println("Bitte bezahlen: " + Services.geldString(zuZahlen) + ".");
 		}else{
-			System.out.println("Der aktuelle Kunde " + aktuellerKunde + " hat keine offenen Transaktionen.");
+			System.err.println("Der aktuelle Kunde " + aktuellerKunde + " hat keine offenen Transaktionen.");
 		}
 	}
 
@@ -132,10 +132,10 @@ public class Betrieb {
 				if(eingabeID == 1 || eingabeID == 2 || eingabeID == 3|| eingabeID == 4)
 					break;
 				else
-					System.out.println("Die Option gab es nicht");
+					System.err.println("Die Option gab es nicht");
 					
 			} catch (InputMismatchException e) {
-				System.out.println("Fehler in der Eingabe! Es war keine akzeptable Zahl");
+				System.err.println("Fehler in der Eingabe! Es war keine akzeptable Zahl");
 				scanner.nextLine();
 			}
 		}
@@ -159,7 +159,7 @@ public class Betrieb {
 				try {
 					eingabeInt=scanner.nextInt();
 				} catch (InputMismatchException e) {
-					System.out.println("Fehler in der Eingabe! Es war keine akzeptable Zahl");
+					System.err.println("Fehler in der Eingabe! Es war keine akzeptable Zahl");
 					scanner.nextLine();
 					continue;
 				}
@@ -176,11 +176,11 @@ public class Betrieb {
 					aktuellerKunde.setHausnummer(eingabeInt);
 					break;
 				} catch(InputMismatchException e) {
-					System.out.println("Fehler in der Eingabe! Es war keine akzeptable Zahl");
+					System.err.println("Fehler in der Eingabe! Es war keine akzeptable Zahl");
 					scanner.nextLine();
 				}
 			} else {
-				System.out.println("Durch die fehlerhafte Eingabe bitten wir erneut um Ihre Eingabe.");
+				System.err.println("Durch die fehlerhafte Eingabe bitten wir erneut um Ihre Eingabe.");
 			}
 		}
 		
@@ -245,13 +245,13 @@ public class Betrieb {
 			try {
 				schluesselID = scannerID.nextInt();
 			} catch(InputMismatchException e) {
-				System.out.println("Fehler in der Eingabe! Es war keine akzeptable Zahl");
+				System.err.println("Fehler in der Eingabe! Es war keine akzeptable Zahl");
 				scannerID.nextLine();
 				continue;
 			}
 			if (schluesselID < 0 || schluesselID >= artikel.length
 					|| !artikel[schluesselID].istVerleihbar())
-				System.out.println("Diese Option ist nicht verfügbar");
+				System.err.println("Diese Option ist nicht verfügbar");
 			else
 				break;
 		}
@@ -261,7 +261,7 @@ public class Betrieb {
 				menge=scannerID.nextInt();
 				break;
 			} catch(InputMismatchException e) {
-				System.out.println("Fehler in der Eingabe! Es war keine akzeptable Zahl");
+				System.err.println("Fehler in der Eingabe! Es war keine akzeptable Zahl");
 				scannerID.nextLine();
 			}
 		}
@@ -284,7 +284,7 @@ public class Betrieb {
 				System.out.println(str);
 			}
 		}else{
-			System.out.println("Der aktuelle Kunde " + aktuellerKunde + " hat noch keine Transaktionen abgeschlossen.");
+			System.err.println("Der aktuelle Kunde " + aktuellerKunde + " hat noch keine Transaktionen abgeschlossen.");
 		}
 	}
 
@@ -318,9 +318,9 @@ public class Betrieb {
 				if(eingabeProdukt < artikel.length) {
 					gewaehltesProdukt = artikel[eingabeProdukt];
 					if (!gewaehltesProdukt.istVerkaeuflich())
-						System.out.println("Das gewünschte Produkt ist leider nicht käuflich.");
+						System.err.println("Das gewünschte Produkt ist leider nicht käuflich.");
 				} else {
-					System.out.println("Produktnummer ungültig.");
+					System.err.println("Produktnummer ungültig.");
 				}
 			} while (gewaehltesProdukt == null || !gewaehltesProdukt.istVerkaeuflich());
 		} catch(ArrayIndexOutOfBoundsException e) {
@@ -377,13 +377,13 @@ public class Betrieb {
 				eingabeProdukt = scanner.nextInt();
 				gewaehltesProdukt = artikel[eingabeProdukt];
 				if (!gewaehltesProdukt.istVerleihbar())
-					System.out.println(
+					System.err.println(
 							"Das gewünschte Produkt ist leider nicht verleihbar.");
 				else{
 					break;
 				}
 			} catch(InputMismatchException e) {
-				System.out.println("Fehler in der Eingabe! Es war keine akzeptable Zahl");
+				System.err.println("Fehler in der Eingabe! Es war keine akzeptable Zahl");
 				scanner.nextLine();
 			}
 		}
@@ -442,7 +442,7 @@ public class Betrieb {
 			try {
 				schluesselID=scannerID.nextInt();
 			} catch(InputMismatchException e) {
-				System.out.println("Fehler in der Eingabe! Es war keine akzeptable Zahl");
+				System.err.println("Fehler in der Eingabe! Es war keine akzeptable Zahl");
 				scannerID.nextLine();
 				continue;
 			}
@@ -450,7 +450,7 @@ public class Betrieb {
 
 			if (schluesselID < 0 || schluesselID >= artikel.length
 					|| !artikel[schluesselID].istVerleihbar())
-				System.out.println("Diese Option ist nicht verfügbar");
+				System.err.println("Diese Option ist nicht verfügbar");
 			else
 				break;
 		}
@@ -460,7 +460,7 @@ public class Betrieb {
 				menge=scannerID.nextInt();
 				break;
 			} catch(InputMismatchException e) {
-				System.out.println("Fehler in der Eingabe! Es war keine akzeptable Zahl");
+				System.err.println("Fehler in der Eingabe! Es war keine akzeptable Zahl");
 				scannerID.nextLine();
 			}
 		}
@@ -609,9 +609,9 @@ public class Betrieb {
 					default:
 				}
 			} catch (InputMismatchException e) {
-				System.out.println("FEHLER: unerwartete Eingabe");
+				System.err.println("FEHLER: unerwartete Eingabe");
 			} catch(Throwable e) {
-				System.out.println("FEHLER: " + e.getMessage());
+				System.err.println("FEHLER: " + e.getMessage());
 			}
 		} while (run);
 	}
