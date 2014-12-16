@@ -168,7 +168,8 @@ public class Kunde {
 
 	/**
 	 * Kopiert alle offenen RechnungsPunkte in die Liste der geschlossene
-	 * RechungsPunkte und gibt sie zurück.
+	 * RechnungsPunkte und gibt sie zurück.
+	 * Jona Stubbe
 	 * @return die vormals offenen Rechnungspunkte
 	 */
 	public LinkedList<RechnungsPosten> abrechnung() {
@@ -180,6 +181,7 @@ public class Kunde {
 
 	/**
 	 * Addiert den Betrag aller Transaktionen des Kunden
+	 * Jona Stubbe
 	 * @return den gesamten Umsatz des Kunden
 	 */
 	public int berechneUmsatz() {
@@ -193,6 +195,7 @@ public class Kunde {
 	/**
 	 * Erstellt ein Array aus den Stringdarstellungen aller Transaktionen
 	 * (offene/geschlossene Rechungspunkte, ausstehende Ausleihen)
+	 * Jona Stubbe
 	 */
 	public String[] getTransaktionen() {
 		LinkedList<String> transaktionen = new LinkedList<String>();
@@ -209,9 +212,11 @@ public class Kunde {
 	/**
 	 * Entfernt eine bestimmte Menge eines Artikels aus dem Lager,
 	 * stellt dem Kunden den Kauf in Rechnung.
-	 * @param artikel
-	 * @param menge
-	 * @return
+	 * Jona Stubbe
+	 * @param artikel: zu (ver-)kaufender Artikel
+	 * @param menge: zu (ver-)kaufende Menge
+	 * @return RechnungsPunkt für den Kauf; schon geschlossen
+	 * 			falls sofort fällig
 	 */
 	public RechnungsPosten kaufen(Artikel artikel, int menge) {
 		if (!artikel.istVerkaeuflich())
