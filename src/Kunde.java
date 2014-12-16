@@ -8,9 +8,7 @@ public class Kunde {
 	LinkedList<Ausleihe> ausleihe = new LinkedList<Ausleihe>();
 	LinkedList<RechnungsPosten> offeneRechnungspunkte = new LinkedList<RechnungsPosten>();
 	LinkedList<RechnungsPosten> geschlosseneRechnungspunkte = new LinkedList<RechnungsPosten>();
-	/**
-	 * @author Leon Westhof
-	 *  */
+	
 	public Kunde(String name, String vorName, String straße, int hausnummer, int plz,String ort) {
 		this.name = name;
 		this.vorName = vorName;
@@ -24,7 +22,9 @@ public class Kunde {
 		this.strasse = strasse;
 	}
 	/**
-	 * @author Leon Westhof
+	 * Die Hausnummer setzten
+	 * @param hausnummer die zu setztende Hausnummer
+	 * Leon Westhof
 	 *  */
 	public void setHausnummer(int hausnummer) {
 		// TODO: b oder a zusatz muss abgefangen werden
@@ -35,7 +35,9 @@ public class Kunde {
 		}
 	}
 	/**
-	 * @author Leon Westhof
+	 * Setzt die Postleitzahl
+	 * @param plz die zu setztende Postleitzahl
+	 * Leon Westhof
 	 *  */
 	public void setPlz(int plz) {
 		if (plz >= 1000 && plz <= 99998) {

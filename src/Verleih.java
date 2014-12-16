@@ -1,6 +1,6 @@
 public class Verleih extends RechnungsPosten {
-	public Verleih(LagerPosten posten, int pMenge, int betrag) {
-		this.menge = pMenge;
+	public Verleih(LagerPosten posten, int menge, int betrag) {
+		this.menge = menge;
 		this.artikel = posten;
 		this.betrag = betrag;
 	}
