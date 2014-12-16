@@ -1,7 +1,3 @@
-verlust und rueckgabe geben RechnungsPunkte (bzw unterklassen) zurÃ¼ck
-
-funktionen in Betrieb auf global-zustand von kunde umstellen
-
 preisberechnungs überprüfen
 
 zahlen bei gesammtbestand entfernene
