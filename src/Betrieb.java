@@ -76,14 +76,21 @@ public class Betrieb {
 
 	private void abrechnung() {
 		LinkedList<RechnungsPosten> posten = aktuellerKunde.abrechnung();
-		for (RechnungsPosten p : posten) {
-			System.out.println(p);
+		if(posten.size() > 0){
+			for (RechnungsPosten p : posten) {
+				System.out.println(p);
+			}
+		}else{
+			System.out.println("Der aktuelle Kunde " + aktuellerKunde + " hat keine offenen Transaktionen.");
 		}
 	}
 
 	private void anDerUhrDrehen(int zeit) {
 		if(zeit < 0) System.err.println("Zeit kann nicht rückwärts gehen.");
-		else this.zeit += zeit;
+		else {
+			this.zeit += zeit;
+			System.out.println("Die Uhrzeit wurde um " + zeit + " Stunden vorgestellt.");
+		}
 	}
 
 	private void bestandAuflisten(boolean verk, boolean verl) {
@@ -184,7 +191,7 @@ public class Betrieb {
 		if (kunden.isEmpty())
 			throw new Error("Es existiert kein Kunde");
 
-		System.out.println("Geben Sie ihre ID ein");
+		System.out.print("Geben Sie die Kunden-ID ein: ");
 		Scanner scannerID = new Scanner(System.in);
 
 		int schluessel;
@@ -192,16 +199,17 @@ public class Betrieb {
 			try {
 				schluessel = scannerID.nextInt();
 			} catch (InputMismatchException e) {
-				System.out.println("Fehler in der Eingabe! Es war keine akzeptable Zahl");
+				System.err.print("Fehler in der Eingabe! Es war keine akzeptable Zahl. Bitte um erneute Eingabe: ");
 				scannerID.nextLine();
 				continue;
 			}
 
 			if (schluessel > 0 && schluessel < naechsteKundenID) {
 				aktuellerKunde = kunden.get(schluessel);
+				System.out.println("Der aktuelle Kunde ist jetzt " + aktuellerKunde + ".");
 				break;
 			} else {
-				System.out.println("Kunden-ID ist ungültig. Bitte um erneute Eingabe: ");
+				System.err.print("Kunden-ID ist ungültig. Bitte um erneute Eingabe: ");
 			}
 		}
 
@@ -268,8 +276,12 @@ public class Betrieb {
 	}
 
 	private void transaktionen() {
-		for (String str : aktuellerKunde.getTransaktionen()) {
-			System.out.println(str);
+		if(aktuellerKunde.getTransaktionen().length > 0){
+			for (String str : aktuellerKunde.getTransaktionen()) {
+				System.out.println(str);
+			}
+		}else{
+			System.out.println("Der aktuelle Kunde " + aktuellerKunde + " hat noch keine Transaktionen abgeschlossen.");
 		}
 	}
 
