@@ -1,13 +1,6 @@
-zwei listen fÃ¼r Rechungspunkte in Kunde
-
-toString und bestandString in Artikel
-
 verlust und rueckgabe geben RechnungsPunkte (bzw unterklassen) zurÃ¼ck
 
 funktionen in Betrieb auf global-zustand von kunde umstellen
-
-
-verliust und rückgabe=> reduzieren
 
 preisberechnungs überprüfen
 

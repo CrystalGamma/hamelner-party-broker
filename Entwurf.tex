@@ -66,17 +66,15 @@ Gibt den Posten der geliehen wird, zurück.
 Gibt die ausgeliehende / auszuleihende Menge zurück.
 \item[getZeit() $\rightarrow$ zeit]
 Gibt die Startzeit der Ausleihe zurück.
-\item[verlust(menge) $\rightarrow$ menge]
-Annuliert eine bestimmte Menge in der Ausleihe, gibt ggf. die Menge, die von anderen Ausleihen gedeckt wird, zurück.
-\item[rueckgabe(menge) $\rightarrow$ menge]
-Bucht eine bestimmte Menge zurück, gibt ggf. die Menge, die von anderen Ausleihen gedeckt wird, zurück.
+\item[reduzieren(menge) $\rightarrow$ Ausleihe]
+Annuliert eine bestimmte Menge in der Ausleihe, gibt geänderte Ausleihe zurück.
 \end{description}
 \section{Artikel (abstract)}
 \begin{description}
 \item[toString() $\rightarrow$ String]
 gibt den Namen des Artikels zurück
 \item[bestandString() $\rightarrow$ String]
-die Daten des Postens, zB in der Form \enquote{<Bestand> x <ID> <Name> (<Einheit>)} als String zurück
+die Daten des Postens, zB in der Form \enquote{<Bestand> x <ID> <Name> (<Preise>)} als String zurück
 \item[istVerkaeuflich() $\rightarrow$ boolean]
 Bestimmt ob der Artikel verkäuflich ist.
 \item[istVerleihbar() $\rightarrow$ boolean]
