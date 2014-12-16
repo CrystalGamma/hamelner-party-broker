@@ -3,6 +3,11 @@ import java.util.InputMismatchException;
 import java.util.LinkedList;
 import java.util.Scanner;
 
+/**
+ * Der Betrieb verwaltet einen Pool von Kunden und
+ * organisiert alle Tätigkeiten in Verbindung mit den
+ * Artikeln des Betriebes.
+ */
 public class Betrieb {
 	private int zeit;
 	private Kunde aktuellerKunde;
@@ -10,6 +15,9 @@ public class Betrieb {
 	private HashMap<Integer, Kunde> kunden = new HashMap<>();
 	private int naechsteKundenID = 1;
 
+	/**
+	 * Erzeugt eine Instanz der Klasse Betrieb und baut einen Basisbestand von Artikeln auf.
+	 */
 	public Betrieb() {
 		artikel = new Artikel[] {
 			/*LagerPosten(String name,int verkaufspreis, int leihGebuehr, int handlingPauschale,
@@ -33,6 +41,7 @@ public class Betrieb {
 			new DienstLeistung("Hallenreinigung bis 100 qm",450000),
 		};
 	}
+	
 	/**
 	 * Diese Methode fügt der  HashMap einen weiteren Kunden hinzu
 	 * 
@@ -68,6 +77,11 @@ public class Betrieb {
 		kundeHinzufuegen(kunde);
 	}
 	
+	/**
+	 * Diese Methode fügt der  HashMap einen weiteren Kunden hinzu
+	 * 
+	 * @param kunde Hinzuzufügender Kunde
+	 */
 	private void kundeHinzufuegen(Kunde kunde) {
 		kunden.put(naechsteKundenID++, kunde);
 		aktuellerKunde = kunde;
