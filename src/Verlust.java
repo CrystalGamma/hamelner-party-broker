@@ -1,6 +1,6 @@
 public class Verlust extends RechnungsPosten {
-	public Verlust(LagerPosten posten, int pMenge, int betrag) {
-		this.menge = pMenge;
+	public Verlust(LagerPosten posten, int menge, int betrag) {
+		this.menge = menge;
 		this.artikel = posten;
 		this.betrag = betrag;
 	}

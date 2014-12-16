@@ -1,8 +1,8 @@
 public class Verkauf extends RechnungsPosten {
-	public Verkauf(int pMenge, Artikel pArtikel) {
-		this.menge = pMenge;
-		this.artikel = pArtikel;
-		this.betrag = pArtikel.kaufPreis(menge);
+	public Verkauf(int menge, Artikel artikel) {
+		this.menge = menge;
+		this.artikel = artikel;
+		this.betrag = artikel.kaufPreis(menge);
 	}
 
 	@Override

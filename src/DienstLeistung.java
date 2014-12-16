@@ -1,7 +1,7 @@
 public class DienstLeistung extends Artikel {
-	public DienstLeistung(String pName, int pPreis){
-		name = pName;
-		handlingPauschale = pPreis;
+	public DienstLeistung(String name, int preis){
+		this.name = name;
+		this.handlingPauschale = preis;
 	}
 
 	public int kaufPreis(int menge) {
