@@ -1,6 +1,11 @@
 import java.util.Arrays;
-
 import java.util.LinkedList;
+
+/**
+ * Die Klasse Kunde verwaltet neben den Stammdaten einer Instanz auch deren RechnungsPosten.
+ * Darüber hinaus organisiert die Klasse auch die für den Betrieb gängigen Tätigkeiten
+ * wie das Kaufen, Ausleihen und Rückgeben von Artikeln.
+ */
 public class Kunde {
 	String name, vorName, strasse, ort;
 	int id, hausnummer, plz, umsatz;// id muss noch gesetzt werden mit static
@@ -9,6 +14,16 @@ public class Kunde {
 	LinkedList<RechnungsPosten> offeneRechnungspunkte = new LinkedList<RechnungsPosten>();
 	LinkedList<RechnungsPosten> geschlosseneRechnungspunkte = new LinkedList<RechnungsPosten>();
 	
+	/**
+	 * Erzeugt eine Instanz der Klasse Kunde.
+	 * 
+	 * @param name Name
+	 * @param vorName Vorname
+	 * @param straße Straße
+	 * @param hausnummer Hausnummer
+	 * @param plz Postleitzahl
+	 * @param ort Wohnort
+	 */
 	public Kunde(String name, String vorName, String straße, int hausnummer, int plz,String ort) {
 		this.name = name;
 		this.vorName = vorName;
@@ -18,11 +33,18 @@ public class Kunde {
 		setOrt(ort);
 	}
 
+	/**
+	 * Ändert die Straße der Instanz.
+	 * 
+	 * @param strasse Neue Straße des Kunden
+	 */
 	public void setStrasse(String strasse) {
 		this.strasse = strasse;
 	}
+	
 	/**
 	 * Die Hausnummer setzten
+	 * 
 	 * @param hausnummer die zu setztende Hausnummer
 	 * Leon Westhof
 	 *  */
@@ -34,6 +56,7 @@ public class Kunde {
 			throw new AdressFehler("Negative oder 0 Hausnummern gibt es nicht");
 		}
 	}
+	
 	/**
 	 * Setzt die Postleitzahl
 	 * @param plz die zu setztende Postleitzahl
@@ -46,38 +69,84 @@ public class Kunde {
 			throw new AdressFehler("Plz ist immer 5-stellig");//die überprüfung ist überflüssig
 		}
 	}
+	
+	/**
+	 * Ändert den Namen der Instanz.
+	 * 
+	 * @param name Neuer Name des Kunden
+	 */
 	public void setName(String name){
 		this.name=name;
 	}
 
+	/**
+	 * Ändert den Wohnort der Instanz.
+	 * 
+	 * @param ort Neuer Wohnort des Kunden
+	 */
 	public void setOrt(String ort) {
 		this.ort = ort;
 	}
 
+	/**
+	 * Ermittelt den Nachnamen einer Instanz.
+	 * 
+	 * @return Nachname des Kunden
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * Ermittelt den Vorname einer Instanz.
+	 * 
+	 * @return Vorname des Kunden
+	 */
 	public String getVorName() {
 		return vorName;
 	}
 
+	/**
+	 * Ermittelt die Kunden-ID einer Instanz.
+	 * 
+	 * @return Kunden-ID des Kunden
+	 */
 	public int getID() {
 		return id;
 	}
 
+	/**
+	 * Ermittelt die Straße einer Instanz.
+	 * 
+	 * @return Straße des Kunden
+	 */
 	public String getStrasse() {
 		return strasse;
 	}
 
+	/**
+	 * Ermittelt die Hausnummer einer Instanz.
+	 * 
+	 * @return Hausnummer des Kunden
+	 */
 	public int getHausnummer() {
 		return hausnummer;
 	}
 
+	/**
+	 * Ermittelt die Postleitzahl einer Instanz.
+	 * 
+	 * @return Postleitzahl des Kunden
+	 */
 	public int getPlz() {
 		return plz;
 	}
 
+	/**
+	 * Ermittelt den Wohnort einer Instanz.
+	 * 
+	 * @return Wohnort des Kunden
+	 */
 	public String getOrt() {
 		return ort;
 	}
@@ -162,6 +231,9 @@ public class Kunde {
 		return verl;
 	}
 
+	/**
+	 * Fügt eine Ausleihe zu der Ausleih-Liste der Instanz hinzu und bucht diese.
+	 */
 	public void ausleihe(Ausleihe ausl) {
 		ausleihe.addFirst(ausl);
 		// TODO: sortiert nach startzeit einfügen
@@ -239,10 +311,20 @@ public class Kunde {
 		return posten;
 	}
 
+	/**
+	 * Ermittelt die Anschrift einer Instanz.
+	 * 
+	 * @return Anschrift bestehend aus Straße, Hausnummer, Postleitzahl und Wohnort
+	 */
 	public String getAnschrift() {
 		return strasse + " " + hausnummer + "\n" + plz + " " + ort;
 	}
 	
+	/**
+	 * Gibt eine lesbare Formatierung der Instanz der Klasse Kunde zurück.
+	 * 
+	 * @return String aus Nachname und Vorname des Kunden
+	 */
 	@Override
 	public String toString(){
 		return this.name + ", " + this.vorName;
