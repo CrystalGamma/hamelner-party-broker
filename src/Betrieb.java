@@ -76,8 +76,12 @@ public class Betrieb {
 
 	private void abrechnung() {
 		LinkedList<RechnungsPosten> posten = aktuellerKunde.abrechnung();
-		for (RechnungsPosten p : posten) {
-			System.out.println(p);
+		if(posten.size() > 0){
+			for (RechnungsPosten p : posten) {
+				System.out.println(p);
+			}
+		}else{
+			System.out.println("Der aktuelle Kunde " + aktuellerKunde + " hat keine offenen Transaktionen.");
 		}
 	}
 
