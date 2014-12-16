@@ -81,6 +81,14 @@ public class Kunde {
 		return ort;
 	}
 
+	/**
+	 * Gibt eine gegebene Menge eines LagerPostens an den Bestand zurück.
+	 * Jona Stubbe
+	 * @param lagerPosten: Posten der zurückgegeben werden soll
+	 * @param zeit: Zeitpunkt der Rückgabe
+	 * @param menge: Rückgabemenge
+	 * @return einen RechnungsPosten der durch die Rückgabe entstanden ist
+	 */
 	public Verleih rueckgabe(LagerPosten lagerPosten, int zeit, int menge) {
 		int pos = ausleihe.size();
 		Ausleihe[] rev = new Ausleihe[pos];
@@ -111,6 +119,17 @@ public class Kunde {
 		return verl;
 	}
 
+	/**
+	 * meldet den Verlust eines Ausgeliehenen Postens:
+	 * Entfernt die gegebene Menge von den Ausleihen des Kunden,
+	 * aber fügt sie nicht dem Lager zu.
+	 * Berechnet dem Kunden die entsprechenden Kosten.
+	 * Jona Stubbe
+	 * @param lagerPosten: verloren zu meldender Artikel
+	 * @param zeit: Zeitpunkt der Verlustmeldung
+	 * @param menge: verlorene Menge
+	 * @return RechungsPosten mit Betrag entsprechender Gebühren
+	 */
 	public Verlust verlustMelden(LagerPosten lagerPosten, int zeit, int menge) {
 		if(lagerPosten.verlustGebuehr == 0)
 			throw new Error("Verlust dieses Produktes ist nicht möglich.");
@@ -148,6 +167,11 @@ public class Kunde {
 		ausl.buchen();
 	}
 
+	/**
+	 * Kopiert alle offenen RechnungsPunkte in die Liste der geschlossene
+	 * RechungsPunkte und gibt sie zurück.
+	 * @return die vormals offenen Rechnungspunkte
+	 */
 	public LinkedList<RechnungsPosten> abrechnung() {
 		LinkedList<RechnungsPosten> tmp = offeneRechnungspunkte;
 		geschlosseneRechnungspunkte.addAll(0, tmp);
@@ -155,6 +179,10 @@ public class Kunde {
 		return tmp;
 	}
 
+	/**
+	 * Addiert den Betrag aller Transaktionen des Kunden
+	 * @return den gesamten Umsatz des Kunden
+	 */
 	public int berechneUmsatz() {
 		int gesamtUmsatz = 0;
 		for (RechnungsPosten rp: geschlosseneRechnungspunkte) {
@@ -163,6 +191,10 @@ public class Kunde {
 		return gesamtUmsatz;
 	}
 
+	/**
+	 * Erstellt ein Array aus den Stringdarstellungen aller Transaktionen
+	 * (offene/geschlossene Rechungspunkte, ausstehende Ausleihen)
+	 */
 	public String[] getTransaktionen() {
 		LinkedList<String> transaktionen = new LinkedList<String>();
 		for (RechnungsPosten rp : geschlosseneRechnungspunkte)
@@ -175,6 +207,13 @@ public class Kunde {
 							String[].class);
 	}
 
+	/**
+	 * Entfernt eine bestimmte Menge eines Artikels aus dem Lager,
+	 * stellt dem Kunden den Kauf in Rechnung.
+	 * @param artikel
+	 * @param menge
+	 * @return
+	 */
 	public RechnungsPosten kaufen(Artikel artikel, int menge) {
 		if (!artikel.istVerkaeuflich())
 			throw new ArtikelFehler(artikel, ArtikelFehler.Art.NichtVerkaeuflich);
