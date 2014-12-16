@@ -74,6 +74,9 @@ public class Betrieb {
 		System.out.println("Kunde " + kunde + " erfolgreich erstellt. Seine ID ist " + (naechsteKundenID-1) + ".");
 	}
 
+	/**
+	 * Rechnet die offenen Transaktionen des aktuellen Kunden ab und fordert zu einer Zahlung auf.
+	 */
 	private void abrechnung() {
 		LinkedList<RechnungsPosten> posten = aktuellerKunde.abrechnung();
 		if(posten.size() > 0){
@@ -88,6 +91,11 @@ public class Betrieb {
 		}
 	}
 
+	/**
+	 * Ermöglicht das stundenweise vorstellen der Uhrzeit 
+	 * 
+	 * @param zeit Vorzustellende Zeit in Stunden
+	 */
 	private void anDerUhrDrehen(int zeit) {
 		if(zeit < 0) System.err.println("Zeit kann nicht rückwärts gehen.");
 		else {
@@ -96,6 +104,12 @@ public class Betrieb {
 		}
 	}
 
+	/**
+	 * Auflistung des verfügbaren Bestands mit ID und Produktnamen.
+	 * 
+	 * @param verk Sollen verkäufliche Produkte mit aufgeführt werden?
+	 * @param verl Sollen verleihbare Produkte mit aufgeführt werden?
+	 */
 	private void bestandAuflisten(boolean verk, boolean verl) {
 		int len = Math.max((int) Math.ceil(Math.log10(artikel.length)), 2);
 		System.out.printf("%" + len + "s Artikel\n", "ID");
@@ -278,6 +292,9 @@ public class Betrieb {
 		
 	}
 
+	/**
+	 * Listet die Transaktionen des aktuellen Kunden in der Konsole auf.
+	 */
 	private void transaktionen() {
 		if(aktuellerKunde.getTransaktionen().length > 0){
 			for (String str : aktuellerKunde.getTransaktionen()) {
@@ -288,6 +305,9 @@ public class Betrieb {
 		}
 	}
 
+	/**
+	 * Listet die Umsätze aller Kunden in der Konsole auf.
+	 */
 	private void umsatzBericht() {
 		int id = 1;
 		for (Kunde kunde : kunden.values()) {
@@ -473,9 +493,14 @@ public class Betrieb {
 		} else {
 			System.out.println("Abgebrochen.");
 		}
-		
 	}
 
+	/**
+	 * Auflistung des Gesamtbestands mit ID und Produktnamen.
+	 * 
+	 * @param verk Sollen verkäufliche Produkte mit aufgeführt werden?
+	 * @param verl Sollen verleihbare Produkte mit aufgeführt werden?
+	 */
 	private void gesamtBestand(boolean verk, boolean verl) {
 		int index = 0;
 		System.out.printf("%s\t %s\n", "ID", "Artikel");
