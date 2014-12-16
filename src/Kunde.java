@@ -21,14 +21,13 @@ public class Kunde {
 	}
 
 	public void setStrasse(String strasse) {
-
 		this.strasse = strasse;
 	}
 	/**
 	 * @author Leon Westhof
 	 *  */
 	public void setHausnummer(int hausnummer) {
-		// b oder a zusatz muss abgefangen werden
+		// TODO: b oder a zusatz muss abgefangen werden
 		if (hausnummer > 0) {
 			this.hausnummer = hausnummer;
 		} else {

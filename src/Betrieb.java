@@ -102,8 +102,8 @@ public class Betrieb {
 		}
 	}
 	/**
-	 * Diese Methode diehnt dazu die Addresse des Kunden zu ändern.
-	 * Man hat die Möglichlichkeit 
+	 * Diese Methode diehnt dazu die Addresse des Kunden zu ändern oder dessen Nachnamen.
+	 * Man hat die Möglichlichkeit zwischen straße und ahsnummer oder kompletter anschrift zu wählen. Nach Auswahl gibt ein bei falscheingabe eine Fehlermeldung und eine Neueingabe. Bei richtiger auswhl kann man dann seine entsprechenden daten ändern. Fahlermeldungen gibt es bei unssinigen Angaben zu Zahlenfragen
 	 * Leon Westhof
 	 *  */
 	private void datenAendern() {
@@ -153,12 +153,8 @@ public class Betrieb {
 					scanner.nextLine();
 					continue;
 				}
-				if (eingabeInt >= 1000 && eingabeInt <= 99998) {
-					aktuellerKunde.setPlz(eingabeInt);
-					eingabeID=2;
-				} else {
-					System.out.println("Plz sind immer 5-Stellig");
-				}
+				aktuellerKunde.setPlz(eingabeInt);
+				eingabeID=2;
 			}
 			if (eingabeID==2) {
 				System.out.println("Geben Sie ihre Straße ein");
@@ -180,7 +176,8 @@ public class Betrieb {
 		
 	}
 	/**
-	 * @author Leon Westhof
+	 * Diese Methode bietet dem Anwender die Möglichkeit den Kunden zu wechseln.
+	 * Leon Westhof
 	 *  */
 	private void kundeWechseln() {
 		// fragt kunde nach ID , überprüft und setzt
@@ -210,7 +207,13 @@ public class Betrieb {
 
 	}
 	/**
-	 * @author Leon Westhof
+	 * Mit dieser Methode kann ein Artikel zurückgegeben werden.
+	 * Dafür wird zuerst der komplette bestand an zurückgebbaren Objekten aufgelistet. Wenn dieser eine falsche
+	 * ID oder Unsinn eingibt wird er zur erneuten Eingabe aufgefordert. Wenn diese aber stimmt muss er die 
+	 * Menge eingeben. nach einer bestätigungsbitte wird geprüft, welche Menge er ausgeliehen hat und ob
+	 * diese mit der Rückgabe Menge übereinstimmt. Wenn ja wird sie zurückgegeben. Wenn nicht gibt es eine 
+	 * Fehlermeldung.
+	 * Leon Westhof
 	 *  */
 	private void rueckgabe() {
 		// TODO: deduplizieren
@@ -399,7 +402,13 @@ public class Betrieb {
 		}
 	}
 	/**
-	 * @author Leon Westhof
+	 * Mit dieser Methode wird ein verlust gemeldet.
+	 * Dafür wird zuerst der komplette Bestand an zurückgebbaren Objekten aufgelistet. Wenn dieser eine falsche
+	 * ID oder Unsinn eingibt wird er zur erneuten Eingabe aufgefordert. Wenn diese aber stimmt muss er die 
+	 * Menge eingeben. Nach einer Bestätigungsbitte wird geprüft, welche Menge er ausgeliehen hat und ob
+	 * diese mit der Rückgabe Menge übereinstimmt. Wenn ja wird sie zurückgegeben. Wenn nicht gibt es eine 
+	 * Fehlermeldung.
+	 * Leon Westhof
 	 *  */
 	private void verlust() {
 		int schluesselID;
@@ -502,7 +511,7 @@ public class Betrieb {
 		do {
 			int aktion = 0;
 			while (true) {
-				System.out.print("Befehl> ");
+				System.out.print("Befehl(0 für Befehlliste)> ");
 				System.out.flush();
 				try{
 					aktion = scanner.nextInt();
