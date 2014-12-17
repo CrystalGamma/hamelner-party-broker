@@ -10,11 +10,13 @@ public class Verlust extends RechnungsPosten {
 	 * @param posten LagerPosten der verloren wurde
 	 * @param menge Menge die verloren wurde
 	 * @param betrag daraus resultierender Betrag
+	 * @param zeit Zeitpunkt des Verkaufs
 	 */
-	public Verlust(LagerPosten posten, int menge, int betrag) {
+	public Verlust(LagerPosten posten, int menge, int betrag, int zeit) {
 		this.menge = menge;
 		this.artikel = posten;
 		this.betrag = betrag;
+		this.zeit = zeit;
 	}
 
     /**
@@ -24,6 +26,8 @@ public class Verlust extends RechnungsPosten {
      */
 	@Override
 	public String toString() {
-		return "Verlust von " + this.menge + "x" + this.artikel + " zu einer Gebühr von " + Services.geldString(this.betrag) + ".";
+		return "Verlust von " + this.menge + "x" + this.artikel
+				+ " zu einer Gebühr von " + Services.geldString(this.betrag)
+				+ " um " + zeit + "h";
 	}
 }

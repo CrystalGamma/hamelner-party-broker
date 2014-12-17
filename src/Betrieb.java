@@ -375,7 +375,7 @@ public class Betrieb {
 		
 		if (weiter.equals("j")) {
 			// Kauf abwickeln
-			RechnungsPosten posten = aktuellerKunde.kaufen(gewaehltesProdukt, eingabeAnzahl);
+			RechnungsPosten posten = aktuellerKunde.kaufen(gewaehltesProdukt, eingabeAnzahl, zeit);
 			if (posten.sofortFaellig())
 				System.out.println("Bitte bezahlen: "+posten);
 			else

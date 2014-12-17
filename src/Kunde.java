@@ -184,7 +184,7 @@ public class Kunde {
 			throw new MengenFehler(MengenFehler.Art.ZuvielRueckgeben, menge);
 		lagerPosten.bestandAendern(gesamtMenge);
 		ausleihe = tmp;
-		Verleih verl = new Verleih(lagerPosten, gesamtMenge, betrag);
+		Verleih verl = new Verleih(lagerPosten, gesamtMenge, betrag, zeit);
 		geschlosseneRechnungspunkte.addFirst(verl);
 		return verl;
 	}
@@ -226,7 +226,7 @@ public class Kunde {
 		if (menge > 0)
 			throw new MengenFehler(MengenFehler.Art.ZuvielVerloren, menge);
 		ausleihe = tmp;
-		Verlust verl = new Verlust(lagerPosten, gesamtMenge, betrag);
+		Verlust verl = new Verlust(lagerPosten, gesamtMenge, betrag, zeit);
 		geschlosseneRechnungspunkte.addFirst(verl);
 		return verl;
 	}
@@ -294,7 +294,7 @@ public class Kunde {
 	 * @return RechnungsPunkt für den Kauf; schon geschlossen
 	 * 			falls sofort fällig
 	 */
-	public RechnungsPosten kaufen(Artikel artikel, int menge) {
+	public RechnungsPosten kaufen(Artikel artikel, int menge, int zeit) {
 		if (!artikel.istVerkaeuflich())
 			throw new ArtikelFehler(artikel, ArtikelFehler.Art.NichtVerkaeuflich);
 		if (menge < 0)
@@ -302,10 +302,10 @@ public class Kunde {
 		RechnungsPosten posten;
 		if (artikel instanceof LagerPosten) {
 			((LagerPosten)artikel).bestandAendern(-menge);
-			posten = new Verkauf(menge, artikel);
+			posten = new Verkauf(menge, artikel, zeit);
 			offeneRechnungspunkte.addFirst(posten);
 		} else {
-			posten = new Verkauf(menge, artikel);
+			posten = new Verkauf(menge, artikel, zeit);
 			geschlosseneRechnungspunkte.addFirst(posten);
 		}
 		return posten;

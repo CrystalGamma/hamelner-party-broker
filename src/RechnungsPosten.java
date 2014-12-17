@@ -7,6 +7,7 @@ public abstract class RechnungsPosten {
 	protected int menge;
 	protected int betrag;
 	protected Artikel artikel;
+	protected int zeit;
 	
 	public abstract String toString();
 	public int getUmsatz()
