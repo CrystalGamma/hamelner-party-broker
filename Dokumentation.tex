@@ -48,7 +48,7 @@ Exception wenn der Posten nicht ausgeliehen war oder die angegebene Menge die Le
 und stellt dem Kunden die Verlustgebühr in Rechnung.
 \item[ausleihe(ausleihe)]
 Fügt eine Ausleihe dem Kundenkonto hinzu. Dabei wird diese gebucht.
-\item[abrechnung(zeit) $\rightarrow$ RechnungPosten{[]}]
+\item[abrechnung() $\rightarrow$ LinkedList<RechnungPosten>]
 Gibt alle ausstehenden Rechnungspunkte zurück und legt sie damit zu den bearbeiteten Rechnungspunkten.
 \item[berechneUmsatz() $\rightarrow$ geld]
 Berechnet den gesamten Umsatz, der durch den Kunden verursacht wurde, d. h. der Wert aller bearbeiteten Rechnungspunkte.
